@@ -1,0 +1,18 @@
+{
+  "short_name": "Daily Noor",
+  "name": "Daily Noor — Daily Quran & Hadith",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512 any"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0B5D3C",
+  "theme_color": "#0B5D3C",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "description": "Daily Quran verse and Hadith with Urdu translation, audio recitation, and family betterment tips."
+}

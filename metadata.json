@@ -1,0 +1,6 @@
+{
+  "name": "Daily Noor",
+  "description": "A daily routine web app delivering 1 Quranic verse and 1 Hadith every day with Urdu translation, audio recitation, streak tracking, and family reflections.",
+  "requestFramePermissions": ["notifications", "geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

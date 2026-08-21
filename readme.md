@@ -5,19 +5,16 @@
 [![React](https://img.shields.io/badge/React-19.0-blue.svg)](https://reactjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-emerald.svg)](https://tailwindcss.com/)
 [![PWA Ready](https://img.shields.io/badge/PWA-Offline%20Ready-gold.svg)](https://web.dev/progressive-web-apps/)
-[![Version](https://img.shields.io/badge/Version-2.0.0-0B5D3C.svg)]()
+[![Version](https://img.shields.io/badge/Version-2.5.0-0B5D3C.svg)]()
 
 ---
 
 ## ✨ Features
 
-- 📖 **Daily Quranic Verse**: 365 daily rotating verses in Uthmani Arabic script, authentic Urdu translation, simple Tafseer, and family discussion tips.
+- 🎨 **Enriched Persian & Islamic Art Background**: 16-pointed Girih Zellige geometric tilework and rotating Shamseh calligraphy medallion watermarks with soft dome ambient lighting.
+- 📖 **Daily Quranic Verse & Tafseer**: 365 daily rotating verses in Uthmani Arabic script, authentic Urdu translation, and a dedicated **Daily Tafseer** component with simplified Urdu, English commentary, historical context (Asbab al-Nuzul), and key takeaways.
+- 💬 **WhatsApp Suggestions & Feedback**: Direct one-tap WhatsApp link (`+92 333 1306603`) available app-wide in Header, Footer, Settings, and About modal.
 - 📜 **Daily Hadith**: 365 authentic Hadiths (Bukhari, Muslim, Nawawi 40) with Urdu translations and practical character lessons.
-- 📍 **User Location Badge**: Displays active user location (e.g., Makkah, Saudi Arabia, Karachi, Pakistan, or auto-detected GPS) in the header strip with one-click location customization.
-- 🎨 **Islamic Art Background Pattern**: Elegant semi-transparent 8-pointed star & Girih geometric arabesque vector tessellation background overlay across all pages.
-- 🎧 **Global Sticky Audio Player Controller**: Persistent floating bottom audio controller allowing users to pause, resume, replay, adjust playback speed (0.8x - 1.5x), and seek audio recitations of Verse, Hadith, Dua, or Dhikr without scrolling back up.
-- 📿 **Daily Dhikr & Digital Tasbih Counter**: Interactive daily remembrance card featuring rotating authentic Dhikrs (SubhanAllah, Alhamdulillah, Istighfar, Durood Sharif, etc.) with tactile bead button, progress bar, goal presets (33x, 100x, 500x), and a toggle setting to show/hide on the main screen.
-- 🤲 **Masnoon Duaa of the Week (1 Week - 1 Duaa)**: 52 authentic weekly Duas with Arabic text, transliteration, Urdu & English translations, background context, virtues (فضیلت و سند), and a 7-day family memorization goal tracker.
 - ⏰ **Selectable Daily Reminder**: Custom notification schedule picker (8:00 AM, 1:30 PM, 7:00 PM, 9:00 PM or custom time) for browser reminder alerts.
 - 🎯 **Daily 3-Question Quiz**: Interactive daily quiz testing verse knowledge, Hadith wisdom, and Islamic ethics with instant scoring and explanations.
 - 🖼️ **Studio-Grade 1080p Summary Cards**: 1-click generator combining today's Verse, Hadith, and **3 Quiz Questions with Solutions** in ultra-crisp vector-grade PNG format.
@@ -41,9 +38,6 @@ The data, media, APIs, and fonts used in **Daily Noor** are powered by open-acce
 ### 📜 Hadith Collections & Commentary
 * **Hadith Texts**: Sourced from primary authentic collections—Sahih al-Bukhari, Sahih Muslim, Sunan an-Nasa'i, Jami' at-Tirmidhi, Sunan Abi Dawud, and Forty Hadith Nawawi via [Sunnah.com API & Database](https://sunnah.com/).
 * **Urdu Translations & Character Lessons**: Authentic Urdu translations and practical lessons compiled from Darussalam Publications and [Sunnah.com](https://sunnah.com/).
-
-### 🤲 Masnoon Duas & Supplications
-* **Supplications & Sources**: 52 authentic supplications selected from *Hisn al-Muslim* (Fortress of the Muslim by Saeed bin Ali bin Wahf Al-Qahtani), *Sahih al-Bukhari*, *Sahih Muslim*, and *Sunan at-Tirmidhi*, available via [HisnMuslim.com](https://www.hisnmuslim.com/) and [Sunnah.com](https://sunnah.com/).
 
 ### 🕌 Prayer Times & Geolocation Services
 * **Prayer Calculations**: Daily prayer times calculated via the [Aladhan Prayer Times API](https://aladhan.com/prayer-times-api) (utilizing Muslim World League, Umm al-Qura, and Islamic Sciences Karachi calculation methods).

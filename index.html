@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Daily Noor (نورِ روزانہ) — 1 Quranic Verse & 1 Hadith Daily</title>
+    <meta name="description" content="A daily routine web app to receive 1 Quranic verse and 1 Hadith every day with Urdu translation, audio recitation, streak tracking, and family discussion tips." />
+    <meta name="theme-color" content="#0B5D3C" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Daily Noor" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="shortcut icon" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+
+    <!-- Google Fonts: Amiri (Arabic), Noto Nastaliq Urdu (Urdu), Noto Sans Arabic, Plus Jakarta Sans (UI) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Noto+Sans+Arabic:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-[#F5F1E8] text-[#1D2B24] dark:bg-[#0C1813] dark:text-[#E8EFEA] antialiased selection:bg-[#C9A227]/30">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch((err) => {
+            console.log('SW registration notice: ', err);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
+
