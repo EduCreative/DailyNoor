@@ -2,7 +2,13 @@
 
 All notable changes to the Daily Noor project are documented here.
 
-## [2.5.0] - 2026-08-21
+## [2.6.0] - 2026-08-22
+### Added
+- **Polished Card Entrance Animations (Framer Motion)**:
+  - Integrated fluid entrance animations via `motion/react` into `VerseCard` and `HadithCard`.
+  - Configured smooth `opacity`, `translateY`, and subtle `scale` transitions with custom cubic-bezier easing (`[0.16, 1, 0.3, 1]`) and organic delay staggering between the Verse and Hadith cards for a refined first-load experience.
+- **Default Midnight Theme**:
+  - Set the premium **Midnight Obsidian** (`theme-midnight` / dark mode) as the default out-of-the-box visual theme across store settings, initial HTML markup, and theme-color meta tags.
 ### Added
 - **Enriched Islamic Background Art & Geometry**:
   - Redesigned `IslamicBackgroundPattern.tsx` inspired by Persian tilework domes and Shamseh calligraphy art rosettes.

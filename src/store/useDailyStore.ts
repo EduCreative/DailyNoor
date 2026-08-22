@@ -19,8 +19,8 @@ const DEFAULT_SETTINGS: AppSettings = {
   familyMode: true, // Default ON to encourage family discussion
   audioAutoplay: false,
   audioSpeed: 1,
-  darkMode: false,
-  appTheme: 'emerald',
+  darkMode: true,
+  appTheme: 'midnight',
   hapticsEnabled: true,
   showDailyDhikr: true,
   showDuaOfTheWeek: true,

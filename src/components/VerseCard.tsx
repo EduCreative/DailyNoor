@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { motion } from 'motion/react';
 import { Verse } from '../types';
 import { useDailyStore } from '../store/useDailyStore';
 import { useAudioStore } from '../store/useAudioStore';
@@ -181,7 +182,12 @@ ${verse.explanation}
   };
 
   return (
-    <div className="flex flex-col gap-3">
+    <motion.div 
+      initial={{ opacity: 0, y: 24, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+      className="flex flex-col gap-3"
+    >
       {/* Top Header Label */}
       <div className="flex justify-between items-end px-2">
         <h2 className="text-[#0B5D3C] dark:text-[#C9A227] font-bold text-lg sm:text-xl uppercase tracking-widest flex items-center gap-2">
@@ -393,6 +399,6 @@ ${verse.explanation}
         </div>
 
       </div>
-    </div>
+    </motion.div>
   );
 };

@@ -25,7 +25,7 @@ interface AboutModalProps {
   onOpenShareApp?: () => void;
 }
 
-export const APP_VERSION = 'v2.5.0';
+export const APP_VERSION = 'v2.6.0';
 export const APP_RELEASE_DATE = 'August 2026';
 
 export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
@@ -34,7 +34,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  const appUrl = typeof window !== 'undefined' ? window.location.origin : 'https://daily-noor.app';
+  const appUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dailynoor-islam.web.app';
 
   const shareText = `🌙 Daily Noor (نورِ روزانہ) — 1 Quranic Verse & 1 Hadith Daily\nDaily spiritual routine for personal & family betterment with Urdu translations, audio recitation, prayer times & streak tracking.\n\nTry it online: ${appUrl}`;
 
