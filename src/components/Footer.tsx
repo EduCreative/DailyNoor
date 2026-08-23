@@ -206,6 +206,13 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
       </div>
+
+      {/* Prayer Request Banner at bottom of app */}
+      <div className="mt-3 pt-3 border-t border-[#0B5D3C]/5 dark:border-white/5 text-center px-4">
+        <p className="text-sm font-semibold text-amber-700 dark:text-amber-400 font-arabic tracking-wide" dir="rtl">
+          مسرور خان اور ان کے اہل خانہ کو دعاؤں میں یاد رکھیں
+        </p>
+      </div>
     </footer>
   );
 };

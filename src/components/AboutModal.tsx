@@ -257,9 +257,12 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           {/* Technical Specs & Version Note */}
-          <div className="pt-2 text-center text-[11px] text-[#4A5D53] dark:text-[#96A89F] space-y-0.5">
+          <div className="pt-2 text-center text-[11px] text-[#4A5D53] dark:text-[#96A89F] space-y-1">
+            <p className="text-sm font-semibold text-amber-700 dark:text-amber-400 font-arabic leading-relaxed" dir="rtl">
+              مسرور خان اور ان کے اہل خانہ کو دعاؤں میں یاد رکھیں
+            </p>
             <p className="font-semibold text-[#0B5D3C] dark:text-[#E8EFEA]">
-              Daily Noor • Version {APP_VERSION}
+              DailyNoor Islam • Version {APP_VERSION}
             </p>
             <p className="text-[10px] opacity-75">
               Built with React, Vite, Tailwind CSS, Zustand & PWA offline cache.
