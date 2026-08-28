@@ -137,7 +137,7 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
+    <div className="fixed inset-0 z-60 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
       <div className="bg-[#0C1813] text-[#E8EFEA] rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl border border-[#C9A227]/40 relative my-6">
         
         {/* Header */}

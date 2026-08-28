@@ -484,6 +484,438 @@ Highlights a defining trait of the Servants of the Most Merciful ('Ibad-ur-Rahma
     ],
     reflectionsUrdu: "اس جامع قرآنی دعا کو اپنے روزمرہ کے مسنون اذکار اور ہر نماز کے بعد التجا کا حصہ بنائیں۔",
     reflectionsEn: "Memorize and recite this comprehensive Quranic supplication for family harmony and spiritual leadership."
+  },
+  {
+    day: 15,
+    surah: "Al-Kahf",
+    surah_ar: "سورة الكهف",
+    surahNumber: 18,
+    ayah: 10,
+    arabic: "إِذْ أَوَى الْفِتْيَةُ إِلَى الْكَهْفِ فَقَالُوا رَبَّنَا آتِنَا مِن لَّدُنكَ رَحْمَةً وَهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدًا",
+    urdu_translation: "جب ان نوجوانوں نے غار میں پناہ لی تو کہا: اے ہمارے پروردگار! ہمیں اپنے پاس سے رحمت عطا فرما اور ہمارے کام میں ہمارے لیے راہِ راست آسان کر دے۔",
+    tafseerUrdu: `اصحابِ کہف کے نوجوانوں کا یہ واقعہ ایمان کی حفاظت کے لیے قربانی اور اللہ پر غیر متزلزل توکل کی عظیم ترین مثال ہے۔ جب وہ ایک ظالم اور بت پرست معاشرے سے اپنا ایمان بچانے کے لیے غار میں پناہ گزین ہوئے تو انہوں نے سب سے پہلے اللہ تعالیٰ سے دو چیزیں مانگیں: خاص رحمت اور تمام معاملات میں ہدایت و دانائی۔`,
+    tafseerEn: `The youth of the cave fled tyranny to protect their pure faith in Tawhid. Their supplication encapsulates seeking Allah's all-encompassing mercy and divine guidance (Rushd) in every difficult crossroads.`,
+    sourceNameUrdu: "تفسیر ابن کثیر و معارف القرآن",
+    sourceNameEn: "Tafseer Ibn Kathir & Ma'ariful Quran",
+    asbabAlNuzulUrdu: "مکہ کے قریش نے جب رسول اللہ ﷺ کے امتحان کے لیے اصحاب کہف کا قصہ پوچھا تو یہ سورۃ مبارکہ نازل ہوئی تاکہ اہل ایمان کو ہر دور کے فتنوں میں استقامت کا سبق دے۔",
+    asbabAlNuzulEn: "Revealed in Makkah in response to questions posed to the Prophet ﷺ by the Quraysh about the young men of the cave, teaching perseverance in times of trial.",
+    keyLessonsUrdu: [
+      "ایمان کی حفاظت ہر دنیاوی مفاد اور آسائش پر مقدم ہے۔",
+      "مشکل ترین حالات میں اللہ سے رحمت اور صائب فیصلے کی توفیق مانگنی چاہیے۔",
+      "نوجوان نسل جب اللہ کے دین پر جم جائے تو رب ان کی غیبی مدد فرماتا ہے۔"
+    ],
+    keyLessonsEn: [
+      "Protecting faith surpasses all worldly comfort and status.",
+      "Seek divine guidance and mercy in difficult decision-making.",
+      "Allah provides unseen miraculous support to sincere believers."
+    ],
+    reflectionsUrdu: "جب بھی آپ کسی اخلاقی یا فکری دباؤ کا شکار ہوں، اصحاب کہف کی یہ دعا 'رَبَّنَا آتِنَا مِن لَّدُنكَ رَحْمَةً' پورے دل سے پڑھیں۔",
+    reflectionsEn: "Whenever facing societal pressure or difficult choices, recite this supplication with total reliance on Allah."
+  },
+  {
+    day: 16,
+    surah: "Maryam",
+    surah_ar: "سورة مريم",
+    surahNumber: 19,
+    ayah: 96,
+    arabic: "إِنَّ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ سَيَجْعَلُ لَهُمُ الرَّحْمَٰنُ وُدًّا",
+    urdu_translation: "بے شک جو لوگ ایمان لائے اور انہوں نے نیک اعمال کیے، رحمان ان کے لیے (دلوں میں) محبت پیدا فرما دے گا۔",
+    tafseerUrdu: `یہ آیت اس بنیادی قرآنی قانون کو واضح کرتی ہے کہ لوگوں کے دلوں میں سچی عزت اور محبت پانے کا ذریعہ صرف اور صرف اللہ کا تقویٰ اور اخلاص ہے۔ جب بندہ تنہائی اور محفل میں اللہ کو راضی کرتا ہے تو اللہ فرشتوں اور تمام مخلوقات کے دلوں میں اس کی الفت اور عزت ڈال دیتا ہے۔`,
+    tafseerEn: `'Indeed, those who have believed and done righteous deeds - the Most Merciful will appoint for them affection.' Genuine love and respect in creation is placed by Allah for those who sincerely strive to please Him.`,
+    sourceNameUrdu: "تفسیر قرطبی و ضیاء القرآن",
+    sourceNameEn: "Tafseer al-Qurtubi & Zia ul Quran",
+    asbabAlNuzulUrdu: "سورۃ مریم مکی دور کی سورۃ ہے، جس میں توحید اور اخلاص کے ثمرات اور دنیا و آخرت میں مؤمنین کی عزت کا بیان ہے۔",
+    asbabAlNuzulEn: "Revealed in Makkah, comforting the early companions that their sacrifices and righteousness would yield perpetual honor.",
+    keyLessonsUrdu: [
+      "لوگوں کی خوشنودی کے پیچھے بھاگنے کے بجائے اللہ کو راضی کرنے کی فکر کریں۔",
+      "نیک اعمال انسان کی شخصیت میں ایسا وقار اور کشش پیدا کرتے ہیں جو بناوٹ سے نہیں آ سکتی۔",
+      "خلوص کے ساتھ کی گئی نیکی دلوں کو مسخر کر دیتی ہے۔"
+    ],
+    keyLessonsEn: [
+      "Prioritize pleasing the Creator over people-pleasing.",
+      "Righteous deeds bestow inner dignity and natural affection from others.",
+      "Sincerity is the root of authentic leadership and influence."
+    ],
+    reflectionsUrdu: "آج اپنی نیتوں کا جائزہ لیں کہ کیا میرے اعمال لوگوں کی تعریف کے لیے ہیں یا صرف اللہ کی محبت پانے کے لیے؟",
+    reflectionsEn: "Examine your daily intentions: are you seeking worldly validation or divine acceptance?"
+  },
+  {
+    day: 17,
+    surah: "Ta-Ha",
+    surah_ar: "سورة طه",
+    surahNumber: 20,
+    ayah: 114,
+    arabic: "فَتَعَالَى اللَّهُ الْمَلِكُ الْحَقُّ ۗ وَلَا تَعْجَلْ بِالْقُرْآنِ مِن قَبْلِ أَن يُقْضَىٰ إِلَيْكَ وَحْيُهُ ۖ وَقُل رَّبِّ زِدْنِي عِلْمًا",
+    urdu_translation: "پس بلند و برتر ہے اللہ جو حقیقی بادشاہ ہے۔ اور آپ قرآن پڑھنے میں جلدی نہ کریں قبل اس کے کہ اس کی وحی پوری کی جائے، اور دعا کیجئے: اے میرے پروردگار! مجھے علم میں اور زیادہ کر۔",
+    tafseerUrdu: `اللہ تعالیٰ نے نبی کریم ﷺ کو کسی دنیاوی مال یا اقتدار میں اضافے کی دعا مانگنے کا حکم نہیں دیا، بلکہ صرف علمِ نافع میں اضافے کی دعا کی تلقین فرمائی۔ علمِ دین دل کی بصیرت اور تقویٰ کی روح ہے، اور علم میں پختگی صبر اور غور و فکر سے پیدا ہوتی ہے۔`,
+    tafseerEn: `'And say: My Lord, increase me in knowledge.' Knowledge is the single virtue Allah instructed His Prophet ﷺ to pray for an increase in, signifying that true knowledge leads directly to knowing and obeying the Creator.`,
+    sourceNameUrdu: "تفسیر ابن کثیر و آسان قرآن",
+    sourceNameEn: "Tafseer Ibn Kathir & Asan Quran",
+    asbabAlNuzulUrdu: "جب وحی نازل ہوتی تو رسول اللہ ﷺ کلام کو یاد رکھنے کی بے چینی میں جلدی دہراتے، اللہ نے تسلی دی کہ اسے محفوظ کرنا ہمارا کام ہے اور آپ علم میں زیادتی کی دعا کریں۔",
+    asbabAlNuzulEn: "The Prophet ﷺ used to repeat verses rapidly while Jibril AS was reciting for fear of forgetting. Allah assured him of preservation and taught this prayer.",
+    keyLessonsUrdu: [
+      "علمِ نافع کی طلب انسان کی آخری سانس تک جاری رہنی چاہیے۔",
+      "علم کے ساتھ عاجزی اور دعا لازم و ملزوم ہیں۔",
+      "قرآن فہمی میں جلد بازی کے بجائے تدبر اور ٹھہراؤ ضروری ہے۔"
+    ],
+    keyLessonsEn: [
+      "The pursuit of beneficial knowledge is a lifelong spiritual obligation.",
+      "Knowledge must be coupled with humility and prayer.",
+      "Recite the Quran with contemplation and steady pacing."
+    ],
+    reflectionsUrdu: "اپنی ہر نماز اور سجدے کے بعد 'رَّبِّ زِدْنِي عِلْمًا' کو اپنی مستقل دعا بنائیں۔",
+    reflectionsEn: "Make 'Rabbi zidni ilma' a continuous part of your daily prayers and study routines."
+  },
+  {
+    day: 18,
+    surah: "Al-Anbiya",
+    surah_ar: "سورة الأنبياء",
+    surahNumber: 21,
+    ayah: 87,
+    arabic: "لَّا إِلَٰهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ",
+    urdu_translation: "(حضرت یونسؑ نے پکارا:) تیرے سوا کوئی معبود نہیں، تو پاک ہے، بے شک میں ہی قصورواروں میں سے تھا۔",
+    tafseerUrdu: `یہ عظیم دعا 'دعائے ذوالنون' کہلاتی ہے۔ اس میں تین بنیادی ارکان ہیں: توحید کا اقرار (لا إله إلا أنت)، اللہ کی ہر عیب سے تنزیہ و پاکی (سبحانك)، اور اپنے گناہوں و تقصیر کا کھلے دل سے اعتراف (إني كنت من الظالمين)۔ جو بندہ اس اخلاص سے پکارتا ہے اللہ اس کے تمام غموں کو دور فرما دیتا ہے۔`,
+    tafseerEn: `The supplication of Prophet Yunus AS within the belly of the whale. It combines pure monotheism, glorification of Allah's absolute perfection, and humble admission of human imperfection and repentance.`,
+    sourceNameUrdu: "تفسیر طبری و معارف القرآن",
+    sourceNameEn: "Tafseer at-Tabari & Ma'ariful Quran",
+    asbabAlNuzulUrdu: "حضرت یونس علیہ السلام کے مچھلی کے پیٹ میں جانے اور تاریکیوں میں اللہ کو پکارنے کے واقعے کا بیان۔",
+    asbabAlNuzulEn: "Revealed recounting the miraculous rescue of Prophet Yunus AS from the depths of the sea after his sincere tawbah.",
+    keyLessonsUrdu: [
+      "مشکلات کا اصل علاج اپنی غلطی تسلیم کر کے رب کے حضور جھک جانا ہے۔",
+      "اللہ کی تسبیح اور توحید غموں کا سب سے بڑا تریاق ہے۔",
+      "مایوسی کے گھٹا ٹوپ اندھیروں میں بھی اللہ کی رحمت امید کا چراغ بنتی ہے۔"
+    ],
+    keyLessonsEn: [
+      "Admitting mistakes and repenting dissolves hardships.",
+      "Tasbih and Tawhid are the supreme remedies for distress.",
+      "Never despair; divine rescue is always near for the humble."
+    ],
+    reflectionsUrdu: "جب بھی زندگی میں کسی تنگی، بیماری یا گھبراہٹ کا سامنا ہو، آیت کریمہ کا کثرت سے ورد کریں۔",
+    reflectionsEn: "Engage in continuous recitation of Ayat al-Kareema whenever experiencing stress or emotional hardship."
+  },
+  {
+    day: 19,
+    surah: "Al-Hajj",
+    surah_ar: "سورة الحج",
+    surahNumber: 22,
+    ayah: 77,
+    arabic: "يَا أَيُّهَا الَّذِينَ آمَنُوا ارْكَعُوا وَاسْجُدُوا وَاعْبُدُوا رَبَّكُمْ وَافْعَلُوا الْخَيْرَ لَعَلَّكُمْ تُفْلِحُونَ",
+    urdu_translation: "اے ایمان والو! رکوع کرو، اور سجدہ کرو، اور اپنے پروردگار کی عبادت کرو، اور بھلے کام کرو تاکہ تم کامیاب ہو جاؤ۔",
+    tafseerUrdu: `یہ آیت اسلامی زندگی کا مکمل منشور پیش کرتی ہے۔ اس میں حقوق اللہ (نماز، رکوع، سجود، بندگی) اور حقوق العباد (بھلے کام، سخاوت، حسن سلوک) دونوں کو یکجا کیا گیا ہے۔ حقیقی فلاح اسی وقت ملتی ہے جب عبادات کے ساتھ ساتھ معاشرتی خدمت کا جذبہ بھی بیدار ہو۔`,
+    tafseerEn: `'O you who have believed, bow and prostrate and worship your Lord and do good - that you may succeed.' Unites the pillars of personal worship (Salah, submission) with social compassion and doing good to humanity.`,
+    sourceNameUrdu: "تفسیر ابن کثیر و تیسیر القرآن",
+    sourceNameEn: "Tafseer Ibn Kathir & Tayseer ul Quran",
+    asbabAlNuzulUrdu: "سورۃ الحج کے اختتام پر اہل ایمان کو جامع کامیابی کے اسباب سکھائے گئے، اس آیت پر سجدہ تلاوت مسنون ہے۔",
+    asbabAlNuzulEn: "Marks an essential verse of prostration (Sajdah Tilawat) in Surah Al-Hajj outlining the foundation of total success.",
+    keyLessonsUrdu: [
+      "نماز کے خشوع اور سجدوں میں سکون ہی مومن کی قوت کا راز ہے۔",
+      "عبادت کے ساتھ ساتھ لوگوں کے ساتھ بھلائی کرنا کامیابی کا لازمی جزو ہے۔",
+      "نیکی کے ہر موقع کو غنیمت سمجھنا چاہیے۔"
+    ],
+    keyLessonsEn: [
+      "Physical submission in prayer cultivates spiritual humility.",
+      "Active charity and altruism are inseparable from genuine faith.",
+      "Seize every opportunity to bring benefit to others."
+    ],
+    reflectionsUrdu: "آج اپنی نمازوں کے رکوع و سجود میں خصوصی خشوع لائیں اور کسی انسان یا جاندار کے ساتھ نیکی کا عمل انجام دیں۔",
+    reflectionsEn: "Focus deeply on your prostrations today and carry out a deliberate act of kindness."
+  },
+  {
+    day: 20,
+    surah: "Al-Mu'minun",
+    surah_ar: "سورة المؤمنون",
+    surahNumber: 23,
+    ayah: 1,
+    arabic: "قَدْ أَفْلَحَ الْمُؤْمِنُونَ ﴿١﴾ الَّذِينَ هُمْ فِي صَلَاتِهِمْ خَاشِعُونَ ﴿٢﴾",
+    urdu_translation: "یقیناً وہ ایمان والے کامیاب ہو گئے، جو اپنی نمازوں میں خشوع اور عاجزی اختیار کرتے ہیں۔",
+    tafseerUrdu: `سورۃ المؤمنون کا آغاز کامیابی کے قطعی اعلان سے ہوتا ہے۔ 'خشوع' کا مطلب ہے کہ دل اللہ کی ہیبت و محبت سے لرز رہا ہو اور اعضاء و جوارح میں سکون و وقار ہو۔ جو شخص نماز میں ادھر ادھر دھیان کے بجائے رب کی حضوری محسوس کرتا ہے، اس کی نماز گناہوں سے بچانے والی بن جاتی ہے۔`,
+    tafseerEn: `'Certainly will the believers have succeeded: They who are during their prayer humbly submissive.' Khushu' (reverent humility) in prayer is the foundational mark of eternal triumph.`,
+    sourceNameUrdu: "تفسیر معارف القرآن و فی ظلال القرآن",
+    sourceNameEn: "Ma'ariful Quran & In the Shade of the Quran",
+    asbabAlNuzulUrdu: "مکہ میں نازل ہوئی تاکہ کفار کے مادی معیارِ کامیابی کے مقابلے میں اخلاقی اور روحانی کامیابی کا حقیقی معیار واضح کیا جائے۔",
+    asbabAlNuzulEn: "Revealed in Makkah to establish the true spiritual metric of success in contrast to material arrogance.",
+    keyLessonsUrdu: [
+      "کامیابی مادی دولت سے نہیں بلکہ روحانی پاکیزگی سے ناپی جاتی ہے۔",
+      "خشوع نماز کی روح ہے، بغیر خشوع کے نماز بے جان جسم کی مانند ہے۔",
+      "نماز سے پہلے وضو اور تیاری میں دھیان لگانا خشوع میں مدد دیتا ہے۔"
+    ],
+    keyLessonsEn: [
+      "Real triumph is rooted in spiritual humility and moral purity.",
+      "Khushu' is the soul of Salah; physical postures without it lack life.",
+      "Proper preparation and mind-clearing before prayer enhances focus."
+    ],
+    reflectionsUrdu: "نماز میں تکبیرِ تحریمہ کہتے وقت دنیا کے تمام خیالات کو اپنے پیچھے چھوڑ دینے کا عزم کریں۔",
+    reflectionsEn: "When uttering Allahu Akbar to start prayer, consciously leave all worldly preoccupations behind."
+  },
+  {
+    day: 21,
+    surah: "An-Nur",
+    surah_ar: "سورة النور",
+    surahNumber: 24,
+    ayah: 35,
+    arabic: "اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ ۚ مَثَلُ نُورِهِ كَمِشْكَاةٍ فِيهَا مِصْبَاحٌ",
+    urdu_translation: "اللہ آسمانوں اور زمین کا نور ہے۔ اس کے نور کی مثال ایسی ہے جیسے ایک طاق ہو جس میں چراغ ہو۔",
+    tafseerUrdu: `یہ قرآن کریم کی مشہور 'آیتِ نور' ہے۔ عبداللہ بن عباس رضی اللہ عنہما فرماتے ہیں کہ اللہ آسمان و زمین کے تمام باشندوں کو ہدایت دینے والا اور کائنات کو روشن کرنے والا ہے۔ مؤمن کے دل میں ایمان کی شمع جب وحیِ الٰہی کے نور سے ملتی ہے تو نورٌ علیٰ نور (نور پر نور) کی کیفیت پیدا ہو جاتی ہے۔`,
+    tafseerEn: `'Allah is the Light of the heavens and the earth.' The famous Ayat an-Nur illustrates how divine revelation illuminates the heart of the sincere believer, guiding one safely through life's obscurities.`,
+    sourceNameUrdu: "تفسیر ابن کثیر و روح المعانی",
+    sourceNameEn: "Tafseer Ibn Kathir & Ruh al-Ma'ani",
+    asbabAlNuzulUrdu: "سورۃ النور میں خاندانی پاکیزگی، حیا اور معاشرتی آداب کے احکام کے درمیان یہ آیت دلوں کو ایمانی بصیرت عطا کرنے کے لیے نازل فرمائی گئی۔",
+    asbabAlNuzulEn: "Revealed in Madinah to illustrate the pure luminescence of faith surrounded by godly ethics and moral decency.",
+    keyLessonsUrdu: [
+      "ہدایت اور بصیرت کا واحد منبع اللہ تعالیٰ کا کلام ہے۔",
+      "مؤمن کا دل جب گناہوں سے پاک ہوتا ہے تو وہ اللہ کے نور کا مرکز بن جاتا ہے۔",
+      "اندھیروں اور شکوک و شبہات کا مقابلہ صرف علم اور ایمان کی روشنی سے ممکن ہے۔"
+    ],
+    keyLessonsEn: [
+      "Divine guidance is the sole enduring light in a world of confusion.",
+      "A purified heart reflects the light of faith and moral clarity.",
+      "Overcome doubts and despair through the illumination of the Quran."
+    ],
+    reflectionsUrdu: "دعا کریں کہ اللہ آپ کے دل، بصارت، سماعت اور فہم کو اپنے نور سے منور فرمائے۔",
+    reflectionsEn: "Supplicate for divine light in your thoughts, perception, words, and daily intentions."
+  },
+  {
+    day: 22,
+    surah: "Al-Qasas",
+    surah_ar: "سورة القصص",
+    surahNumber: 28,
+    ayah: 24,
+    arabic: "فَسَقَىٰ لَهُمَا ثُمَّ تَوَلَّىٰ إِلَى الظِّلِّ فَقَالَ رَبِّ إِنِّي لِمَا أَنزَلْتَ إِلَيَّ مِنْ خَيْرٍ فَقِيرٌ",
+    urdu_translation: "پس موسیٰؑ نے ان کے جانوروں کو پانی پلا دیا، پھر سائے کی طرف ہٹ کر دعا کی: اے میرے پروردگار! تو میری طرف جو بھی خیر اتارے، میں اس کا محتاج ہوں۔",
+    tafseerUrdu: `حضرت موسیٰ علیہ السلام جب مصر سے ہجرت کر کے مدین پہنچے تو بھوکے، پیاسے اور بے گھر تھے۔ اس حالت میں بھی انہوں نے دو کمزور خواتین کی مدد کی اور پھر کسی معاوضے یا احسان جتلائے بغیر سائے میں جا کر اللہ کے حضور اپنی بے بسی اور محتاجی کا اظہار کیا۔ اللہ نے اس کے بدلے انہیں فوری پناہ، پاکیزہ روزگار اور نیک رشتہ عطا فرمایا۔`,
+    tafseerEn: `'My Lord, indeed I am, for whatever good You would send down to me, in need.' Demonstrates Prophet Musa's altruism and complete dependence upon Allah during intense poverty and exile.`,
+    sourceNameUrdu: "تفسیر ابن کثیر و آسان قرآن",
+    sourceNameEn: "Tafseer Ibn Kathir & Asan Quran",
+    asbabAlNuzulUrdu: "حضرت موسیٰؑ کے مدین پہنچنے اور کنویں پر لوگوں کے جانوروں کو پانی پلانے کے واقعے کا بیان۔",
+    asbabAlNuzulEn: "Narrates Prophet Musa's arrival at the wells of Madyan and his exemplary selfless service followed by humble prayer.",
+    keyLessonsUrdu: [
+      "نیکی اور خدمتِ خلق بغیر کسی دنیاوی غرض اور بدلے کے کرنی چاہیے۔",
+      "انسان جتنا بھی باصلاحیت ہو، وہ ہر لمحہ اللہ کے فضل کا محتاج ہے۔",
+      "خلوصِ نیت کے ساتھ کی گئی مدد پریشانیوں کے ازالے کا سبب بنتی ہے۔"
+    ],
+    keyLessonsEn: [
+      "Offer service selflessly without seeking praise or immediate return.",
+      "Acknowledge total dependency upon Allah for sustenance and safety.",
+      "Sincere altruism unlocks divine blessings in unexpected ways."
+    ],
+    reflectionsUrdu: "جب بھی روزگار، رہائش یا کسی جائز ضرورت کی تنگی ہو تو حضرت موسیٰؑ کی یہ دعا خشوع سے پڑھیں۔",
+    reflectionsEn: "Adopt this beautiful prayer of Musa AS whenever seeking provision, marriage, or guidance."
+  },
+  {
+    day: 23,
+    surah: "Al-Ankabut",
+    surah_ar: "سورة العنكبوت",
+    surahNumber: 29,
+    ayah: 69,
+    arabic: "وَالَّذِينَ جَاهَدُوا فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا ۚ وَإِنَّ اللَّهَ لَمَعَ الْمُحْسِنِينَ",
+    urdu_translation: "اور جنہوں نے ہماری راہ میں جدوجہد کی، ہم انہیں ضرور اپنے راستے دکھائیں گے، اور بے شک اللہ احسان کرنے والوں کے ساتھ ہے۔",
+    tafseerUrdu: `مجاہدہ سے مراد صرف میدانِ جنگ نہیں بلکہ اپنے نفس کی بری خواہشات، سستی اور شیطان کے وسوسوں کے خلاف مسلسل کوشش کرنا ہے۔ اللہ کا وعدہ ہے کہ جو بندہ نیکی کے راستے پر ایک قدم بڑھاتا ہے، اللہ اس کے لیے راہیں کھول دیتا ہے اور اپنی خاص معیت و نصرت سے نوازتا ہے۔`,
+    tafseerEn: `'And those who strive for Us - We will surely guide them to Our ways. And indeed, Allah is with the doers of good.' Continuous effort against personal weaknesses is met with divine illumination and steadfastness.`,
+    sourceNameUrdu: "تفسیر معارف القرآن و قرطبی",
+    sourceNameEn: "Ma'ariful Quran & Tafseer al-Qurtubi",
+    asbabAlNuzulUrdu: "سورۃ العنکبوت کے اختتام پر آزمائشوں اور فتنوں کے مقابلے میں ثابت قدم رہنے والے مجاہدینِ نفس کے لیے بشارت کے طور پر نازل ہوئی۔",
+    asbabAlNuzulEn: "Concludes Surah Al-Ankabut with a timeless promise of divine mentorship for those who resist sin and endure.",
+    keyLessonsUrdu: [
+      "نیکی کے راستے میں پہل اور کوشش بندے کی ذمہ داری ہے، راستہ کھولنا اللہ کا فضل ہے۔",
+      "نفس کی اصلاح سب سے بڑا جہاد ہے۔",
+      "اللہ کی معیت ان لوگوں کو حاصل ہوتی ہے جو کام کو حسن و کمال (احسان) کے ساتھ کرتے ہیں۔"
+    ],
+    keyLessonsEn: [
+      "Initiative in seeking goodness invites divine guidance.",
+      "Disciplining one's inner desires is a paramount spiritual struggle.",
+      "Allah's companionship accompanies those who act with excellence (Ihsan)."
+    ],
+    reflectionsUrdu: "آج اپنی کسی ایسی کمزوری یا بری عادت کے خلاف جدوجہد شروع کریں جو آپ کو اللہ کے قریب ہونے سے روکتی ہے۔",
+    reflectionsEn: "Identify one persistent weakness and make a firm intention today to conquer it for Allah's sake."
+  },
+  {
+    day: 24,
+    surah: "Ar-Rum",
+    surah_ar: "سورة الروم",
+    surahNumber: 30,
+    ayah: 21,
+    arabic: "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً",
+    urdu_translation: "اور اس کی نشانیوں میں سے یہ ہے کہ اس نے تمہارے لیے تمہاری ہی جنس سے جوڑے بنائے تاکہ تم ان کے پاس سکون پاؤ اور تمہارے درمیان محبت اور رحمت پیدا کر دی۔",
+    tafseerUrdu: `نکاح اور خاندانی رشتہ اللہ کی قدرت اور رحمت کا عظیم شاہکار ہے۔ اللہ نے میاں بیوی کے تعلق کی بنیاد دو ستونوں پر رکھی ہے: 'مودۃ' (محبت و چاہت) اور 'رحمۃ' (ہمدردی، شفقت اور معاف کر دینا)۔ جب جوانی میں کشش کم ہوتی ہے تو رحمت و ہمدردی رشتے کو جوڑے رکھتی ہے۔`,
+    tafseerEn: `'And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy.' The divine design of marriage provides emotional peace, affection, and mutual mercy.`,
+    sourceNameUrdu: "تفسیر ابن کثیر و ضیاء القرآن",
+    sourceNameEn: "Tafseer Ibn Kathir & Zia ul Quran",
+    asbabAlNuzulUrdu: "سورۃ الروم میں کائنات اور انسانی فطرت میں اللہ کی عظیم نشانیوں کے سلسلے میں خاندانی سکون کا خصوصی تذکرہ فرمایا گیا۔",
+    asbabAlNuzulEn: "Delivered in Makkah outlining the psychological peace and compassion foundational to healthy family units.",
+    keyLessonsUrdu: [
+      "گھر کا سکون مادی اشیاء سے نہیں بلکہ باہمی الفت اور نرمی سے بنتا ہے۔",
+      "رشتوں میں غلطیوں کو نظر انداز کرنا اور ایک دوسرے پر رحم کرنا پائیدار محبت کا راز ہے۔",
+      "شریکِ حیات کے لیے حسنِ سلوک عبادت اور نیکی ہے۔"
+    ],
+    keyLessonsEn: [
+      "Domestic serenity arises from emotional tenderness, not material goods.",
+      "Mercy and forbearance sustain relationships through seasons of hardship.",
+      "Treating one's spouse with kindness is a form of worship."
+    ],
+    reflectionsUrdu: "اپنے گھر میں شریکِ حیات اور اہل خانہ کے لیے محبت اور قدردانی کے الفاظ کا اظہار کریں۔",
+    reflectionsEn: "Express heartfelt gratitude and kind appreciation to your family members today."
+  },
+  {
+    day: 25,
+    surah: "Luqman",
+    surah_ar: "سورة لقمان",
+    surahNumber: 31,
+    ayah: 17,
+    arabic: "يَا بُنَيَّ أَقِمِ الصَّلَاةَ وَأْمُرْ بِالْمَعْرُوفِ وَانْهَ عَنِ الْمُنكَرِ وَاصْبِرْ عَلَىٰ مَا أَصَابَكَ ۖ إِنَّ ذَٰلِكَ مِنْ عَزْمِ الْأُمُورِ",
+    urdu_translation: "اے میرے پیارے بیٹے! نماز قائم کرو، نیکی کا حکم دو، برائی سے روکو، اور جو مصیبت تجھ پر آئے اس پر صبر کرو۔ بے شک یہ بڑی ہمت کے کام ہیں۔",
+    tafseerUrdu: `حکیم لقمان کی اپنے بیٹے کو وصیت اولاد کی جامع اسلامی تربیت کا بہترین نصاب ہے۔ انہوں نے پہلے ذاتی تعلق باللہ (نماز) کو مضبوط کرنے کا حکم دیا، پھر معاشرتی اصلاح (امر بالمعروف و نہی عن المنکر) کی تلقین کی، اور چونکہ اصلاح کے راستے میں تکلیفیں آتی ہیں، اس لیے صبر و استقامت کا سبق دیا۔`,
+    tafseerEn: `'O my son, establish prayer, enjoin what is right, forbid what is wrong, and be patient over what befalls you.' Luqman's timeless counsel balances personal piety, social responsibility, and resilience under trial.`,
+    sourceNameUrdu: "تفسیر طبری و معارف القرآن",
+    sourceNameEn: "Tafseer at-Tabari & Ma'ariful Quran",
+    asbabAlNuzulUrdu: "سورۃ لقمان میں حکمت و دانائی کے اصول اور والدین و اولاد کے باہمی تعلقات کی رہنمائی کی گئی ہے۔",
+    asbabAlNuzulEn: "Details the wise pedagogical method of Luqman, combining loving mentorship with rigorous spiritual discipline.",
+    keyLessonsUrdu: [
+      "بچوں کی تربیت میں نرمی اور شفقت (یا بنی) کا انداز اپنانا چاہیے۔",
+      "نماز تمام اخلاقی اور روحانی خوبیوں کی بنیاد ہے۔",
+      "حق کی بات کہنے پر آنے والی مشکلات پر صبر کرنا پختہ عزم کی نشانی ہے۔"
+    ],
+    keyLessonsEn: [
+      "Parental guidance should be wrapped in affectionate language.",
+      "Salah is the cornerstone of character development.",
+      "Patience in the face of adversity reflects strength of character."
+    ],
+    reflectionsUrdu: "اپنے بچوں یا چھوٹوں سے پیار سے بات کریں اور انہیں نماز اور نیکی کی اہمیت حکمت کے ساتھ سمجھائیں۔",
+    reflectionsEn: "Practice patient, loving mentorship with young people in your family or circle."
+  },
+  {
+    day: 26,
+    surah: "Fatir",
+    surah_ar: "سورة فاطر",
+    surahNumber: 35,
+    ayah: 15,
+    arabic: "يَا أَيُّهَا النَّاسُ أَنتُمُ الْفُقَرَاءُ إِلَى اللَّهِ ۖ وَاللَّهُ هُوَ الْغَنِيُّ الْحَمِيدُ",
+    urdu_translation: "اے لوگو! تم سب اللہ کے محتاج ہو، اور اللہ ہی بے نیاز اور تمام خوبیوں والا ہے۔",
+    tafseerUrdu: `یہ آیت انسان کو اس کی اصل حیثیت یاد دلاتی ہے۔ ہر انسان اپنی سانس، صحت، رزق، اور بقا کے لیے ہر لمحہ اللہ کا محتاج ہے جبکہ اللہ تعالیٰ کسی کی عبادت یا شکر گزاری کا محتاج نہیں۔ ہماری عبادتوں سے اللہ کی بادشاہت میں کوئی اضافہ نہیں ہوتا اور ہماری نافرمانی سے کوئی کمی نہیں آتی۔`,
+    tafseerEn: `'O mankind, you are those in need of Allah, while Allah is the Free of need, the Praiseworthy.' Reminds humanity of its intrinsic fragility and complete dependence on the Creator's sustenance.`,
+    sourceNameUrdu: "تفسیر ابن کثیر و تیسیر الکریم الرحمن (سعدی)",
+    sourceNameEn: "Tafseer Ibn Kathir & Tafseer as-Sa'di",
+    asbabAlNuzulUrdu: "سورۃ فاطر مکی دور میں نازل ہوئی تاکہ انسان کے تکبر اور خود فریبی کا قلع قمع کیا جا سکے۔",
+    asbabAlNuzulEn: "Delivered in Makkah dismantling human arrogance by highlighting cosmic creation and divine self-sufficiency.",
+    keyLessonsUrdu: [
+      "تکبر اور فخر کا خاتمہ تب ہوتا ہے جب انسان اپنی محتاجی کو پہچان لے۔",
+      "اللہ کا شکر اس لیے ادا کریں کہ نفع خود ہمارا ہی ہے۔",
+      "حاجت روائی کے لیے بندوں کے آگے ہاتھ پھیلانے کے بجائے رب غنی کے آگے جھکیں۔"
+    ],
+    keyLessonsEn: [
+      "Recognizing one's utter neediness eliminates arrogance.",
+      "Worship and gratitude benefit the servant, not the Creator.",
+      "Turn to the Self-Sufficient Lord rather than relying on human intermediaries."
+    ],
+    reflectionsUrdu: "جب بھی اپنے دل میں کسی کامیابی پر غرور محسوس ہو، فوراً 'یا غنی یا حمید' پڑھ کر عاجزی اختیار کریں۔",
+    reflectionsEn: "Reflect on your vulnerability and express sincere humility before the Self-Sufficient Lord."
+  },
+  {
+    day: 27,
+    surah: "Az-Zumar",
+    surah_ar: "سورة الزمر",
+    surahNumber: 39,
+    ayah: 53,
+    arabic: "قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا",
+    urdu_translation: "کہہ دیجئے کہ اے میرے بندو جنہوں نے اپنی جانوں پر زیادتی کی ہے! اللہ کی رحمت سے ناامید نہ ہو، بے شک اللہ تمام گناہوں کو بخش دیتا ہے۔",
+    tafseerUrdu: `یہ آیت قرآن مجید کی سب سے زیادہ امید افزا آیت ہے۔ اللہ تعالیٰ نے گناہ گاروں کو بھی 'یا عبادی' (اے میرے بندو) کہہ کر پکارا ہے جو اس کی بے پایاں شفقت کی دلیل ہے۔ شرط صرف یہ ہے کہ انسان توبہ کر کے رب کی طرف رجوع کرے؛ اللہ کے ہاں توبہ کا دروازہ موت کے نزع تک کھلا رہتا ہے۔`,
+    tafseerEn: `'Say: O My servants who have transgressed against themselves, do not despair of the mercy of Allah. Indeed, Allah forgives all sins.' Renowned as the most hopeful verse in the Quran, welcoming every penitent sinner to divine forgiveness.`,
+    sourceNameUrdu: "تفسیر ابن کثیر و معارف القرآن",
+    sourceNameEn: "Tafseer Ibn Kathir & Ma'ariful Quran",
+    asbabAlNuzulUrdu: "مکہ کے کچھ مشرکین جنہوں نے اسلام لانے سے پہلے کثرت سے گناہ کیے تھے، انہوں نے پوچھا کہ کیا ہماری توبہ قبول ہوگی؟ تو اللہ نے یہ رحمت بھری آیت نازل فرمائی۔",
+    asbabAlNuzulEn: "Revealed when individuals who had committed major sins prior to Islam asked if genuine repentance would wipe their past clean.",
+    keyLessonsUrdu: [
+      "اللہ کی رحمت سے ناامید ہونا گناہِ کبیرہ ہے۔",
+      "سچی توبہ کے بعد ماضی کا کوئی بھی گناہ بخشش کی راہ میں رکاوٹ نہیں بنتا۔",
+      "توبہ کرنے میں تاخیر نہیں کرنی چاہیے کیونکہ زندگی کا کوئی بھروسہ نہیں۔"
+    ],
+    keyLessonsEn: [
+      "Despair in Allah's mercy is a grave spiritual error.",
+      "Sincere repentance eradicates all past transgressions completely.",
+      "Never delay repentance, for life is fragile and transient."
+    ],
+    reflectionsUrdu: "آج رات دو رکعت صلاۃ التوبہ پڑھیں اور اپنے تمام گزشتہ گناہوں کی معافی مانگیں۔",
+    reflectionsEn: "Perform two cycles of prayer of repentance (Salat at-Tawbah) and seek comprehensive pardon."
+  },
+  {
+    day: 28,
+    surah: "Fussilat",
+    surah_ar: "سورة فصلت",
+    surahNumber: 41,
+    ayah: 34,
+    arabic: "وَلَا تَسْتَوِي الْحَسَنَةُ وَلَا السَّيِّئَةُ ۚ ادْفَعْ بِالَّتِي هِيَ أَحْسَنُ فَإِذَا الَّذِي بَيْنَكَ وَبَيْنَهُ عَدَاوَةٌ كَأَنَّهُ وَلِيٌّ حَمِيمٌ",
+    urdu_translation: "اور نیکی اور بدی برابر نہیں ہو سکتیں۔ برائی کا جواب اس چیز سے دو جو بہترین ہو، پھر جس کے اور تمہارے درمیان دشمنی تھی وہ جگری دوست بن جائے گا۔",
+    tafseerUrdu: `یہ آیت اخلاقی بلندی اور دلوں کو فتح کرنے کا اعجاز سکھاتی ہے۔ جب کوئی آپ سے غصہ کرے تو آپ نرمی کریں، جب کوئی ناانصافی کرے تو آپ عدل و عفو کا مظاہرہ کریں۔ یہ رویہ کٹر دشمن کے دل سے بھی نفرت کی آگ بجھا کر اسے وفادار اور مخلص دوست بنا دیتا ہے۔`,
+    tafseerEn: `'Repel evil with that which is better, then the one with whom there was enmity will become as though he was an intimate friend.' Teaching the transformative power of patience, forbearance, and returning bad treatment with benevolence.`,
+    sourceNameUrdu: "تفسیر قرطبی و ابن کثیر",
+    sourceNameEn: "Tafseer al-Qurtubi & Tafseer Ibn Kathir",
+    asbabAlNuzulUrdu: "مشرکین مکہ کی طرف سے دی جانے والی تکالیف کے جواب میں نبی ﷺ اور صحابہ کرام کو حسن اخلاق اور درگزر کی تعلیم دینے کے لیے نازل ہوئی۔",
+    asbabAlNuzulEn: "Revealed in Makkah instructing the Prophet ﷺ and early believers on responding to aggression with supreme character and grace.",
+    keyLessonsUrdu: [
+      "غصے اور بدکلامی کا جواب حسن سلوک سے دینا عظیم ہمت کا کام ہے۔",
+      "معاف کرنا اور احسان کرنا دشمنوں کو بھی اپنا بنا لیتا ہے۔",
+      "انتقام کے بجائے اصلاح اور دل جیتنے کا جذبہ غالب ہونا چاہیے۔"
+    ],
+    keyLessonsEn: [
+      "Meeting harshness with gentle dignity disarms hostility.",
+      "Forgiveness and magnanimity turn adversaries into trusted allies.",
+      "Prioritize healing hearts over winning aggressive arguments."
+    ],
+    reflectionsUrdu: "کسی ایسے شخص کے ساتھ جس نے آپ کے ساتھ تلخی کی ہو، اچھے لہجے میں بات کر کے شروعات کریں۔",
+    reflectionsEn: "Reach out with kindness to someone with whom you have experienced friction."
+  },
+  {
+    day: 29,
+    surah: "Al-Hujurat",
+    surah_ar: "سورة الحجرات",
+    surahNumber: 49,
+    ayah: 10,
+    arabic: "إِنَّ الْمُؤْمِنُونَ إِخْوَةٌ فَأَصْلِحُوا بَيْنَ أَخَوَيْكُمْ ۚ وَاتَّقُوا اللَّهَ لَعَلَّكُمْ تُرْحَمُونَ",
+    urdu_translation: "یقیناً تمام مومن آپس میں بھائی بھائی ہیں، لہٰذا اپنے دو بھائیوں کے درمیان صلح کراؤ اور اللہ سے ڈرو تاکہ تم پر رحم کیا جائے۔",
+    tafseerUrdu: `اسلام نے رنگ، نسل، زبان اور جغرافیے کے تمام بت توڑ کر ایمانی رشتہ اخوت قائم کیا۔ جب دو بھائیوں یا فریقین میں جھگڑا ہو جائے تو تماشائی بننے یا آگ لگانے کے بجائے انصاف اور خیر خواہی کے ساتھ صلح کروانا ہر مسلمان کا دینی فریضہ ہے۔ باہمی اتحاد ہی رحمتِ الٰہی کا ضامن ہے۔`,
+    tafseerEn: `'The believers are but brothers, so make settlement between your brothers and fear Allah that you may receive mercy.' Establishes universal Islamic brotherhood and the vital duty of reconciling disputes.`,
+    sourceNameUrdu: "تفسیر معارف القرآن و فی ظلال القرآن",
+    sourceNameEn: "Ma'ariful Quran & In the Shade of the Quran",
+    asbabAlNuzulUrdu: "مدینہ منورہ میں انصار کے دو قبائل یا بعض صحابہ کے درمیان پیدا ہونے والے باہمی نزاع کو ختم کرنے کے لیے یہ آیت نازل ہوئی۔",
+    asbabAlNuzulEn: "Revealed in Madinah to instruct the Muslim community to proactively mediate and reconcile any rising disputes.",
+    keyLessonsUrdu: [
+      "ایمانی رشتہ خون کے رشتے سے بھی زیادہ مضبوط اور مقدس ہے۔",
+      "دو ناراض بھائیوں کے درمیان صلح کروانا عظیم ترین نیکیوں میں سے ہے۔",
+      "مسلمانوں کے عیب تلاش کرنے اور تفرقہ ڈالنے سے سختی سے بچنا چاہیے۔"
+    ],
+    keyLessonsEn: [
+      "Spiritual brotherhood transcends national and ethnic divides.",
+      "Mediating peace between disputing parties yields immense reward.",
+      "Avoid gossip, sectarianism, and deepening community fractures."
+    ],
+    reflectionsUrdu: "اگر آپ کے دو دوستوں یا رشتہ داروں میں رنجش ہو تو صلح کی کوشش کر کے اس آیت پر عمل کریں۔",
+    reflectionsEn: "Take initiative to help mend relationships between estranged friends or relatives."
+  },
+  {
+    day: 30,
+    surah: "Al-Hashr",
+    surah_ar: "سورة الحشر",
+    surahNumber: 59,
+    ayah: 18,
+    arabic: "يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَلْتَنظُرْ نَفْسٌ مَّا قَدَّمَتْ لِغَدٍ ۖ وَاتَّقُوا اللَّهَ ۚ إِنَّ اللَّهَ خَبِيرٌ بِمَا تَعْمَلُونَ",
+    urdu_translation: "اے ایمان والو! اللہ سے ڈرو اور ہر جان کو دیکھنا چاہیے کہ اس نے کل (قیامت) کے لیے آگے کیا بھیجا ہے، اور اللہ سے ڈرو، بے شک اللہ باخبر ہے جو کچھ تم کرتے ہو۔",
+    tafseerUrdu: `حضرت عمر فاروق رضی اللہ عنہ فرماتے ہیں: 'اپنا محاسبہ کرو اس سے پہلے کہ تمہارا حساب لیا جائے'۔ قیامت کو 'غد' (کل) سے تعبیر کیا گیا ہے تاکہ یہ احساس دلایا جائے کہ موت اور آخرت بہت قریب ہے۔ انسان کو روزانہ اپنے اعمال کا جائزہ لینا چاہیے کہ اس نے اپنے نامہ اعمال میں کیا سرمایہ جمع کیا۔`,
+    tafseerEn: `'O you who have believed, fear Allah. And let every soul look to what it has put forth for tomorrow - and fear Allah.' The cornerstone text for self-accountability (Muhasabah) before the Day of Judgment.`,
+    sourceNameUrdu: "تفسیر ابن کثیر و تیسیر الکریم الرحمن",
+    sourceNameEn: "Tafseer Ibn Kathir & Tafseer as-Sa'di",
+    asbabAlNuzulUrdu: "سورۃ الحشر کے اختتام پر اہل ایمان کو دنیا کی عارضی زندگی کے دھوکے سے بچا کر دائمی آخرت کی تیاری کی طرف متوجہ کرنے کے لیے نازل ہوئی۔",
+    asbabAlNuzulEn: "Revealed in Madinah urging believers to examine their spiritual ledger in anticipation of the eternal hereafter.",
+    keyLessonsUrdu: [
+      "روزانہ اپنے اعمال کا خود جائزہ لینا (محاسبہ نفس) کامیابی کی ضمانت ہے۔",
+      "آخرت اتنی قریب ہے جیسے کل کا دن۔",
+      "تقویٰ دل کی وہ بیداری ہے جو ہر قدم اٹھانے سے پہلے اللہ کی پکڑ کا خوف دلاتی ہے۔"
+    ],
+    keyLessonsEn: [
+      "Regular daily self-accounting keeps conscience alert and pure.",
+      "Eternity is impending; invest in enduring good deeds.",
+      "Taqwa is active consciousness that Allah observes every secret."
+    ],
+    reflectionsUrdu: "روزانہ سونے سے پہلے پانچ منٹ اپنے پورے دن کی نیکیوں اور کوتاہیوں کا محاسبہ کریں۔",
+    reflectionsEn: "Dedicate five quiet minutes before sleep each night to evaluate your spiritual ledger."
   }
 ];
 

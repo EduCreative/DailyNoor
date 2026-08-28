@@ -146,7 +146,7 @@ export default function App() {
   }
 
   return (
-    <div className={`relative min-h-screen w-full max-w-full overflow-x-hidden flex flex-col ${getAppBgClass()} transition-colors duration-200`}>
+    <div className={`relative min-h-screen w-full flex flex-col ${getAppBgClass()} transition-colors duration-200`}>
       
       {/* Semi-transparent Islamic Art Background Pattern */}
       <IslamicBackgroundPattern opacity={settings.appTheme === 'midnight' ? 0.40 : 0.30} />
@@ -213,24 +213,7 @@ export default function App() {
 
             </div>
 
-            {/* Section 3: Daily Dhikr & Tasbih Counter Card */}
-            {settings.showDailyDhikr !== false && (
-              <div className="max-w-6xl mx-auto px-4 sm:px-8">
-                <DailyDhikrCard dateStr={selectedDate} />
-              </div>
-            )}
-
-            {/* Section 4: Masnoon Dua of the Week Card (Collapsed by Default) */}
-            {settings.showDuaOfTheWeek !== false && (
-              <div className="max-w-6xl mx-auto px-4 sm:px-8">
-                <DuaCard 
-                  dateStr={selectedDate} 
-                  onOpenAllDuas={() => setIsAllDuasOpen(true)} 
-                />
-              </div>
-            )}
-
-            {/* Section 5: Daily Islamic Reflection Quiz Card */}
+            {/* Section 3: Daily Islamic Reflection Quiz Card (Placed immediately after Daily Hadith & Verse) */}
             {settings.showDailyQuiz !== false && (
               <DailyQuizCard
                 verse={currentVerse}
@@ -238,6 +221,23 @@ export default function App() {
                 dateStr={selectedDate}
                 onOpenQuiz={() => setIsQuizOpen(true)}
               />
+            )}
+
+            {/* Section 4: Daily Dhikr & Tasbih Counter Card */}
+            {settings.showDailyDhikr !== false && (
+              <div className="max-w-6xl mx-auto px-4 sm:px-8">
+                <DailyDhikrCard dateStr={selectedDate} />
+              </div>
+            )}
+
+            {/* Section 5: Masnoon Dua of the Week Card (Collapsed by Default) */}
+            {settings.showDuaOfTheWeek !== false && (
+              <div className="max-w-6xl mx-auto px-4 sm:px-8">
+                <DuaCard 
+                  dateStr={selectedDate} 
+                  onOpenAllDuas={() => setIsAllDuasOpen(true)} 
+                />
+              </div>
             )}
           </>
         )}

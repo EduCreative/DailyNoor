@@ -25,7 +25,7 @@ interface AboutModalProps {
   onOpenShareApp?: () => void;
 }
 
-export const APP_VERSION = 'v2.6.2';
+export const APP_VERSION = 'v2.6.4';
 export const APP_RELEASE_DATE = 'August 2026';
 
 export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
@@ -69,7 +69,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-xs overflow-y-auto">
+    <div className="fixed inset-0 z-60 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-xs overflow-y-auto">
       <div className="bg-[#F5F1E8] dark:bg-[#0C1813] text-[#1D2B24] dark:text-[#E8EFEA] rounded-3xl max-w-lg w-full p-5 sm:p-7 shadow-2xl border border-[#0B5D3C]/20 dark:border-[#C9A227]/30 my-8">
         
         {/* Modal Header */}

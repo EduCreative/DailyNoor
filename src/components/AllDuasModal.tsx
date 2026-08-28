@@ -68,7 +68,7 @@ export const AllDuasModal: React.FC<AllDuasModalProps> = ({
   const memorizedPercent = Math.round((totalMemorizedCount / MASNOON_DUAS.length) * 100);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+    <div className="fixed inset-0 z-60 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
       <div 
         className="relative w-full max-w-4xl max-h-[90vh] flex flex-col rounded-3xl bg-white dark:bg-[#142820] border border-[#0B5D3C]/20 dark:border-white/10 shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DhikrItem } from '../types';
 import { DAILY_DHIKRS } from '../data/dhikrData';
 import { useDailyStore } from '../store/useDailyStore';
@@ -37,30 +37,25 @@ export const DailyDhikrCard: React.FC<DailyDhikrCardProps> = ({ dateStr }) => {
     incrementDhikrCount 
   } = useDailyStore();
 
+  const { playTrack, togglePlayPause, currentTrack, isTrackPlaying } = useAudioStore();
+
   // Pick default daily dhikr based on day of year
   const defaultIndex = getDailyIndex(DAILY_DHIKRS.length, dateStr) - 1;
   const [selectedIndex, setSelectedIndex] = useState<number>(defaultIndex);
+  const [customTarget, setCustomTarget] = useState<number | null>(null);
+  const [copied, setCopied] = useState(false);
 
   // Sync index when selected date changes
-  React.useEffect(() => {
+  useEffect(() => {
     setSelectedIndex(getDailyIndex(DAILY_DHIKRS.length, dateStr) - 1);
   }, [dateStr]);
 
   const dhikr: DhikrItem = DAILY_DHIKRS[selectedIndex] || DAILY_DHIKRS[0];
   const storageKey = `${dateStr}_${dhikr.id}`;
   const currentCount = getDhikrCount(storageKey);
-
-  const { playTrack, togglePlayPause, currentTrack, isTrackPlaying } = useAudioStore();
-
   const dhikrTrackId = `dhikr-urdu-${dhikr.id}`;
   const isPlayingSpeech = isTrackPlaying(dhikrTrackId);
-
-  // Custom Target State (defaults to dhikr.targetCount)
-  const [customTarget, setCustomTarget] = useState<number | null>(null);
   const targetCount = customTarget ?? dhikr.targetCount;
-
-  // Speech Narration State
-  const [copied, setCopied] = useState(false);
 
   // Calculations
   const isCompleted = currentCount >= targetCount;

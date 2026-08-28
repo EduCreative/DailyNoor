@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
 import { Hadith } from '../types';
 import { useDailyStore } from '../store/useDailyStore';
 import { useAudioStore } from '../store/useAudioStore';
@@ -137,11 +136,8 @@ ${hadith.lesson}
     settings.fontSize === 'large' ? 'text-lg sm:text-xl' : 'text-lg sm:text-xl';
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 24, scale: 0.98 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.55, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-      className="flex flex-col gap-3"
+    <div 
+      className="flex flex-col gap-3 transition-all duration-300"
     >
       {/* Top Header Label */}
       <div className="flex justify-between items-end px-2">
@@ -336,6 +332,6 @@ ${hadith.lesson}
         </div>
 
       </div>
-    </motion.div>
+    </div>
   );
 };

@@ -2,6 +2,22 @@
 
 All notable changes to the Daily Noor project are documented here.
 
+## [2.6.4] - 2026-08-28
+### Added & Updated
+- **Daily Islamic Quiz Placement**:
+  - Repositioned the **Daily Islamic Quiz** card directly after **Daily Hadith & Verse**, allowing users to immediately test their comprehension before moving on to daily Dhikr and Masnoon Dua.
+- **Fixed & Sticky Header Enhancement**:
+  - Elevated the sticky header with `z-50`, backdrop blur, and subtle bottom border across all color schemes.
+  - Adjusted root layout container to guarantee unclipped viewport stickiness across all desktop and mobile browsers.
+  - Aligned modal layering (`z-60`) to smoothly overlay the top sticky bar when opened.
+
+## [2.6.3] - 2026-08-28
+### Fixed
+- **React 19 Hook Dispatcher & Dependency Deduplication**:
+  - Configured Vite with explicit React deduplication (`dedupe: ['react', 'react-dom']`) to eliminate duplicate instance issues.
+  - Replaced external animation wrapper hooks with native transitions in `VerseCard` and `HadithCard` to resolve `Uncaught TypeError: Cannot read properties of null (reading 'useCallback')` and ensure flawless rendering in React 19.
+  - Normalized hook imports and execution order across `Header` and `DailyDhikrCard`.
+
 ## [2.6.2] - 2026-08-28
 ### Added & Updated
 - **Sticky Title Bar Header**:

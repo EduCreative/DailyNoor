@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDailyStore } from '../store/useDailyStore';
 import { formatReadableDate, getEstimatedHijriDate, getTodayDateString } from '../utils/dateUtils';
 import { triggerHaptic } from '../utils/haptics';
@@ -46,9 +46,9 @@ export const Header: React.FC<HeaderProps> = ({
     bookmarks 
   } = useDailyStore();
 
-  const [currentLocation, setCurrentLocation] = React.useState(getSavedLocation());
+  const [currentLocation, setCurrentLocation] = useState(getSavedLocation());
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleLocationChange = (e: Event) => {
       const customEvent = e as CustomEvent;
       setCurrentLocation(customEvent.detail || getSavedLocation());
@@ -110,13 +110,13 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   const getHeaderBgClass = () => {
-    if (currentTheme === 'midnight') return 'bg-[#05140D] border-b border-[#C9A227]/30 text-[#E8EFEA]';
-    if (currentTheme === 'pearl') return 'bg-[#1C3D2F] border-b border-[#C9A227]/40 text-[#F5F1E8]';
-    return 'bg-[#0B5D3C] text-[#F5F1E8]';
+    if (currentTheme === 'midnight') return 'bg-[#05140D]/95 border-b border-[#C9A227]/30 text-[#E8EFEA] shadow-md';
+    if (currentTheme === 'pearl') return 'bg-[#1C3D2F]/95 border-b border-[#C9A227]/40 text-[#F5F1E8] shadow-md';
+    return 'bg-[#0B5D3C]/95 border-b border-[#C9A227]/20 text-[#F5F1E8] shadow-md';
   };
 
   return (
-    <header className={`sticky top-0 z-40 backdrop-blur-md ${getHeaderBgClass()} shadow-md transition-colors duration-200 overflow-hidden`}>
+    <header className={`sticky top-0 z-50 backdrop-blur-md ${getHeaderBgClass()} transition-colors duration-200`}>
       <div className="w-full max-w-6xl mx-auto px-3 sm:px-6 md:px-8 py-2.5 sm:py-3.5">
         <div className="flex items-center justify-between gap-2 sm:gap-4 min-w-0">
           

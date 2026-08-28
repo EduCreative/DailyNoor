@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dua } from '../types';
 import { MASNOON_DUAS } from '../data/duaData';
 import { useDailyStore } from '../store/useDailyStore';
@@ -41,13 +41,15 @@ export const DuaCard: React.FC<DuaCardProps> = ({ dateStr, onOpenAllDuas }) => {
     isDuaMemorized 
   } = useDailyStore();
 
+  const { playTrack, togglePlayPause, currentTrack, isTrackPlaying } = useAudioStore();
+
   // Calculate current week based on selected date
   const currentWeekNumber = getWeeklyIndex(MASNOON_DUAS.length, dateStr);
   const [selectedWeek, setSelectedWeek] = useState<number>(currentWeekNumber);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   // Sync with date changes if week changes
-  React.useEffect(() => {
+  useEffect(() => {
     setSelectedWeek(currentWeekNumber);
   }, [currentWeekNumber]);
 
@@ -55,8 +57,6 @@ export const DuaCard: React.FC<DuaCardProps> = ({ dateStr, onOpenAllDuas }) => {
 
   const isSaved = isBookmarked(`dua-${dua.week}`);
   const isMemorized = isDuaMemorized(dua.week);
-
-  const { playTrack, togglePlayPause, currentTrack, isTrackPlaying } = useAudioStore();
 
   const duaTrackId = `dua-urdu-${dua.week}`;
   const isPlayingSpeech = isTrackPlaying(duaTrackId);
