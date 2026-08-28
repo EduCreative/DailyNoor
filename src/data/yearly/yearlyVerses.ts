@@ -1,4 +1,6 @@
-[
+import { Verse } from '../../types';
+
+export const YEARLY_VERSES_365: Verse[] = [
   {
     "day": 1,
     "surah": "Al-Fatiha",
@@ -4014,4 +4016,4 @@
     "family_tip": "آج کسی دور کے رشتہ دار یا ضرورت مند کا حال معلوم کریں اور ان کی مدد کریں۔",
     "audio_url": "https://everyayah.com/data/Alafasy_128kbps/004036.mp3"
   }
-]
+];
