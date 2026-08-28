@@ -37,8 +37,8 @@ export const DailyTafseer: React.FC<DailyTafseerProps> = ({ verse, dateStr }) =>
   // Active view tab: 'urdu' | 'english' | 'context' | 'lessons'
   const [activeTab, setActiveTab] = useState<'urdu' | 'english' | 'context' | 'lessons'>('urdu');
   
-  // Selected Tafseer Edition for dynamic fetching
-  const [selectedEdition, setSelectedEdition] = useState<string>('embedded');
+  // Selected Tafseer Edition for dynamic fetching (driven by Settings)
+  const selectedEdition = settings.tafseerSourceUrdu || 'embedded';
   const [dynamicText, setDynamicText] = useState<string>('');
   const [dynamicSource, setDynamicSource] = useState<string>('');
   const [loadingDynamic, setLoadingDynamic] = useState<boolean>(false);
@@ -269,32 +269,6 @@ ${verse.urdu_translation}
             <span>اہم نکات</span>
           </button>
         </div>
-
-        {/* Tafseer Source / Edition Selector (Active in Urdu mode) */}
-        {activeTab === 'urdu' && (
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-dashed border-[#0B5D3C]/10 dark:border-white/10">
-            <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-500 dark:text-slate-400">
-              <Sparkles className="w-3.5 h-3.5 text-[#C9A227]" />
-              <span>مفتوحہ تفسیر (Source):</span>
-            </div>
-
-            <select
-              id={`tafseer-edition-select-${verse.day}`}
-              value={selectedEdition}
-              onChange={(e) => {
-                triggerHaptic('light');
-                setSelectedEdition(e.target.value);
-              }}
-              className="text-xs font-urdu font-semibold py-1.5 px-3 rounded-xl bg-[#F5F1E8] dark:bg-[#0C1813] text-[#0B5D3C] dark:text-[#E5C76B] border border-[#0B5D3C]/20 dark:border-[#C9A227]/30 focus:outline-none focus:ring-2 focus:ring-[#0B5D3C]"
-            >
-              {TAFSEER_EDITIONS.map((ed) => (
-                <option key={ed.id} value={ed.id}>
-                  {ed.nameUrdu}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
 
         {/* Loading Spinner for Dynamic Online Fetching */}
         {loadingDynamic && activeTab === 'urdu' ? (

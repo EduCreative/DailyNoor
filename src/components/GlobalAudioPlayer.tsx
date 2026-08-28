@@ -21,6 +21,8 @@ import {
   Rewind
 } from 'lucide-react';
 
+import { formatAudioUrlWithQari } from '../utils/audioUtils';
+
 export const GlobalAudioPlayer: React.FC = () => {
   const { 
     currentTrack, 
@@ -42,7 +44,7 @@ export const GlobalAudioPlayer: React.FC = () => {
     showPlayer 
   } = useAudioStore();
 
-  const { selectedDate } = useDailyStore();
+  const { selectedDate, settings } = useDailyStore();
 
   // Retrieve current day's Verse & Hadith for quick play if no track is selected yet
   const verseIndex = getDailyIndex(EMBEDDED_VERSES.length, selectedDate) - 1;
@@ -59,7 +61,7 @@ export const GlobalAudioPlayer: React.FC = () => {
       type: 'verse_arabic',
       title: `Surah ${currentVerse.surah} (${currentVerse.surah_ar}) • Ayah ${currentVerse.ayah}`,
       subtitle: 'Arabic Recitation • Mishary Rashid Alafasy',
-      audioUrl: currentVerse.audio_url,
+      audioUrl: formatAudioUrlWithQari(currentVerse.audio_url, settings.qariVoice),
       sourceInfo: 'Verse of the Day'
     });
   };

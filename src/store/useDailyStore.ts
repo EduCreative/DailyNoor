@@ -25,7 +25,12 @@ const DEFAULT_SETTINGS: AppSettings = {
   showDailyDhikr: true,
   showDuaOfTheWeek: true,
   showDailyQuiz: true,
-  hijriDateAdjustment: 'auto'
+  hijriDateAdjustment: 'auto',
+  tafseerSourceUrdu: 'embedded',
+  tafseerSourceEn: 'embedded-en',
+  tafseerSourceShaneNazool: 'asbab-al-nuzul-wahidi',
+  qariVoice: 'Alafasy_128kbps',
+  reciterVoice: 'jalandhari'
 };
 
 interface DailyStoreState {

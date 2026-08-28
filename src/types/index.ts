@@ -63,6 +63,11 @@ export interface AppSettings {
   showDuaOfTheWeek?: boolean;
   showDailyQuiz?: boolean;
   hijriDateAdjustment?: number | 'auto';
+  tafseerSourceUrdu?: string;
+  tafseerSourceEn?: string;
+  tafseerSourceShaneNazool?: string;
+  qariVoice?: string;
+  reciterVoice?: string;
 }
 
 export interface DhikrItem {

@@ -25,7 +25,7 @@ interface AboutModalProps {
   onOpenShareApp?: () => void;
 }
 
-export const APP_VERSION = 'v2.6.0';
+export const APP_VERSION = 'v2.6.2';
 export const APP_RELEASE_DATE = 'August 2026';
 
 export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {

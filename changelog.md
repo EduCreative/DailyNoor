@@ -2,6 +2,23 @@
 
 All notable changes to the Daily Noor project are documented here.
 
+## [2.6.2] - 2026-08-28
+### Added & Updated
+- **Sticky Title Bar Header**:
+  - Main app top bar header is now sticky (`sticky top-0 z-40 backdrop-blur-md`) so header controls and date navigation stay accessible while scrolling.
+- **Tafseer Sources Preferences in Settings**:
+  - Removed inline source dropdown from Daily Tafseer card view for a cleaner reading experience.
+  - Added centralized Tafseer source selection dropdowns in Settings for **Urdu Tafseer** (Taqi Usmani Summary, Ibn Kathir, Maududi, Ahsan ul Bayan, Bayan ul Quran), **English Tafseer** (Daily Noor Commentary, Ibn Kathir English, Ma'ariful Quran, In the Shade of the Quran), and **Shan-e-Nazool** (Asbab al-Nuzul by Al-Wahidi, Classical Combined, Historical Context).
+- **Qari & Reciter Audio Voice Selection in Settings**:
+  - Added **Qari Arabic Reciter Selection** in Settings featuring 7 renowned world Qaris (Mishary Alafasy, Abdul Basit Mujawwad, Khalil Al-Husary, Abu Bakr Al-Shatri, Saad Al-Ghamdi, Maher Al-Muaiqly, Minshawy).
+  - Added **Urdu Translation Voice Selection** (Fateh Jalandhari, Shamshad Ali Khan, Naeem Sultan, System Speech).
+
+## [2.6.1] - 2026-08-28
+### Added & Updated
+- **Mobile Header Top Bar Optimization**:
+  - Hidden the redundant "Family Mode" toggle from top bar on mobile screens (`< md`) to save valuable horizontal header space (Family Mode remains accessible in Settings & bottom controls).
+  - Prominently featured the **Generate & Share Daily Summary Card** icon button (`Sparkles`) right after the Day Streak badge in mobile view for quick one-tap access to daily summary cards.
+
 ## [2.6.0] - 2026-08-22
 ### Added
 - **Polished Card Entrance Animations (Framer Motion)**:

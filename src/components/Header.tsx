@@ -116,7 +116,7 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className={`sticky top-0 z-30 ${getHeaderBgClass()} shadow-md transition-colors duration-200 overflow-hidden`}>
+    <header className={`sticky top-0 z-40 backdrop-blur-md ${getHeaderBgClass()} shadow-md transition-colors duration-200 overflow-hidden`}>
       <div className="w-full max-w-6xl mx-auto px-3 sm:px-6 md:px-8 py-2.5 sm:py-3.5">
         <div className="flex items-center justify-between gap-2 sm:gap-4 min-w-0">
           
@@ -163,11 +163,11 @@ export const Header: React.FC<HeaderProps> = ({
               <span className="hidden md:inline text-xs opacity-80 ml-1">Day Streak</span>
             </button>
 
-            {/* Family Mode Pill Toggle */}
+            {/* Family Mode Pill Toggle (Hidden on mobile < md) */}
             <button
               id="header-family-toggle"
               onClick={toggleFamilyMode}
-              className={`flex items-center gap-1 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-semibold border transition-all shrink-0 ${
+              className={`hidden md:flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold border transition-all shrink-0 ${
                 settings.familyMode
                   ? 'bg-[#C9A227] text-[#0B5D3C] border-[#C9A227] shadow-xs'
                   : 'bg-white/10 text-white/90 border-white/20 hover:bg-white/20'
@@ -175,9 +175,23 @@ export const Header: React.FC<HeaderProps> = ({
               title={settings.familyMode ? "Family Discussion Mode ON" : "Family Discussion Mode OFF"}
             >
               <Users className="w-3.5 h-3.5 shrink-0" />
-              <span className="hidden md:inline">Family Mode</span>
-              <span className="text-[10px] hidden xs:inline md:hidden">{settings.familyMode ? 'خاندان' : 'فرد'}</span>
+              <span>Family Mode</span>
             </button>
+
+            {/* Combined Daily Summary Card Button */}
+            {onOpenSummaryCard && (
+              <button
+                id="header-summary-card-button"
+                onClick={() => {
+                  triggerHaptic('medium');
+                  onOpenSummaryCard();
+                }}
+                className="p-1.5 sm:p-2 hover:bg-white/10 rounded-full text-[#C9A227] transition-colors inline-flex shrink-0 border border-[#C9A227]/30 bg-black/10 hover:border-[#C9A227]/60"
+                title="Generate & Share Daily Summary Card"
+              >
+                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#C9A227]" />
+              </button>
+            )}
 
             {/* Controls Group */}
             <div className="flex items-center gap-0.5 sm:gap-1 shrink-0">
@@ -236,21 +250,6 @@ export const Header: React.FC<HeaderProps> = ({
                   title="Daily Islamic Reflection Quiz"
                 >
                   <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-                </button>
-              )}
-
-              {/* Combined Daily Summary Card Button (Visible on sm+ screens) */}
-              {onOpenSummaryCard && (
-                <button
-                  id="header-summary-card-button"
-                  onClick={() => {
-                    triggerHaptic('medium');
-                    onOpenSummaryCard();
-                  }}
-                  className="p-1.5 sm:p-2 hover:bg-white/10 rounded-full text-[#C9A227] transition-colors hidden sm:inline-flex"
-                  title="Generate & Share Daily Summary Card"
-                >
-                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               )}
 

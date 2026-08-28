@@ -21,6 +21,8 @@ import { triggerHaptic } from '../utils/haptics';
 import { renderSingleCardToCanvas } from '../utils/canvasCardGenerator';
 import { getEstimatedHijriDate, formatReadableDate } from '../utils/dateUtils';
 
+import { formatAudioUrlWithQari } from '../utils/audioUtils';
+
 interface VerseCardProps {
   verse: Verse;
   dateStr: string;
@@ -77,7 +79,7 @@ export const VerseCard: React.FC<VerseCardProps> = ({ verse, dateStr }) => {
         type: 'verse_arabic',
         title: `Surah ${verse.surah} (${verse.surah_ar}) • Ayah ${verse.ayah}`,
         subtitle: 'Arabic Recitation • Mishary Rashid Alafasy',
-        audioUrl: verse.audio_url,
+        audioUrl: formatAudioUrlWithQari(verse.audio_url, settings.qariVoice),
         sourceInfo: 'Verse of the Day'
       });
     }

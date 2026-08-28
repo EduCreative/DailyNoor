@@ -25,9 +25,13 @@ import {
   HelpCircle,
   Calendar,
   MapPin,
+  BookOpen,
+  Mic,
+  Music,
   Globe,
   MessageCircle
 } from 'lucide-react';
+import { QARI_VOICE_OPTIONS, RECITER_VOICE_OPTIONS } from '../utils/audioUtils';
 import { requestNotificationPermission, sendDailyReminderNotification } from '../utils/notification';
 import { triggerHaptic } from '../utils/haptics';
 import { APP_VERSION } from './AboutModal';
@@ -709,6 +713,143 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, o
                   {speed === 1.0 ? '1.0x (Normal)' : `${speed}x`}
                 </button>
               ))}
+            </div>
+          </div>
+
+          {/* Section 5B: Tafseer Sources Selection */}
+          <div className="p-4 rounded-2xl bg-[#F5F1E8]/70 dark:bg-[#0C1813]/60 border border-[#0B5D3C]/10 dark:border-white/10 space-y-3">
+            <div className="flex items-center gap-2.5">
+              <BookOpen className="w-4 h-4 text-[#0B5D3C] dark:text-[#C9A227]" />
+              <div>
+                <span className="text-sm font-bold text-[#1D2B24] dark:text-[#E8EFEA]">
+                  Tafseer Sources Preferences
+                </span>
+                <p className="text-xs text-[#4A5D53] dark:text-[#96A89F] font-urdu" dir="rtl">
+                  تفاسیر کے ماخذ کا انتخاب (اردو، انگریزی، شانِ نزول)
+                </p>
+              </div>
+            </div>
+
+            {/* Urdu Tafseer Source Select */}
+            <div className="space-y-1">
+              <label className="text-[11px] font-bold text-[#1D2B24] dark:text-[#E8EFEA] block font-urdu" dir="rtl">
+                اردو تفسیر کا ماخذ (Urdu Tafseer Source):
+              </label>
+              <select
+                id="settings-tafseer-urdu-select"
+                value={settings.tafseerSourceUrdu || 'embedded'}
+                onChange={(e) => {
+                  triggerHaptic('light');
+                  updateSettings({ tafseerSourceUrdu: e.target.value });
+                }}
+                className="w-full text-xs font-urdu font-semibold py-2 px-3 rounded-xl bg-white dark:bg-[#142820] text-[#0B5D3C] dark:text-[#E5C76B] border border-[#0B5D3C]/20 dark:border-[#C9A227]/30 focus:outline-none focus:ring-2 focus:ring-[#0B5D3C]"
+              >
+                <option value="embedded">خلاصۂ نور و تفسیر آسان (تقی عثمانی / ابن کثیر خلاصہ)</option>
+                <option value="ibn-kathir-ur">تفسیر ابنِ کثیر (اردو - مکمل / آن لائن)</option>
+                <option value="maududi-ur">تفہیم القرآن (مولانا ابوالاعلیٰ مودودیؒ)</option>
+                <option value="ahsan-ul-bayan">تفسیر احسن البیان (حافظ صلاح الدین یوسفؒ)</option>
+                <option value="bayan-ul-quran">تفسیر بیان القرآن (ڈاکٹر اسرار احمدؒ / مولانا تھانویؒ)</option>
+              </select>
+            </div>
+
+            {/* English Tafseer Source Select */}
+            <div className="space-y-1">
+              <label className="text-[11px] font-bold text-[#1D2B24] dark:text-[#E8EFEA] block">
+                English Tafseer Source:
+              </label>
+              <select
+                id="settings-tafseer-en-select"
+                value={settings.tafseerSourceEn || 'embedded-en'}
+                onChange={(e) => {
+                  triggerHaptic('light');
+                  updateSettings({ tafseerSourceEn: e.target.value });
+                }}
+                className="w-full text-xs font-semibold py-2 px-3 rounded-xl bg-white dark:bg-[#142820] text-[#0B5D3C] dark:text-[#E5C76B] border border-[#0B5D3C]/20 dark:border-[#C9A227]/30 focus:outline-none focus:ring-2 focus:ring-[#0B5D3C]"
+              >
+                <option value="embedded-en">Daily Noor Concise English Commentary</option>
+                <option value="ibn-kathir-en">Tafseer Ibn Kathir (English Abridged)</option>
+                <option value="maariful-quran-en">Ma'ariful Quran (English Edition)</option>
+                <option value="shade-quran-en">In the Shade of the Quran (Sayyid Qutb)</option>
+              </select>
+            </div>
+
+            {/* Shan-e-Nazool Source Select */}
+            <div className="space-y-1">
+              <label className="text-[11px] font-bold text-[#1D2B24] dark:text-[#E8EFEA] block font-urdu" dir="rtl">
+                شانِ نزول کا ماخذ (Context of Revelation Source):
+              </label>
+              <select
+                id="settings-tafseer-shane-nazool-select"
+                value={settings.tafseerSourceShaneNazool || 'asbab-al-nuzul-wahidi'}
+                onChange={(e) => {
+                  triggerHaptic('light');
+                  updateSettings({ tafseerSourceShaneNazool: e.target.value });
+                }}
+                className="w-full text-xs font-urdu font-semibold py-2 px-3 rounded-xl bg-white dark:bg-[#142820] text-[#0B5D3C] dark:text-[#E5C76B] border border-[#0B5D3C]/20 dark:border-[#C9A227]/30 focus:outline-none focus:ring-2 focus:ring-[#0B5D3C]"
+              >
+                <option value="asbab-al-nuzul-wahidi">اسباب النزول (امام الواحدی النیسابوریؒ)</option>
+                <option value="classical-combined">کلاسیکی تفاسیر (ابن کثیر، السیوطی و طبریؒ)</option>
+                <option value="context-concise">جامع مختصر تاریخِ نزول و سیاق و سباق</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Section 5C: Qari & Reciter Voice Selection */}
+          <div className="p-4 rounded-2xl bg-[#F5F1E8]/70 dark:bg-[#0C1813]/60 border border-[#0B5D3C]/10 dark:border-white/10 space-y-3">
+            <div className="flex items-center gap-2.5">
+              <Mic className="w-4 h-4 text-[#0B5D3C] dark:text-[#C9A227]" />
+              <div>
+                <span className="text-sm font-bold text-[#1D2B24] dark:text-[#E8EFEA]">
+                  Qari & Audio Voice Selection
+                </span>
+                <p className="text-xs text-[#4A5D53] dark:text-[#96A89F] font-urdu" dir="rtl">
+                  قاریِ قرآن اور اردو صوتی ترجمہ کی آواز کا انتخاب
+                </p>
+              </div>
+            </div>
+
+            {/* Qari Arabic Reciter Select */}
+            <div className="space-y-1">
+              <label className="text-[11px] font-bold text-[#1D2B24] dark:text-[#E8EFEA] block font-urdu" dir="rtl">
+                قاریِ قرآن / عربی تلاوت (Qari Arabic Reciter):
+              </label>
+              <select
+                id="settings-qari-voice-select"
+                value={settings.qariVoice || 'Alafasy_128kbps'}
+                onChange={(e) => {
+                  triggerHaptic('light');
+                  updateSettings({ qariVoice: e.target.value });
+                }}
+                className="w-full text-xs font-semibold py-2 px-3 rounded-xl bg-white dark:bg-[#142820] text-[#0B5D3C] dark:text-[#E5C76B] border border-[#0B5D3C]/20 dark:border-[#C9A227]/30 focus:outline-none focus:ring-2 focus:ring-[#0B5D3C]"
+              >
+                {QARI_VOICE_OPTIONS.map((q) => (
+                  <option key={q.id} value={q.id}>
+                    {q.nameAr} ({q.nameEn})
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Reciter / Translation Voice Select */}
+            <div className="space-y-1">
+              <label className="text-[11px] font-bold text-[#1D2B24] dark:text-[#E8EFEA] block font-urdu" dir="rtl">
+                اردو صوتی ترجمہ / آواز (Urdu Translation Voice):
+              </label>
+              <select
+                id="settings-reciter-voice-select"
+                value={settings.reciterVoice || 'jalandhari'}
+                onChange={(e) => {
+                  triggerHaptic('light');
+                  updateSettings({ reciterVoice: e.target.value });
+                }}
+                className="w-full text-xs font-urdu font-semibold py-2 px-3 rounded-xl bg-white dark:bg-[#142820] text-[#0B5D3C] dark:text-[#E5C76B] border border-[#0B5D3C]/20 dark:border-[#C9A227]/30 focus:outline-none focus:ring-2 focus:ring-[#0B5D3C]"
+              >
+                {RECITER_VOICE_OPTIONS.map((r) => (
+                  <option key={r.id} value={r.id}>
+                    {r.nameUrdu}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 
