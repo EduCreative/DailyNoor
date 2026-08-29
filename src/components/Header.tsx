@@ -117,7 +117,7 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className={`sticky top-0 z-50 backdrop-blur-md ${getHeaderBgClass()} transition-colors duration-200`}>
+    <header className={`sticky top-0 z-50 w-full backdrop-blur-md ${getHeaderBgClass()} transition-colors duration-200`}>
       <div className="w-full max-w-6xl mx-auto px-3 sm:px-6 md:px-8 py-2.5 sm:py-3.5">
         <div className="flex items-center justify-between gap-2 sm:gap-4 min-w-0">
           
@@ -136,9 +136,9 @@ export const Header: React.FC<HeaderProps> = ({
                 <IslamicLogo size={34} variant="shield" className="w-8 h-8 sm:w-10 sm:h-10" />
               </div>
               <div className="min-w-0">
-                <h1 className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-[#F5F1E8] flex items-center gap-1.5 truncate">
-                  <span>Daily Noor</span>
-                  <span className="text-[10px] sm:text-[11px] font-mono font-medium px-1.5 py-0.2 rounded bg-white/15 text-[#E5C76B] border border-white/20 tracking-normal inline-block self-center shadow-xs">
+                <h1 className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-[#F5F1E8] flex items-center gap-1.5 min-w-0">
+                  <span className="truncate">Daily Noor</span>
+                  <span className="text-[10px] sm:text-[11px] font-mono font-medium px-1.5 py-0.5 rounded-md bg-white/15 text-[#E5C76B] border border-[#E5C76B]/30 tracking-tight shrink-0 shadow-xs">
                     {APP_VERSION}
                   </span>
                 </h1>

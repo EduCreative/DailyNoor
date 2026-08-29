@@ -35,7 +35,7 @@ export const DailyQuizCard: React.FC<DailyQuizCardProps> = ({
         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-5">
           
           {/* Left: Info */}
-          <div className="flex items-center gap-4 text-center md:text-left w-full md:w-auto justify-center md:justify-start">
+          <div className="flex items-center gap-4 text-center md:text-left w-full md:w-auto justify-center md:justify-start flex-1 min-w-0">
             <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0B5D3C] to-[#061912] border border-[#C9A227]/40 flex items-center justify-center shrink-0 shadow-md">
               {hasTakenQuiz ? (
                 <Award className="w-7 h-7 text-[#E5C76B]" />
@@ -44,20 +44,20 @@ export const DailyQuizCard: React.FC<DailyQuizCardProps> = ({
               )}
             </div>
 
-            <div>
+            <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2 justify-center md:justify-start flex-wrap">
-                <h3 className="font-extrabold text-lg sm:text-xl text-white flex items-center gap-2">
+                <h3 className="font-extrabold text-lg sm:text-xl text-white flex items-center gap-2 flex-wrap break-words">
                   <span>Daily Islamic Quiz</span>
-                  <span className="font-urdu text-sm sm:text-base font-bold text-[#E5C76B]">روزانہ اسلامی کوئز</span>
+                  <span className="font-urdu text-sm sm:text-base font-bold text-[#E5C76B]" dir="rtl">روزانہ اسلامی کوئز</span>
                 </h3>
                 {hasTakenQuiz && (
-                  <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-900/80 text-emerald-300 font-bold border border-emerald-500/40 shadow-xs">
+                  <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-900/80 text-emerald-300 font-bold border border-emerald-500/40 shadow-xs shrink-0">
                     Completed
                   </span>
                 )}
               </div>
 
-              <p className="text-xs text-[#96A89F] mt-1">
+              <p className="text-xs sm:text-sm text-[#96A89F] mt-1 break-words leading-relaxed">
                 {hasTakenQuiz 
                   ? `Your score: ${score}/${total} points (${Math.round((score / total) * 100)}%). Test your knowledge anytime!`
                   : `3 quick questions on today's Surah ${verse.surah}, Hadith teachings, and Islamic ethics.`}

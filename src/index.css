@@ -103,10 +103,11 @@
   background-size: 24px 24px;
 }
 
-/* Global safety for mobile viewport */
+/* Global safety for mobile viewport without breaking position: sticky */
 html, body {
-  overflow-x: hidden;
-  max-width: 100vw;
+  overflow-x: clip;
+  min-height: 100%;
+  width: 100%;
 }
 
 /* Custom smooth scrollbar */
