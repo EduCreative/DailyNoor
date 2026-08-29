@@ -19,6 +19,7 @@ import {
   MessageCircle
 } from 'lucide-react';
 import { getUserLocationName, getSavedLocation } from '../utils/prayerTimes';
+import { APP_VERSION } from './AboutModal';
 
 interface HeaderProps {
   onOpenCalendar: () => void;
@@ -137,6 +138,9 @@ export const Header: React.FC<HeaderProps> = ({
               <div className="min-w-0">
                 <h1 className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-[#F5F1E8] flex items-center gap-1.5 truncate">
                   <span>Daily Noor</span>
+                  <span className="text-[10px] sm:text-[11px] font-mono font-medium px-1.5 py-0.2 rounded bg-white/15 text-[#E5C76B] border border-white/20 tracking-normal inline-block self-center shadow-xs">
+                    {APP_VERSION}
+                  </span>
                 </h1>
                 <p className="text-[11px] text-[#F5F1E8]/80 font-medium leading-none hidden sm:block mt-0.5">
                   1 Verse & 1 Hadith Daily • <span className="font-urdu text-xs text-[#E5C76B]">نورِ روزانہ</span>

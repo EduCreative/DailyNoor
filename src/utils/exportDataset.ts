@@ -85,7 +85,7 @@ export function generateComplete365Payload() {
       appName: 'Daily Noor (نورِ روزانہ)',
       description: 'Complete 365-Day Annual Islamic Curriculum: Quran Verses, Authentic Hadith, In-depth Tafseer & Daily Dhikr',
       exportedAt: new Date().toISOString(),
-      version: '2.6.4',
+      version: '2.7.0',
       totalDays: 365,
       totalVerses: YEARLY_VERSES_365.length,
       totalHadiths: YEARLY_HADITHS_365.length,

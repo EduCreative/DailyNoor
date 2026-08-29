@@ -5,7 +5,7 @@
 [![React](https://img.shields.io/badge/React-19.0-blue.svg)](https://reactjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-emerald.svg)](https://tailwindcss.com/)
 [![PWA Ready](https://img.shields.io/badge/PWA-Offline%20Ready-gold.svg)](https://web.dev/progressive-web-apps/)
-[![Version](https://img.shields.io/badge/Version-2.6.4-0B5D3C.svg)]()
+[![Version](https://img.shields.io/badge/Version-2.7.0-0B5D3C.svg)]()
 
 ---
 

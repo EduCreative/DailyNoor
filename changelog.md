@@ -2,6 +2,16 @@
 
 All notable changes to the Daily Noor project are documented here.
 
+## [2.7.0] - 2026-08-29
+### Added & Updated
+- **Complete 365-Day Dataset Export Hub in Settings**:
+  - Added export triggers in Settings for structured JSON (`.json`), Excel / CSV spreadsheet (`.csv` with UTF-8 BOM encoding for Arabic and Urdu Nastaliq), and complete curriculum markdown guide (`.md`).
+  - Added 365-day dataset summary indicators (365 Verses, 365 Hadith, 365 Tafseer, 365 Dhikr) in Settings modal.
+- **Header Version Badge**:
+  - Displayed a small, elegant version badge (`v2.7.0`) directly alongside the Daily Noor brand name in the sticky top header.
+- **Build & Dataset Sanitization**:
+  - Validated and ensured seamless UTF-8 character encoding and string escaping across all 365 days of Tafseer and Hadith dataset records.
+
 ## [2.6.4] - 2026-08-28
 ### Added & Updated
 - **Daily Islamic Quiz Placement**:
