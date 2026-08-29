@@ -21,6 +21,7 @@ const DEFAULT_SETTINGS: AppSettings = {
   audioSpeed: 1,
   darkMode: true,
   appTheme: 'midnight',
+  cardOpacity: 100,
   hapticsEnabled: true,
   showDailyDhikr: true,
   showDuaOfTheWeek: true,
@@ -204,6 +205,9 @@ export const useDailyStore = create<DailyStoreState>((set, get) => {
         root.setAttribute('data-theme', updated.appTheme);
         root.classList.remove('theme-emerald', 'theme-midnight', 'theme-pearl');
         root.classList.add(`theme-${updated.appTheme}`);
+
+        const cardOpacityVal = (updated.cardOpacity ?? 100) / 100;
+        root.style.setProperty('--app-card-opacity', cardOpacityVal.toString());
 
         if (updated.appTheme === 'midnight') {
           root.classList.add('dark');

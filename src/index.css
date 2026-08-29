@@ -16,9 +16,14 @@
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 }
 
+:root {
+  --app-card-opacity: 1;
+}
+
 :root, .theme-emerald {
   --app-bg: #F5F1E8;
-  --app-card: #FFFFFF;
+  --app-card: rgba(255, 255, 255, var(--app-card-opacity, 1));
+  --app-card-solid: #FFFFFF;
   --app-card-border: rgba(11, 93, 60, 0.15);
   --app-text: #1D2B24;
   --app-subtext: #4A5D53;
@@ -33,7 +38,8 @@
 
 .theme-pearl {
   --app-bg: #FAF8F5;
-  --app-card: #FFFFFF;
+  --app-card: rgba(255, 255, 255, var(--app-card-opacity, 1));
+  --app-card-solid: #FFFFFF;
   --app-card-border: rgba(28, 61, 47, 0.15);
   --app-text: #1F3027;
   --app-subtext: #485E53;
@@ -48,7 +54,8 @@
 
 .dark, .theme-midnight {
   --app-bg: #0C1813;
-  --app-card: #142820;
+  --app-card: rgba(20, 40, 32, var(--app-card-opacity, 1));
+  --app-card-solid: #142820;
   --app-card-border: rgba(201, 162, 39, 0.25);
   --app-text: #E8EFEA;
   --app-subtext: #96A89F;
@@ -59,6 +66,12 @@
   --app-header-bg: #05140D;
   --app-header-text: #E8EFEA;
   --app-box-bg: rgba(12, 24, 19, 0.6);
+}
+
+.app-card-surface {
+  background-color: var(--app-card) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 /* Arabic and Urdu Typography Classes */

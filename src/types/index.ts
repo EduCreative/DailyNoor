@@ -58,6 +58,7 @@ export interface AppSettings {
   audioSpeed: number; // 0.8, 1, 1.2
   darkMode: boolean;
   appTheme: 'emerald' | 'midnight' | 'pearl';
+  cardOpacity?: number; // 50-100 percentage (100 = solid, prevents background pattern from interrupting text)
   hapticsEnabled: boolean;
   showDailyDhikr?: boolean;
   showDuaOfTheWeek?: boolean;

@@ -86,7 +86,7 @@ export default function App() {
     };
   }, [selectedDate]);
 
-  // Theme Sync on Mount & Settings Change
+  // Theme & Card Opacity Sync on Mount & Settings Change
   useEffect(() => {
     const activeTheme = settings.appTheme || (settings.darkMode ? 'midnight' : 'emerald');
     const root = document.documentElement;
@@ -94,12 +94,15 @@ export default function App() {
     root.classList.remove('theme-emerald', 'theme-midnight', 'theme-pearl');
     root.classList.add(`theme-${activeTheme}`);
 
+    const cardOpacityVal = (settings.cardOpacity ?? 100) / 100;
+    root.style.setProperty('--app-card-opacity', cardOpacityVal.toString());
+
     if (activeTheme === 'midnight') {
       root.classList.add('dark');
     } else {
       root.classList.remove('dark');
     }
-  }, [settings.appTheme, settings.darkMode]);
+  }, [settings.appTheme, settings.darkMode, settings.cardOpacity]);
 
   // Daily Reminder Scheduler
   useEffect(() => {
@@ -157,7 +160,7 @@ export default function App() {
     <div className={`relative min-h-screen w-full flex flex-col ${getAppBgClass()} transition-colors duration-200`}>
       
       {/* Semi-transparent Islamic Art Background Pattern */}
-      <IslamicBackgroundPattern opacity={settings.appTheme === 'midnight' ? 0.40 : 0.30} />
+      <IslamicBackgroundPattern opacity={settings.appTheme === 'midnight' ? 0.60 : 0.40} />
 
       {/* Sticky Header */}
       <Header

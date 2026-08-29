@@ -209,7 +209,7 @@ ${verse.explanation}
       {/* Main Card Container */}
       <div 
         id={`verse-card-${verse.day}`}
-        className={`bg-white dark:bg-[#142820] rounded-[32px] shadow-xl shadow-black/5 p-6 sm:p-8 flex flex-col border transition-all duration-300 ${
+        className={`app-card-surface bg-white dark:bg-[#142820] rounded-[32px] shadow-xl shadow-black/5 p-6 sm:p-8 flex flex-col border transition-all duration-300 ${
           isRead
             ? 'border-emerald-400/60 dark:border-emerald-700/50 shadow-emerald-950/5'
             : 'border-[#0B5D3C]/10 dark:border-[#C9A227]/20'

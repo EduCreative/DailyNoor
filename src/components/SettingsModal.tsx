@@ -19,6 +19,7 @@ import {
   Copy, 
   Sparkles, 
   Palette, 
+  Sliders,
   Clock, 
   Layers,
   Heart,
@@ -292,6 +293,115 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, o
                   </button>
                 );
               })}
+            </div>
+          </div>
+
+          {/* Section 2b: Card Opacity & Reading Comfort */}
+          <div className="p-4 rounded-2xl bg-[#F5F1E8]/70 dark:bg-[#0C1813]/60 border border-[#0B5D3C]/10 dark:border-white/10 space-y-3.5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <Sliders className="w-4 h-4 text-[#0B5D3C] dark:text-[#C9A227]" />
+                <div>
+                  <span className="text-sm font-bold text-[#1D2B24] dark:text-[#E8EFEA] flex items-center gap-2">
+                    <span>Card Opacity & Readability</span>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-[#0B5D3C]/10 dark:bg-[#C9A227]/20 text-[#0B5D3C] dark:text-[#E5C76B] font-bold">
+                      {settings.cardOpacity ?? 100}%
+                    </span>
+                  </span>
+                  <p className="text-xs text-[#4A5D53] dark:text-[#96A89F] font-urdu" dir="rtl">
+                    کارڈ کی شفافیت (پس منظر سے پڑھنے میں رکاوٹ دور کرنے کے لیے)
+                  </p>
+                </div>
+              </div>
+
+              {(settings.cardOpacity ?? 100) !== 100 && (
+                <button
+                  id="settings-reset-card-opacity"
+                  onClick={() => {
+                    triggerHaptic('light');
+                    updateSettings({ cardOpacity: 100 });
+                  }}
+                  className="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white dark:bg-[#142820] text-[#0B5D3C] dark:text-[#E5C76B] border border-[#0B5D3C]/20 hover:bg-[#0B5D3C]/10 transition-colors shadow-xs"
+                >
+                  100% Solid
+                </button>
+              )}
+            </div>
+
+            {/* Presets Grid */}
+            <div className="grid grid-cols-4 gap-1.5 pt-0.5">
+              {[
+                { value: 100, label: '100% Solid', descUrdu: 'ٹھوس پس منظر' },
+                { value: 95, label: '95% High', descUrdu: 'متوازن' },
+                { value: 85, label: '85% Medium', descUrdu: 'نیم شفاف' },
+                { value: 70, label: '70% Glass', descUrdu: 'گلاس' }
+              ].map((preset) => {
+                const isSelected = (settings.cardOpacity ?? 100) === preset.value;
+                return (
+                  <button
+                    key={preset.value}
+                    id={`settings-card-opacity-${preset.value}-btn`}
+                    onClick={() => {
+                      triggerHaptic('medium');
+                      updateSettings({ cardOpacity: preset.value });
+                    }}
+                    className={`py-2 px-1 rounded-xl border text-center transition-all ${
+                      isSelected
+                        ? 'bg-[#0B5D3C] text-white dark:bg-[#C9A227] dark:text-[#0C1813] border-[#0B5D3C] dark:border-[#C9A227] shadow-xs'
+                        : 'bg-white/80 dark:bg-[#142820]/80 text-[#1D2B24] dark:text-[#E8EFEA] border-[#0B5D3C]/15 dark:border-white/10 hover:border-[#0B5D3C]'
+                    }`}
+                  >
+                    <span className="text-xs font-bold block">{preset.label}</span>
+                    <span className="text-[10px] opacity-80 block font-urdu" dir="rtl">{preset.descUrdu}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Slider */}
+            <div className="space-y-1 pt-1">
+              <div className="flex items-center justify-between text-xs font-semibold text-[#4A5D53] dark:text-[#96A89F]">
+                <span>Custom Opacity Range:</span>
+                <span className="font-bold text-[#0B5D3C] dark:text-[#C9A227]">{settings.cardOpacity ?? 100}%</span>
+              </div>
+              <input
+                id="settings-card-opacity-slider"
+                type="range"
+                min="50"
+                max="100"
+                step="5"
+                value={settings.cardOpacity ?? 100}
+                onChange={(e) => updateSettings({ cardOpacity: Number(e.target.value) })}
+                className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-[#0B5D3C] dark:accent-[#C9A227]"
+              />
+              <div className="flex justify-between text-[10px] text-gray-500 dark:text-gray-400">
+                <span>50% Translucent</span>
+                <span className="font-semibold">100% Solid (Max Clarity)</span>
+              </div>
+            </div>
+
+            {/* Live Reading Contrast Preview Swatch */}
+            <div className="relative p-3 rounded-xl overflow-hidden border border-[#0B5D3C]/20 dark:border-[#C9A227]/30 bg-gradient-to-br from-[#0B5D3C]/30 via-[#0C1813] to-[#C9A227]/30">
+              {/* Card preview simulating text over card */}
+              <div 
+                className="relative p-3 rounded-lg border border-[#0B5D3C]/20 dark:border-[#C9A227]/30 text-center space-y-1 transition-all shadow-md backdrop-blur-md"
+                style={{
+                  backgroundColor: (settings.appTheme || (settings.darkMode ? 'midnight' : 'emerald')) === 'midnight'
+                    ? `rgba(20, 40, 32, ${(settings.cardOpacity ?? 100) / 100})`
+                    : `rgba(255, 255, 255, ${(settings.cardOpacity ?? 100) / 100})`
+                }}
+              >
+                <div className="flex items-center justify-between text-[11px] font-bold text-[#0B5D3C] dark:text-[#E5C76B]">
+                  <span>Live Preview (پیش نظارہ)</span>
+                  <span>{settings.cardOpacity ?? 100}% Opaque</span>
+                </div>
+                <p className="font-arabic text-base sm:text-lg font-semibold text-[#0B5D3C] dark:text-[#E8EFEA] leading-relaxed" dir="rtl">
+                  بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                </p>
+                <p className="font-urdu text-xs text-[#1D2B24] dark:text-[#E8EFEA] leading-relaxed" dir="rtl">
+                  شروع اللہ کے نام سے جو بڑا مہربان نہایت رحم والا ہے
+                </p>
+              </div>
             </div>
           </div>
 

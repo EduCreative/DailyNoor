@@ -151,7 +151,7 @@ export const DailyDhikrCard: React.FC<DailyDhikrCardProps> = ({ dateStr }) => {
   return (
     <div 
       id="card-daily-dhikr-tasbih"
-      className="relative max-w-4xl mx-auto my-6 sm:my-8 rounded-3xl bg-white dark:bg-[#142820] border border-[#0B5D3C]/15 dark:border-white/10 shadow-xl overflow-hidden transition-all duration-300"
+      className="app-card-surface relative max-w-4xl mx-auto my-6 sm:my-8 rounded-3xl bg-white dark:bg-[#142820] border border-[#0B5D3C]/15 dark:border-white/10 shadow-xl overflow-hidden transition-all duration-300"
     >
       {/* Top Banner Gradient Accent */}
       <div className="h-2 bg-gradient-to-r from-[#0B5D3C] via-[#C9A227] to-[#0B5D3C]" />

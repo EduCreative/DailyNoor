@@ -26,7 +26,7 @@ export const DailyQuizCard: React.FC<DailyQuizCardProps> = ({
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 sm:px-8 mt-6 mb-8">
-      <div className="bg-[#142820] text-[#E8EFEA] rounded-3xl p-5 sm:p-6 border border-[#C9A227]/30 shadow-lg relative overflow-hidden">
+      <div className="app-card-surface bg-[#142820] text-[#E8EFEA] rounded-3xl p-5 sm:p-6 border border-[#C9A227]/30 shadow-lg relative overflow-hidden">
         
         {/* Background decorative glows */}
         <div className="absolute -right-6 -bottom-6 w-36 h-36 rounded-full bg-[#C9A227]/10 pointer-events-none blur-2xl" />

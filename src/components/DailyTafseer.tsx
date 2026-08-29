@@ -219,7 +219,7 @@ ${verse.urdu_translation}
       </div>
 
       {/* Main Tafseer Card Container */}
-      <div className="bg-white dark:bg-[#142820] rounded-[28px] shadow-lg shadow-black/5 p-5 sm:p-7 flex flex-col border border-[#0B5D3C]/15 dark:border-[#C9A227]/20 transition-all duration-300">
+      <div className="app-card-surface bg-white dark:bg-[#142820] rounded-[28px] shadow-lg shadow-black/5 p-5 sm:p-7 flex flex-col border border-[#0B5D3C]/15 dark:border-[#C9A227]/20 transition-all duration-300">
         
         {/* Navigation Tabs (Urdu, English, Context, Lessons) */}
         <div className="flex items-center gap-1.5 p-1 bg-[#F5F1E8] dark:bg-[#0C1813] rounded-2xl overflow-x-auto no-scrollbar border border-[#0B5D3C]/10 dark:border-white/5 mb-5">
