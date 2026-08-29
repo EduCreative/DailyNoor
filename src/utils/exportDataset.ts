@@ -1,9 +1,4 @@
-import { 
-  YEARLY_VERSES_365, 
-  YEARLY_HADITHS_365, 
-  YEARLY_TAFSEER_365, 
-  YEARLY_DHIKR_365 
-} from '../data/yearly';
+import { loadAll365Data } from '../data/yearly/monthLoader';
 
 export interface ExportProgress {
   status: 'idle' | 'generating' | 'downloaded' | 'error';
@@ -12,17 +7,18 @@ export interface ExportProgress {
 }
 
 /**
- * Generates the full structured 365-Day curriculum payload
+ * Generates the full structured 365-Day curriculum payload dynamically on-demand
  */
-export function generateComplete365Payload() {
+export async function generateComplete365Payload() {
+  const { verses, hadiths, tafseers, dhikrs } = await loadAll365Data();
   const combinedDays = [];
 
   for (let day = 1; day <= 365; day++) {
     const idx = day - 1;
-    const verse = YEARLY_VERSES_365[idx] || null;
-    const hadith = YEARLY_HADITHS_365[idx] || null;
-    const tafseer = YEARLY_TAFSEER_365[idx] || null;
-    const dhikr = YEARLY_DHIKR_365[idx] || null;
+    const verse = verses[idx] || null;
+    const hadith = hadiths[idx] || null;
+    const tafseer = tafseers[idx] || null;
+    const dhikr = dhikrs[idx] || null;
 
     combinedDays.push({
       dayOfYear: day,
@@ -87,10 +83,10 @@ export function generateComplete365Payload() {
       exportedAt: new Date().toISOString(),
       version: '2.7.0',
       totalDays: 365,
-      totalVerses: YEARLY_VERSES_365.length,
-      totalHadiths: YEARLY_HADITHS_365.length,
-      totalTafseerEntries: YEARLY_TAFSEER_365.length,
-      totalDhikrEntries: YEARLY_DHIKR_365.length,
+      totalVerses: verses.length,
+      totalHadiths: hadiths.length,
+      totalTafseerEntries: tafseers.length,
+      totalDhikrEntries: dhikrs.length,
       languages: ['Arabic', 'Urdu', 'English'],
       license: 'Open Islamic Educational Resource'
     },
@@ -99,10 +95,10 @@ export function generateComplete365Payload() {
 }
 
 /**
- * Downloads the complete 365-day dataset as JSON file
+ * Downloads the complete 365-day dataset as JSON file (on-demand dynamically loaded)
  */
-export function download365JsonDataset() {
-  const data = generateComplete365Payload();
+export async function download365JsonDataset() {
+  const data = await generateComplete365Payload();
   const jsonString = JSON.stringify(data, null, 2);
   const blob = new Blob([jsonString], { type: 'application/json;charset=utf-8;' });
   triggerFileDownload(blob, `daily-noor-365-curriculum-${new Date().toISOString().split('T')[0]}.json`);
@@ -120,7 +116,8 @@ function escapeCsvCell(cell: string | number | undefined | null): string {
 /**
  * Downloads the complete 365-day dataset as CSV file
  */
-export function download365CsvDataset() {
+export async function download365CsvDataset() {
+  const { verses, hadiths, tafseers, dhikrs } = await loadAll365Data();
   const headers = [
     'Day',
     'Surah Name (EN)',
@@ -151,10 +148,10 @@ export function download365CsvDataset() {
 
   for (let day = 1; day <= 365; day++) {
     const idx = day - 1;
-    const verse = YEARLY_VERSES_365[idx] || ({} as any);
-    const hadith = YEARLY_HADITHS_365[idx] || ({} as any);
-    const tafseer = YEARLY_TAFSEER_365[idx] || ({} as any);
-    const dhikr = YEARLY_DHIKR_365[idx] || ({} as any);
+    const verse = verses[idx] || ({} as any);
+    const hadith = hadiths[idx] || ({} as any);
+    const tafseer = tafseers[idx] || ({} as any);
+    const dhikr = dhikrs[idx] || ({} as any);
 
     const row = [
       day,
@@ -194,7 +191,8 @@ export function download365CsvDataset() {
 /**
  * Downloads a clean Markdown summary guide
  */
-export function download365MarkdownGuide() {
+export async function download365MarkdownGuide() {
+  const { verses, hadiths, tafseers, dhikrs } = await loadAll365Data();
   const lines: string[] = [
     '# Daily Noor (نورِ روزانہ) — Complete 365-Day Islamic Curriculum Guide',
     `Exported on: ${new Date().toLocaleDateString('en-US', { dateStyle: 'full' })}`,
@@ -206,10 +204,10 @@ export function download365MarkdownGuide() {
 
   for (let day = 1; day <= 365; day++) {
     const idx = day - 1;
-    const verse = YEARLY_VERSES_365[idx];
-    const hadith = YEARLY_HADITHS_365[idx];
-    const tafseer = YEARLY_TAFSEER_365[idx];
-    const dhikr = YEARLY_DHIKR_365[idx];
+    const verse = verses[idx];
+    const hadith = hadiths[idx];
+    const tafseer = tafseers[idx];
+    const dhikr = dhikrs[idx];
 
     lines.push(`## 📅 Day ${day} of 365`);
     if (verse) {

@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useDailyStore } from './store/useDailyStore';
 import { Verse, Hadith } from './types';
 import { EMBEDDED_VERSES, EMBEDDED_HADITHS } from './data/embeddedData';
-import { getDailyIndex, getTodayDateString } from './utils/dateUtils';
+import { loadMonthData } from './data/yearly/monthLoader';
+import { registerMonthTafseers } from './data/tafseerData';
+import { registerMonthDhikrs } from './data/dhikrData';
+import { getDayOfYear, getDailyIndex, getTodayDateString } from './utils/dateUtils';
 import { checkAndScheduleDailyReminder } from './utils/notification';
 import { Header } from './components/Header';
 import { PrayerTimesCard } from './components/PrayerTimesCard';
@@ -48,35 +51,40 @@ export default function App() {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [showInstallBanner, setShowInstallBanner] = useState(false);
 
-  // Background Data Fetch (Updates local cache without blocking)
+  // Dynamic Monthly Data Import: imports only the requested month chunk on-demand
   useEffect(() => {
-    async function loadData() {
+    let isCancelled = false;
+
+    async function loadActiveMonthData() {
       try {
-        const [vRes, hRes] = await Promise.allSettled([
-          fetch('/data/verses.json'),
-          fetch('/data/hadith.json')
-        ]);
+        const targetDate = selectedDate ? new Date(selectedDate + 'T00:00:00') : new Date();
+        const monthNumber = targetDate.getMonth() + 1; // 1 to 12
 
-        if (vRes.status === 'fulfilled' && vRes.value.ok) {
-          const vData: Verse[] = await vRes.value.json();
-          if (Array.isArray(vData) && vData.length > 0) {
-            setVerses(vData);
-          }
+        const data = await loadMonthData(monthNumber);
+        if (isCancelled) return;
+
+        if (Array.isArray(data.verses) && data.verses.length > 0) {
+          setVerses(data.verses);
         }
-
-        if (hRes.status === 'fulfilled' && hRes.value.ok) {
-          const hData: Hadith[] = await hRes.value.json();
-          if (Array.isArray(hData) && hData.length > 0) {
-            setHadiths(hData);
-          }
+        if (Array.isArray(data.hadiths) && data.hadiths.length > 0) {
+          setHadiths(data.hadiths);
+        }
+        if (Array.isArray(data.tafseers) && data.tafseers.length > 0) {
+          registerMonthTafseers(data.tafseers);
+        }
+        if (Array.isArray(data.dhikrs) && data.dhikrs.length > 0) {
+          registerMonthDhikrs(data.dhikrs);
         }
       } catch (err: any) {
-        console.warn('Background dataset refresh note (using embedded dataset):', err);
+        console.warn('Dynamic monthly dataset load note:', err);
       }
     }
 
-    loadData();
-  }, []);
+    loadActiveMonthData();
+    return () => {
+      isCancelled = true;
+    };
+  }, [selectedDate]);
 
   // Theme Sync on Mount & Settings Change
   useEffect(() => {
@@ -129,11 +137,11 @@ export default function App() {
   };
 
   // Get active verse and hadith based on selected date
-  const currentVerseIndex = getDailyIndex(verses.length, selectedDate);
-  const currentHadithIndex = getDailyIndex(hadiths.length, selectedDate);
+  const targetDateObj = selectedDate ? new Date(selectedDate + 'T00:00:00') : new Date();
+  const dayOfYear = getDayOfYear(targetDateObj);
 
-  const currentVerse = verses.find(v => v.day === currentVerseIndex) || verses[0];
-  const currentHadith = hadiths.find(h => h.day === currentHadithIndex) || hadiths[0];
+  const currentVerse = verses.find(v => v.day === dayOfYear) || verses[0];
+  const currentHadith = hadiths.find(h => h.day === dayOfYear) || hadiths[0];
 
   const getAppBgClass = () => {
     if (settings.appTheme === 'midnight') return 'bg-[#0C1813] text-[#E8EFEA]';
@@ -304,7 +312,7 @@ export default function App() {
       )}
 
       {/* Global Persistent Audio Player */}
-      <GlobalAudioPlayer />
+      <GlobalAudioPlayer currentVerse={currentVerse} currentHadith={currentHadith} />
 
     </div>
   );

@@ -63,19 +63,19 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, o
   const appUrl = typeof window !== 'undefined' ? window.location.origin : 'https://daily-noor.app';
   const shareText = `🌙 Daily Noor (نورِ روزانہ) — 1 Quranic Verse & 1 Hadith Daily\nSpiritual daily routine with Urdu translations, audio recitation, prayer times & streak tracking.\n\nTry it online: ${appUrl}`;
 
-  const handleDownloadDataset = (format: 'json' | 'csv' | 'md') => {
+  const handleDownloadDataset = async (format: 'json' | 'csv' | 'md') => {
     triggerHaptic('success');
     setDownloadingFormat(format);
     
     try {
       if (format === 'json') {
-        download365JsonDataset();
+        await download365JsonDataset();
         setDownloadSuccess('365-Day Complete JSON Dataset Downloaded!');
       } else if (format === 'csv') {
-        download365CsvDataset();
+        await download365CsvDataset();
         setDownloadSuccess('365-Day CSV / Excel Spreadsheet Downloaded!');
       } else if (format === 'md') {
-        download365MarkdownGuide();
+        await download365MarkdownGuide();
         setDownloadSuccess('365-Day Markdown Curriculum Guide Downloaded!');
       }
     } catch (err) {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAudioStore, AudioTrack } from '../store/useAudioStore';
 import { useDailyStore } from '../store/useDailyStore';
+import { Verse, Hadith } from '../types';
 import { EMBEDDED_VERSES, EMBEDDED_HADITHS } from '../data/embeddedData';
 import { getDailyIndex } from '../utils/dateUtils';
 import { triggerHaptic } from '../utils/haptics';
@@ -23,7 +24,15 @@ import {
 
 import { formatAudioUrlWithQari } from '../utils/audioUtils';
 
-export const GlobalAudioPlayer: React.FC = () => {
+interface GlobalAudioPlayerProps {
+  currentVerse?: Verse;
+  currentHadith?: Hadith;
+}
+
+export const GlobalAudioPlayer: React.FC<GlobalAudioPlayerProps> = ({ 
+  currentVerse: propVerse, 
+  currentHadith: propHadith 
+}) => {
   const { 
     currentTrack, 
     isPlaying, 
@@ -48,10 +57,10 @@ export const GlobalAudioPlayer: React.FC = () => {
 
   // Retrieve current day's Verse & Hadith for quick play if no track is selected yet
   const verseIndex = getDailyIndex(EMBEDDED_VERSES.length, selectedDate) - 1;
-  const currentVerse = EMBEDDED_VERSES[verseIndex] || EMBEDDED_VERSES[0];
+  const currentVerse = propVerse || EMBEDDED_VERSES[verseIndex] || EMBEDDED_VERSES[0];
 
   const hadithIndex = getDailyIndex(EMBEDDED_HADITHS.length, selectedDate) - 1;
-  const currentHadith = EMBEDDED_HADITHS[hadithIndex] || EMBEDDED_HADITHS[0];
+  const currentHadith = propHadith || EMBEDDED_HADITHS[hadithIndex] || EMBEDDED_HADITHS[0];
 
   // Quick Start Actions
   const handlePlayVerseArabic = () => {

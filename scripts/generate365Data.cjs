@@ -772,53 +772,64 @@ for (let day = 1; day <= 365; day++) {
   });
 }
 
-// Write TypeScript modules
-const versesTs = `import { Verse } from '../../types';\n\nexport const YEARLY_VERSES_365: Verse[] = ${JSON.stringify(allVerses, null, 2)};\n`;
-const hadithsTs = `import { Hadith } from '../../types';\n\nexport const YEARLY_HADITHS_365: Hadith[] = ${JSON.stringify(allHadiths, null, 2)};\n`;
-const tafseerTs = `import { TafseerDetail } from '../tafseerData';\n\nexport const YEARLY_TAFSEER_365: TafseerDetail[] = ${JSON.stringify(allTafseers, null, 2)};\n`;
-const dhikrTs = `import { DhikrItem } from '../../types';\n\nexport const YEARLY_DHIKR_365: DhikrItem[] = ${JSON.stringify(allDhikrs, null, 2)};\n`;
-
-const indexTs = `import { Verse, Hadith, DhikrItem } from '../../types';
-import { TafseerDetail } from '../tafseerData';
-import { YEARLY_VERSES_365 } from './yearlyVerses';
-import { YEARLY_HADITHS_365 } from './yearlyHadiths';
-import { YEARLY_TAFSEER_365 } from './yearlyTafseer';
-import { YEARLY_DHIKR_365 } from './yearlyDhikr';
-
-export { YEARLY_VERSES_365 } from './yearlyVerses';
-export { YEARLY_HADITHS_365 } from './yearlyHadiths';
-export { YEARLY_TAFSEER_365 } from './yearlyTafseer';
-export { YEARLY_DHIKR_365 } from './yearlyDhikr';
-
-export function getYearlyVerse(day: number): Verse {
-  const targetDay = ((Math.max(1, day) - 1) % 365) + 1;
-  return YEARLY_VERSES_365[targetDay - 1] || YEARLY_VERSES_365[0];
+// Write 12 Monthly Modular Files for Vite Dynamic Imports
+const monthsDir = path.join(yearlyDir, 'months');
+if (!fs.existsSync(monthsDir)) {
+  fs.mkdirSync(monthsDir, { recursive: true });
 }
 
-export function getYearlyHadith(day: number): Hadith {
-  const targetDay = ((Math.max(1, day) - 1) % 365) + 1;
-  return YEARLY_HADITHS_365[targetDay - 1] || YEARLY_HADITHS_365[0];
-}
+const MONTH_NAMES = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
+const MONTH_DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-export function getYearlyTafseer(day: number): TafseerDetail {
-  const targetDay = ((Math.max(1, day) - 1) % 365) + 1;
-  return YEARLY_TAFSEER_365[targetDay - 1] || YEARLY_TAFSEER_365[0];
-}
+let startDay = 1;
+for (let m = 1; m <= 12; m++) {
+  const daysInMonth = MONTH_DAYS[m - 1];
+  const endDay = startDay + daysInMonth - 1;
+  const monthName = MONTH_NAMES[m - 1];
 
-export function getYearlyDhikr(day: number): DhikrItem {
-  const targetDay = ((Math.max(1, day) - 1) % 365) + 1;
-  return YEARLY_DHIKR_365[targetDay - 1] || YEARLY_DHIKR_365[0];
-}
+  const monthVerses = allVerses.slice(startDay - 1, endDay);
+  const monthHadiths = allHadiths.slice(startDay - 1, endDay);
+  const monthTafseers = allTafseers.slice(startDay - 1, endDay);
+  const monthDhikrs = allDhikrs.slice(startDay - 1, endDay);
+
+  const fileContent = `import { Verse, Hadith, DhikrItem } from '../../../types';
+import { TafseerDetail } from '../../tafseerData';
+
+export const month = ${m};
+export const monthName = ${JSON.stringify(monthName)};
+export const startDay = ${startDay};
+export const endDay = ${endDay};
+
+export const verses: Verse[] = ${JSON.stringify(monthVerses, null, 2)};
+
+export const hadiths: Hadith[] = ${JSON.stringify(monthHadiths, null, 2)};
+
+export const tafseers: TafseerDetail[] = ${JSON.stringify(monthTafseers, null, 2)};
+
+export const dhikrs: DhikrItem[] = ${JSON.stringify(monthDhikrs, null, 2)};
+
+export default {
+  month: ${m},
+  monthName: ${JSON.stringify(monthName)},
+  startDay: ${startDay},
+  endDay: ${endDay},
+  verses,
+  hadiths,
+  tafseers,
+  dhikrs
+};
 `;
 
-fs.writeFileSync(path.join(yearlyDir, 'yearlyVerses.ts'), versesTs);
-fs.writeFileSync(path.join(yearlyDir, 'yearlyHadiths.ts'), hadithsTs);
-fs.writeFileSync(path.join(yearlyDir, 'yearlyTafseer.ts'), tafseerTs);
-fs.writeFileSync(path.join(yearlyDir, 'yearlyDhikr.ts'), dhikrTs);
-fs.writeFileSync(path.join(yearlyDir, 'index.ts'), indexTs);
+  fs.writeFileSync(path.join(monthsDir, `month${m}.ts`), fileContent, 'utf8');
+  startDay = endDay + 1;
+}
 
 // Write public JSON files for complete 365 days
 fs.writeFileSync(path.join(publicDataDir, 'verses.json'), JSON.stringify(allVerses, null, 2));
 fs.writeFileSync(path.join(publicDataDir, 'hadith.json'), JSON.stringify(allHadiths, null, 2));
 
-console.log(`Successfully generated 365 days of Verses, Hadiths, Tafseers, and Dhikrs! Total records: ${allVerses.length}`);
+console.log(`Successfully generated 12 monthly modules (365 days) of Verses, Hadiths, Tafseers, and Dhikrs! Total records: ${allVerses.length}`);
+
