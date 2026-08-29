@@ -227,13 +227,13 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
           <div className="flex-1 overflow-y-auto max-h-[calc(90vh-130px)] pt-3.5 space-y-3.5 pr-1">
             
             {/* Step Progress Pills */}
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-[#E5C76B] flex items-center gap-1">
+            <div className="flex items-center justify-between gap-2 flex-wrap">
+              <span className="text-xs font-bold text-[#E5C76B] flex items-center gap-1 shrink-0">
                 <HelpCircle className="w-3.5 h-3.5" />
                 <span>Question {currentIndex + 1} of {questions.length}</span>
               </span>
 
-              <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#0B5D3C] text-[#FDF3CD] border border-[#C9A227]/40 font-semibold max-w-[200px] truncate text-right">
+              <span className="text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full bg-[#0B5D3C] text-[#FDF3CD] border border-[#C9A227]/40 font-semibold text-right max-w-full break-words">
                 {currentQ.reference}
               </span>
             </div>
@@ -257,7 +257,7 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
               }`}>
                 {currentQ.questionUrdu}
               </p>
-              <p className={`font-sans text-[#96A89F] mt-1.5 text-left break-words whitespace-normal ${
+              <p className={`font-sans text-[#96A89F] mt-1.5 text-left break-words whitespace-normal leading-relaxed ${
                 fontSizeMode === 'compact' 
                   ? 'text-[11px]' 
                   : fontSizeMode === 'large' 
@@ -302,7 +302,7 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
                     key={idx}
                     onClick={() => handleSelectOption(idx)}
                     disabled={isAnswered}
-                    className={`w-full p-2.5 sm:p-3 rounded-xl border text-right transition-all flex items-start justify-between gap-2.5 font-medium ${btnStyle}`}
+                    className={`w-full p-2.5 sm:p-3.5 rounded-xl border text-right transition-all flex items-start justify-between gap-3 font-medium ${btnStyle}`}
                     dir="rtl"
                   >
                     <div className="flex items-start gap-2.5 flex-1 min-w-0 text-right">
@@ -315,7 +315,7 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
                       }`}>
                         {idx + 1}
                       </span>
-                      <span className={`font-urdu leading-relaxed break-words whitespace-normal flex-1 text-right ${optionTextClass}`}>
+                      <span className={`font-urdu leading-relaxed break-words whitespace-normal flex-1 text-right block ${optionTextClass}`}>
                         {option}
                       </span>
                     </div>

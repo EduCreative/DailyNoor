@@ -3,7 +3,6 @@ import { DhikrItem } from '../types';
 import { DAILY_DHIKRS } from '../data/dhikrData';
 import { useDailyStore } from '../store/useDailyStore';
 import { useAudioStore } from '../store/useAudioStore';
-import { getDailyIndex } from '../utils/dateUtils';
 import { triggerHaptic } from '../utils/haptics';
 import { 
   RotateCcw, 
@@ -21,7 +20,10 @@ import {
   Plus, 
   Target,
   Layers,
-  Sparkle
+  Sun,
+  Moon,
+  Clock,
+  Heart
 } from 'lucide-react';
 
 interface DailyDhikrCardProps {
@@ -39,16 +41,15 @@ export const DailyDhikrCard: React.FC<DailyDhikrCardProps> = ({ dateStr }) => {
 
   const { playTrack, togglePlayPause, currentTrack, isTrackPlaying } = useAudioStore();
 
-  // Pick default daily dhikr based on day of year
-  const defaultIndex = getDailyIndex(DAILY_DHIKRS.length, dateStr) - 1;
-  const [selectedIndex, setSelectedIndex] = useState<number>(defaultIndex);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const [activeCategory, setActiveCategory] = useState<string>('all');
   const [customTarget, setCustomTarget] = useState<number | null>(null);
   const [copied, setCopied] = useState(false);
 
-  // Sync index when selected date changes
+  // Reset custom target when selected dhikr changes
   useEffect(() => {
-    setSelectedIndex(getDailyIndex(DAILY_DHIKRS.length, dateStr) - 1);
-  }, [dateStr]);
+    setCustomTarget(null);
+  }, [selectedIndex]);
 
   const dhikr: DhikrItem = DAILY_DHIKRS[selectedIndex] || DAILY_DHIKRS[0];
   const storageKey = `${dateStr}_${dhikr.id}`;
@@ -57,9 +58,26 @@ export const DailyDhikrCard: React.FC<DailyDhikrCardProps> = ({ dateStr }) => {
   const isPlayingSpeech = isTrackPlaying(dhikrTrackId);
   const targetCount = customTarget ?? dhikr.targetCount;
 
-  // Calculations
+  // Calculations for current dhikr
   const isCompleted = currentCount >= targetCount;
   const progressPercent = Math.min(100, Math.round((currentCount / targetCount) * 100));
+
+  // Count how many total dhikrs have been completed today
+  const completedDhikrsCount = DAILY_DHIKRS.filter(d => {
+    const key = `${dateStr}_${d.id}`;
+    return getDhikrCount(key) >= d.targetCount;
+  }).length;
+
+  // Filtered list if category selected
+  const filteredDhikrs = activeCategory === 'all' 
+    ? DAILY_DHIKRS 
+    : DAILY_DHIKRS.filter(d => {
+        if (activeCategory === 'morning_evening') return d.category.includes('Morning') || d.category.includes('صبح');
+        if (activeCategory === 'salah_bedtime') return d.category.includes('Salah') || d.category.includes('نماز');
+        if (activeCategory === 'forgiveness') return d.category.includes('Forgiveness') || d.category.includes('استغفار');
+        if (activeCategory === 'praise') return d.category.includes('Praise') || d.category.includes('تسبیح') || d.category.includes('Blessings');
+        return true;
+      });
 
   // Increment Tasbih Count
   const handleTapTasbih = (delta: number = 1) => {
@@ -93,7 +111,7 @@ export const DailyDhikrCard: React.FC<DailyDhikrCardProps> = ({ dateStr }) => {
   // Copy Dhikr
   const handleCopy = () => {
     triggerHaptic('success');
-    const fullText = `📿 روزانہ کا ذکر و تسبیح (Daily Dhikr)\n📌 ${dhikr.titleUrdu} (${dhikr.titleEn})\n\n${dhikr.arabic}\n\nتلفظ / Transliteration:\n${dhikr.transliteration}\n\nاردو ترجمہ:\n${dhikr.urdu_translation}\n\nEnglish Translation:\n${dhikr.english_translation}\n\n🎯 ہدف (Target): ${targetCount} مرتبہ\n📖 سند و فضیلت: ${dhikr.source}\n${dhikr.virtueUrdu}\n\nDaily Noor (نورِ روزانہ App)`;
+    const fullText = `📿 روزانہ کا ذکر و تسبیح (Daily Dhikr & Tasbih)\n📌 ${dhikr.titleUrdu} (${dhikr.titleEn})\n\n${dhikr.arabic}\n\nتلفظ / Transliteration:\n${dhikr.transliteration}\n\nاردو ترجمہ:\n${dhikr.urdu_translation}\n\nEnglish Translation:\n${dhikr.english_translation}\n\n🎯 ہدف (Target): ${targetCount} مرتبہ\n📖 سند و فضیلت: ${dhikr.source}\n${dhikr.virtueUrdu}\n\nDaily Noor (نورِ روزانہ App)`;
     
     navigator.clipboard.writeText(fullText);
     setCopied(true);
@@ -140,7 +158,7 @@ export const DailyDhikrCard: React.FC<DailyDhikrCardProps> = ({ dateStr }) => {
 
       <div className="p-5 sm:p-7 md:p-8 space-y-6">
 
-        {/* Header Section & Selector */}
+        {/* Header Section & Completed Counter */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#0B5D3C]/10 dark:border-white/10">
           
           <div className="flex items-center gap-3">
@@ -151,59 +169,152 @@ export const DailyDhikrCard: React.FC<DailyDhikrCardProps> = ({ dateStr }) => {
               <div className="flex items-center gap-2 flex-wrap">
                 <h2 className="text-lg sm:text-xl font-extrabold text-[#0B5D3C] dark:text-[#E8EFEA] tracking-tight flex items-center gap-2 flex-wrap">
                   <span>Daily Dhikr & Tasbih</span>
-                  <span className="text-xs sm:text-sm font-bold px-2.5 py-0.5 rounded-full bg-[#C9A227]/20 text-[#8F7212] dark:text-[#E5C76B] border border-[#C9A227]/30">
-                    {dhikr.category || 'Tasbih & Praise'}
-                  </span>
                   <span className="font-urdu text-sm sm:text-base font-bold text-[#0B5D3C] dark:text-[#E5C76B]" dir="rtl">
-                    روزانہ کا ذکر و تسبیح
+                    روزانہ کے اذکار و تسبیحات
                   </span>
                 </h2>
               </div>
-              <p className="text-xs text-[#4A5D53] dark:text-[#96A89F] mt-0.5 hidden sm:block">
-                Interactive digital tasbih counter with authentic virtues and multi-language translations.
+              <p className="text-xs text-[#4A5D53] dark:text-[#96A89F] mt-0.5">
+                Authentic morning-to-night daily routine with interactive counter, virtues & audio.
               </p>
             </div>
           </div>
 
-          {/* Dhikr Switcher Controls */}
-          <div className="flex items-center justify-between sm:justify-end gap-2 shrink-0">
-            <div className="flex items-center gap-1 bg-[#F5F1E8] dark:bg-[#0C1813] p-1 rounded-2xl border border-[#0B5D3C]/10 dark:border-white/10">
-              <button
-                id="btn-prev-dhikr"
-                onClick={handlePrevDhikr}
-                title="Previous Dhikr"
-                className="p-1.5 rounded-xl text-[#1D2B24] dark:text-[#E8EFEA] hover:bg-white dark:hover:bg-[#142820] transition-colors"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-
-              <span className="px-2.5 py-1 text-xs font-bold text-[#1D2B24] dark:text-[#E8EFEA]">
-                Dhikr {selectedIndex + 1} of {DAILY_DHIKRS.length}
-              </span>
-
-              <button
-                id="btn-next-dhikr"
-                onClick={handleNextDhikr}
-                title="Next Dhikr"
-                className="p-1.5 rounded-xl text-[#1D2B24] dark:text-[#E8EFEA] hover:bg-white dark:hover:bg-[#142820] transition-colors"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
+          {/* Today's Total Dhikr Progress Pill */}
+          <div className="flex items-center gap-2 shrink-0">
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-2xl bg-[#0B5D3C]/10 dark:bg-[#C9A227]/15 border border-[#0B5D3C]/20 dark:border-[#C9A227]/30 text-xs font-bold text-[#0B5D3C] dark:text-[#E5C76B]">
+              <Sparkles className="w-3.5 h-3.5 text-[#C9A227]" />
+              <span>{completedDhikrsCount} of {DAILY_DHIKRS.length} Completed Today</span>
             </div>
           </div>
 
         </div>
 
-        {/* Dhikr Titles */}
-        <div className="space-y-1">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <h2 className="text-xl sm:text-2xl font-extrabold text-[#1D2B24] dark:text-[#E8EFEA] tracking-tight">
-              {dhikr.titleEn}
-            </h2>
-            <span className="flex items-center gap-1 px-3 py-1 rounded-xl bg-[#C9A227]/20 text-[#8F7212] dark:text-[#E5C76B] text-xs font-bold">
-              <Target className="w-3.5 h-3.5" />
-              <span>Target: {targetCount} Recitations</span>
+        {/* Category Filter Pills (Morning to Night) */}
+        <div className="space-y-2.5">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#4A5D53] dark:text-[#96A89F]">
+              Daily Azkar Routine (صبح سے شام تک کے اذکار):
             </span>
+            <span className="text-xs font-semibold text-[#0B5D3C] dark:text-[#E5C76B]">
+              {selectedIndex + 1} of {DAILY_DHIKRS.length}
+            </span>
+          </div>
+
+          {/* Category Tabs */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+            {[
+              { id: 'all', label: 'All Daily (تمام)', icon: Layers },
+              { id: 'morning_evening', label: 'Morning & Evening (صبح و شام)', icon: Sun },
+              { id: 'salah_bedtime', label: 'Post-Salah & Bedtime (بعد نماز)', icon: Moon },
+              { id: 'forgiveness', label: 'Forgiveness & Strength (استغفار و توکل)', icon: Heart },
+              { id: 'praise', label: 'Praise & Durood (تسبیح و درود)', icon: Sparkles }
+            ].map(cat => {
+              const Icon = cat.icon;
+              const isActive = activeCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => {
+                    triggerHaptic('light');
+                    setActiveCategory(cat.id);
+                  }}
+                  className={`flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+                    isActive 
+                      ? 'bg-[#0B5D3C] text-white dark:bg-[#C9A227] dark:text-[#0C1813] shadow-xs' 
+                      : 'bg-[#F5F1E8] dark:bg-[#0C1813] text-[#4A5D53] dark:text-[#A1B2A8] hover:text-[#0B5D3C] dark:hover:text-[#E5C76B]'
+                  }`}
+                >
+                  <Icon className="w-3 h-3" />
+                  <span>{cat.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Quick Dhikr Chips Carousel */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 pt-1 no-scrollbar">
+            {filteredDhikrs.map((item) => {
+              const originalIndex = DAILY_DHIKRS.findIndex(d => d.id === item.id);
+              const isItemActive = originalIndex === selectedIndex;
+              const count = getDhikrCount(`${dateStr}_${item.id}`);
+              const done = count >= item.targetCount;
+
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    triggerHaptic('light');
+                    setSelectedIndex(originalIndex);
+                  }}
+                  className={`flex items-center gap-2 px-3 py-2 rounded-2xl border text-xs font-bold whitespace-nowrap transition-all shrink-0 ${
+                    isItemActive
+                      ? 'bg-gradient-to-r from-[#0B5D3C] to-[#08482e] text-white border-[#C9A227] shadow-md ring-2 ring-[#C9A227]/30'
+                      : done
+                      ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border-emerald-500/30'
+                      : 'bg-white dark:bg-[#0C1813] text-[#1D2B24] dark:text-[#E8EFEA] border-[#0B5D3C]/10 dark:border-white/10 hover:border-[#0B5D3C]/30'
+                  }`}
+                >
+                  <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${
+                    done 
+                      ? 'bg-emerald-500 text-white' 
+                      : isItemActive 
+                      ? 'bg-[#C9A227] text-[#0C1813]' 
+                      : 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+                  }`}>
+                    {done ? '✓' : originalIndex + 1}
+                  </span>
+
+                  <span className="font-medium font-urdu" dir="rtl">{item.titleUrdu}</span>
+
+                  <span className={`text-[10px] px-1.5 py-0.5 rounded-md ${
+                    isItemActive ? 'bg-white/20 text-white' : 'bg-[#0B5D3C]/10 dark:bg-white/10 text-slate-600 dark:text-slate-400'
+                  }`}>
+                    {count}/{item.targetCount}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Current Dhikr Titles & Navigation */}
+        <div className="p-4 sm:p-5 rounded-3xl bg-[#F5F1E8]/60 dark:bg-[#0C1813]/60 border border-[#0B5D3C]/10 dark:border-white/10 space-y-3">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#C9A227]/20 text-[#8F7212] dark:text-[#E5C76B] border border-[#C9A227]/30">
+                  {dhikr.category}
+                </span>
+                <span className="text-xs font-semibold text-[#4A5D53] dark:text-[#96A89F]">
+                  Dhikr #{selectedIndex + 1} of {DAILY_DHIKRS.length}
+                </span>
+              </div>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-[#1D2B24] dark:text-[#E8EFEA] tracking-tight">
+                {dhikr.titleEn}
+              </h2>
+            </div>
+
+            {/* Prev / Next Buttons */}
+            <div className="flex items-center gap-1.5">
+              <button
+                id="btn-prev-dhikr"
+                onClick={handlePrevDhikr}
+                title="Previous Daily Dhikr"
+                className="p-2 rounded-xl bg-white dark:bg-[#142820] text-[#1D2B24] dark:text-[#E8EFEA] border border-[#0B5D3C]/15 hover:bg-[#0B5D3C]/10 transition-colors"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+
+              <button
+                id="btn-next-dhikr"
+                onClick={handleNextDhikr}
+                title="Next Daily Dhikr"
+                className="p-2 rounded-xl bg-white dark:bg-[#142820] text-[#1D2B24] dark:text-[#E8EFEA] border border-[#0B5D3C]/15 hover:bg-[#0B5D3C]/10 transition-colors"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
           </div>
 
           <h3 className="text-lg sm:text-xl font-bold text-[#0B5D3C] dark:text-[#C9A227] font-urdu" dir="rtl">
@@ -224,14 +335,14 @@ export const DailyDhikrCard: React.FC<DailyDhikrCardProps> = ({ dateStr }) => {
             <button
               id="btn-dhikr-listen-speech"
               onClick={handleToggleSpeech}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all shadow-xs ${
                 isPlayingSpeech
                   ? 'bg-[#0B5D3C] text-white dark:bg-[#C9A227] dark:text-[#0C1813] shadow-md animate-pulse'
                   : 'bg-white dark:bg-[#142820] text-[#1D2B24] dark:text-[#E8EFEA] border border-[#0B5D3C]/15 dark:border-white/10 hover:border-[#0B5D3C]'
               }`}
             >
               {isPlayingSpeech ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-[#0B5D3C] dark:text-[#C9A227]" />}
-              <span>{isPlayingSpeech ? 'Stop Voice' : 'Listen Pronunciation'}</span>
+              <span>{isPlayingSpeech ? 'Stop Voice Narration' : 'Listen Pronunciation (تلفظ و فضیلت)'}</span>
             </button>
           </div>
         </div>
@@ -242,7 +353,7 @@ export const DailyDhikrCard: React.FC<DailyDhikrCardProps> = ({ dateStr }) => {
           {/* Progress Bar Top Indicator */}
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs font-bold text-[#1D2B24] dark:text-[#E8EFEA]">
-              <span>Tasbih Progress</span>
+              <span>Daily Target Progress</span>
               <span className="text-[#0B5D3C] dark:text-[#C9A227]">{currentCount} / {targetCount} ({progressPercent}%)</span>
             </div>
 
@@ -270,7 +381,7 @@ export const DailyDhikrCard: React.FC<DailyDhikrCardProps> = ({ dateStr }) => {
               <div className="absolute inset-1 rounded-full border border-dashed border-[#0B5D3C]/20 dark:border-white/20 pointer-events-none" />
 
               <span className="text-xs font-bold uppercase tracking-widest text-[#4A5D53] dark:text-[#96A89F] group-hover:text-[#0B5D3C] dark:group-hover:text-[#C9A227] transition-colors">
-                TAP TASBIH
+                TAP TO COUNT
               </span>
 
               <span className="text-4xl sm:text-5xl font-black font-mono my-1 tracking-tight">
@@ -324,9 +435,9 @@ export const DailyDhikrCard: React.FC<DailyDhikrCardProps> = ({ dateStr }) => {
             {/* Target Preset Selector Badges */}
             <div className="flex items-center justify-center gap-1.5 pt-2">
               <span className="text-[11px] text-[#4A5D53] dark:text-[#96A89F] font-medium mr-1">
-                Preset Goal:
+                Goal Presets:
               </span>
-              {[33, 100, 500].map((preset) => (
+              {[3, 10, 33, 100].map((preset) => (
                 <button
                   key={preset}
                   id={`preset-target-${preset}`}
@@ -352,10 +463,10 @@ export const DailyDhikrCard: React.FC<DailyDhikrCardProps> = ({ dateStr }) => {
             <div className="p-4 rounded-2xl bg-[#0B5D3C]/10 dark:bg-[#C9A227]/20 border border-[#0B5D3C]/20 dark:border-[#C9A227]/30 text-center space-y-1 animate-fade-in">
               <div className="flex items-center justify-center gap-2 text-sm font-bold text-[#0B5D3C] dark:text-[#E5C76B]">
                 <Sparkles className="w-4 h-4" />
-                <span>Mubarak! You have completed this Dhikr target ({currentCount} Recitations).</span>
+                <span>Mubarak! You have achieved this Dhikr goal ({currentCount} Recitations).</span>
               </div>
               <p className="text-xs text-[#4A5D53] dark:text-[#96A89F] font-urdu" dir="rtl">
-                ما شاء اللہ! آپ نے آج کا ذکر مکمل کر لیا ہے۔ اللہ پاک آپ کی عبادات قبول فرمائے۔
+                ما شاء اللہ! آپ نے آج کا یہ ذکر مکمل کر لیا ہے۔ اللہ پاک آپ کے تمام اذکار و عبادات قبول فرمائے۔
               </p>
             </div>
           )}
@@ -405,7 +516,7 @@ export const DailyDhikrCard: React.FC<DailyDhikrCardProps> = ({ dateStr }) => {
                 Hadith Virtue & Reference (سند و فضیلت)
               </span>
             </div>
-            <span className="px-2 py-0.5 rounded-md bg-white dark:bg-[#142820] text-[11px] font-bold text-[#0B5D3C] dark:text-[#E5C76B] border border-[#0B5D3C]/10">
+            <span className="px-2.5 py-0.5 rounded-md bg-white dark:bg-[#142820] text-[11px] font-bold text-[#0B5D3C] dark:text-[#E5C76B] border border-[#0B5D3C]/10">
               {dhikr.source}
             </span>
           </div>
@@ -418,7 +529,7 @@ export const DailyDhikrCard: React.FC<DailyDhikrCardProps> = ({ dateStr }) => {
         {/* Bottom Bar: Copy & Share */}
         <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#0B5D3C]/10 dark:border-white/10">
           <span className="text-xs text-[#4A5D53] dark:text-[#96A89F] font-medium">
-            Daily Noor Dhikr Routine
+            Daily Noor Spiritual Routine
           </span>
 
           <div className="flex items-center gap-2">
