@@ -187,14 +187,21 @@ ${verse.explanation}
       className="flex flex-col gap-3 transition-all duration-300"
     >
       {/* Top Header Label */}
-      <div className="flex justify-between items-end px-2">
-        <h2 className="text-[#0B5D3C] dark:text-[#C9A227] font-bold text-lg sm:text-xl uppercase tracking-widest flex items-center gap-2">
-          <span>Today's Verse</span>
-          <span className="text-xs px-2 py-0.5 rounded-full bg-[#0B5D3C]/10 dark:bg-[#C9A227]/20 text-[#0B5D3C] dark:text-[#E5C76B] font-semibold lowercase tracking-normal font-urdu" dir="rtl">
-            آیتِ مبارکہ
-          </span>
-        </h2>
-        <span className="text-xs sm:text-sm font-medium opacity-70 text-slate-600 dark:text-slate-300">
+      <div className="flex flex-wrap items-center justify-between gap-2.5 px-2 pb-0.5">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#0B5D3C] to-[#061912] border border-[#C9A227]/40 flex items-center justify-center text-[#E5C76B] shadow-md shrink-0">
+            <BookOpen className="w-5 h-5 text-[#E5C76B]" />
+          </div>
+          <div className="flex items-center gap-2 flex-wrap">
+            <h2 className="text-[#0B5D3C] dark:text-[#E8EFEA] font-extrabold text-lg sm:text-xl tracking-tight flex items-center gap-2">
+              <span>Today's Verse</span>
+              <span className="font-urdu text-sm sm:text-base font-bold text-[#0B5D3C] dark:text-[#E5C76B]" dir="rtl">
+                آیتِ مبارکہ
+              </span>
+            </h2>
+          </div>
+        </div>
+        <span className="text-xs sm:text-sm font-bold px-3 py-1 rounded-xl bg-white dark:bg-[#142820] text-[#0B5D3C] dark:text-[#E5C76B] border border-[#0B5D3C]/15 dark:border-[#C9A227]/30 shadow-sm">
           Surah {verse.surah}: {verse.ayah}
         </span>
       </div>

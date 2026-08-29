@@ -7,6 +7,11 @@ export function getQuizForDay(verse: Verse, hadith: Hadith): QuizQuestion[] {
   const day = verse.day;
 
   // Question 1: Based on Today's Quranic Verse
+  const surahDisplayName = verse.surah_ar ? verse.surah_ar.replace(/^سورة\s+/, '') : verse.surah;
+  const verseUrduSummary = verse.urdu_translation.length > 50 
+    ? verse.urdu_translation.slice(0, 48) + '...' 
+    : verse.urdu_translation;
+
   const q1: QuizQuestion = {
     id: `q-verse-${day}`,
     type: 'verse',
@@ -14,7 +19,7 @@ export function getQuizForDay(verse: Verse, hadith: Hadith): QuizQuestion[] {
     questionUrdu: `آج کی قرآنی آیت کس سورت سے ماخوذ ہے اور اس کا مرکزی پیغام کیا ہے؟`,
     questionEn: `Which Surah is today's verse from, and what is its core theme?`,
     options: [
-      `سورۃ ${verse.surah} — ${verse.explanation.slice(0, 38)}...`,
+      `سورۃ ${surahDisplayName} — ${verseUrduSummary}`,
       `سورۃ البقرہ — احکامِ طہارت اور روزہ`,
       `سورۃ النساء — وراثت اور مالی معاملات`,
       `سورۃ الملک — آخرت اور تخلیقِ کائنات`

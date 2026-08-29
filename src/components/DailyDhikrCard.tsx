@@ -143,22 +143,25 @@ export const DailyDhikrCard: React.FC<DailyDhikrCardProps> = ({ dateStr }) => {
         {/* Header Section & Selector */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#0B5D3C]/10 dark:border-white/10">
           
-          <div className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-2xl bg-[#0B5D3C]/10 dark:bg-[#C9A227]/20 text-[#0B5D3C] dark:text-[#E5C76B] flex items-center justify-center shrink-0">
-              <Layers className="w-5 h-5 text-[#0B5D3C] dark:text-[#E5C76B]" />
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-[#0B5D3C] to-[#061912] border border-[#C9A227]/40 flex items-center justify-center text-[#E5C76B] shadow-md shrink-0">
+              <Layers className="w-6 h-6 text-[#E5C76B]" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#0B5D3C] dark:text-[#C9A227]">
-                  Daily Dhikr & Tasbih
-                </span>
-                <span className="text-[10px] px-2 py-0.5 rounded-full font-bold bg-[#0B5D3C]/10 text-[#0B5D3C] dark:bg-white/10 dark:text-[#E5C76B]">
-                  {dhikr.category}
-                </span>
+              <div className="flex items-center gap-2 flex-wrap">
+                <h2 className="text-lg sm:text-xl font-extrabold text-[#0B5D3C] dark:text-[#E8EFEA] tracking-tight flex items-center gap-2 flex-wrap">
+                  <span>Daily Dhikr & Tasbih</span>
+                  <span className="text-xs sm:text-sm font-bold px-2.5 py-0.5 rounded-full bg-[#C9A227]/20 text-[#8F7212] dark:text-[#E5C76B] border border-[#C9A227]/30">
+                    {dhikr.category || 'Tasbih & Praise'}
+                  </span>
+                  <span className="font-urdu text-sm sm:text-base font-bold text-[#0B5D3C] dark:text-[#E5C76B]" dir="rtl">
+                    روزانہ کا ذکر و تسبیح
+                  </span>
+                </h2>
               </div>
-              <h3 className="text-lg font-bold text-[#1D2B24] dark:text-[#E8EFEA] font-urdu leading-tight" dir="rtl">
-                روزانہ کا ذکر و تسبیح کاؤنٹر
-              </h3>
+              <p className="text-xs text-[#4A5D53] dark:text-[#96A89F] mt-0.5 hidden sm:block">
+                Interactive digital tasbih counter with authentic virtues and multi-language translations.
+              </p>
             </div>
           </div>
 

@@ -45,13 +45,13 @@ export const DailyQuizCard: React.FC<DailyQuizCardProps> = ({
             </div>
 
             <div>
-              <div className="flex items-center gap-2 justify-center md:justify-start">
-                <h3 className="font-bold text-base sm:text-lg text-white flex items-center gap-2">
+              <div className="flex items-center gap-2 justify-center md:justify-start flex-wrap">
+                <h3 className="font-extrabold text-lg sm:text-xl text-white flex items-center gap-2">
                   <span>Daily Islamic Quiz</span>
-                  <span className="font-urdu text-sm text-[#E5C76B]">روزانہ اسلامی کوئز</span>
+                  <span className="font-urdu text-sm sm:text-base font-bold text-[#E5C76B]">روزانہ اسلامی کوئز</span>
                 </h3>
                 {hasTakenQuiz && (
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-900/80 text-emerald-300 font-bold border border-emerald-500/40">
+                  <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-900/80 text-emerald-300 font-bold border border-emerald-500/40 shadow-xs">
                     Completed
                   </span>
                 )}

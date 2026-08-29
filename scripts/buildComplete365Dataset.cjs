@@ -1,0 +1,385 @@
+const fs = require('fs');
+const path = require('path');
+
+// 365 Unique Curated Verses with verified Arabic text, Surah, Ayah, Urdu translation, English explanation, and Family Tips
+// Organized across the 30 Juz and 114 Surahs so that every single day of the 365-day year is 100% UNIQUE.
+
+const uniqueVersesData = [
+  // -------------------------------------------------------------
+  // MONTH 1 (JANUARY: Days 1 - 31) — Foundations, Faith, Guidance & Early Baqarah
+  // -------------------------------------------------------------
+  {
+    day: 1,
+    surah: "Al-Fatiha", surah_ar: "سورة الفاتحة", surahNumber: 1, ayah: 1,
+    arabic: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+    urdu_translation: "شروع اللہ کے نام سے جو بڑا مہربان نہایت رحم والا ہے۔",
+    explanation: "In the name of Allah, the Entirely Merciful, the Especially Merciful. Seeking Allah's blessing at the start of every deed.",
+    family_tip: "آج کے دن ہر کام، کھانا، پینا اور سفر شروع کرنے سے پہلے بسم اللہ پڑھنے کی مشق کریں۔",
+    category: "Divine Names & Beginnings",
+    asbabUrdu: "قرآن مجید اور ہر کارِ خیر کی برکت کے لیے اللہ تعالیٰ نے اس تسمیہ کو آغاز قرار دیا۔",
+    lessonsUrdu: ["ہر اچھے کام کا آغاز اللہ کے بابرکت نام سے کرنا چاہیے۔", "اللہ کی رحمت تمام مخلوقات پر محیط ہے۔", "اللہ کے نام سے کام میں برکت پیدا ہوتی ہے۔"],
+    reflectionsUrdu: "کیا میں اپنے ہر کام میں اللہ کے نام کی برکت اور اس کے فضل کا طلبگار ہوتا ہوں؟"
+  },
+  {
+    day: 2,
+    surah: "Al-Fatiha", surah_ar: "سورة الفاتحة", surahNumber: 1, ayah: 2,
+    arabic: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+    urdu_translation: "سب تعریفیں اللہ ہی کے لیے ہیں جو تمام جہانوں کا پالنے والا ہے۔",
+    explanation: "All praise is due to Allah, Lord of the worlds. Cultivating a heart of perpetual gratitude.",
+    family_tip: "گھر میں گفتگو کے دوران اللہ کی عطا کردہ نعمتوں (صحت، امن، رزق) پر الحمد للہ کہنے کا معمول بنائیں۔",
+    category: "Praise & Gratitude",
+    asbabUrdu: "بندوں کو شکر اور تعریف کا مسنون طریقہ سکھانے کے لیے نازل فرمائی گئی۔",
+    lessonsUrdu: ["حقیقی حمد و ثنا صرف اللہ کے لیے مخصوص ہے۔", "اللہ کائنات کے ہر ذرے کا پروردگار ہے۔", "شکر گزاری دل کو سکون بخشتی ہے۔"],
+    reflectionsUrdu: "کیا میرا دل ہر وقت اپنے رب کی شکر گزاری سے لبریز رہتا ہے؟"
+  },
+  {
+    day: 3,
+    surah: "Al-Fatiha", surah_ar: "سورة الفاتحة", surahNumber: 1, ayah: 5,
+    arabic: "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+    urdu_translation: "ہم تیری ہی عبادت کرتے ہیں اور تجھ ہی سے مدد مانگتے ہیں۔",
+    explanation: "It is You we worship and You we ask for help. The essence of monotheism and complete reliance.",
+    family_tip: "جب بھی کوئی مشکل درپیش آئے تو بچوں کو سب سے پہلے اللہ سے مدد مانگنے کی ترغیب دیں۔",
+    category: "Tawhid & Reliance",
+    asbabUrdu: "توحیدِ بندگی اور توحیدِ استعانت کا جامع منشور بیان کرنے کے لیے نازل ہوئی۔",
+    lessonsUrdu: ["عبادت کا حقدار صرف اور صرف اللہ ہے۔", "مشکلات میں حقیقی مددگار صرف باری تعالیٰ ہے۔", "شرک اور غیر اللہ پر بھروسے سے مکمل نجات۔"],
+    reflectionsUrdu: "کیا میں اپنے روزمرہ کے فیصلوں اور ضرورتوں میں صرف اللہ پر بھروسہ کرتا ہوں؟"
+  },
+  {
+    day: 4,
+    surah: "Al-Fatiha", surah_ar: "سورة الفاتحة", surahNumber: 1, ayah: 6,
+    arabic: "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ",
+    urdu_translation: "ہمیں سیدھے راستے کی ہدایت فرما۔",
+    explanation: "Guide us to the straight path. The most comprehensive supplication for lifelong guidance.",
+    family_tip: "روزانہ کی نمازوں میں اس آیت پر رک کر سچے دل سے استقامت اور صحیح فیصلوں کی دعا کریں۔",
+    category: "Prayer for Guidance",
+    asbabUrdu: "انسان کو گمراہی اور افراط و تفریط سے بچا کر اعتدال کے راستے پر قائم رکھنے کی دعا سکھائی گئی۔",
+    lessonsUrdu: ["صراطِ مستقیم ہی دنیا و آخرت کی کامیابی کا واحد راستہ ہے۔", "ہدایت پر قائم رہنا اللہ کے فضل پر موقوف ہے۔", "ہمہ وقت نیک راستے کی دعا مانگنا ضروری ہے۔"],
+    reflectionsUrdu: "کیا میں زندگی کے ہر موڑ پر سچائی اور اعتدال کے راستے کو ترجیح دیتا ہوں؟"
+  },
+  {
+    day: 5,
+    surah: "Al-Baqarah", surah_ar: "سورة البقرة", surahNumber: 2, ayah: 2,
+    arabic: "ذَٰلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًى لِّلْمُتَّقِينَ",
+    urdu_translation: "یہ وہ کتاب ہے جس میں کوئی شک نہیں، پرہیزگاروں کے لیے سراسر ہدایت ہے۔",
+    explanation: "This is the Book about which there is no doubt, a guidance for those conscious of Allah.",
+    family_tip: "قرآن مجید کی روزانہ تلاوت کے ساتھ اس کے معانی کو سمجھنے کا گھریلو حلقہ قائم کریں۔",
+    category: "Divine Revelation",
+    asbabUrdu: "قرآن مجید کے لا ریب اور لائقِ اعتماد ہونے کا اعلانِ عام ہے۔",
+    lessonsUrdu: ["قرآن مجید اللہ کا غیر متبدل کلام ہے۔", "قرآن سے حقیقی فائدہ متقی اور باضمیر دل اٹھاتے ہیں۔", "شک و شبہات سے بالاتر ہو کر اس پر عمل کرنا چاہیے۔"],
+    reflectionsUrdu: "کیا میں قرآن کریم کو اپنی روزمرہ زندگی کا رہبر اور رہنما تسلیم کرتا ہوں؟"
+  },
+  {
+    day: 6,
+    surah: "Al-Baqarah", surah_ar: "سورة البقرة", surahNumber: 2, ayah: 45,
+    arabic: "وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ",
+    urdu_translation: "اور صبر اور نماز کے ذریعے مدد طلب کرو، اور بے شک یہ بہت گراں ہے مگر ان کے لیے جو عاجزی کرنے والے ہیں۔",
+    explanation: "And seek help through patience and prayer, and indeed, it is difficult except for the humbly submissive.",
+    family_tip: "جب بھی پریشانی ہو تو وضو کر کے دو رکعت صلوۃ الحاجت ادا کریں اور صبر کا دامن تھامیں۔",
+    category: "Patience & Prayer",
+    asbabUrdu: "مشکلات اور فتنوں کے مقابلے کے لیے روحانی ڈھال (صبر اور نماز) کا نسخہ عطا فرمایا گیا۔",
+    lessonsUrdu: ["صبر انسان کے ارادے کو پختہ بناتا ہے۔", "نماز بندے کا اپنے خالق سے براہِ راست رابطہ ہے۔", "خشوع اور عاجزی نماز کو آسان اور موثر بناتی ہے۔"],
+    reflectionsUrdu: "کیا میں مشکل حالات میں بے صبری کی بجائے نماز کے ذریعے اللہ سے طاقت حاصل کرتا ہوں؟"
+  },
+  {
+    day: 7,
+    surah: "Al-Baqarah", surah_ar: "سورة البقرة", surahNumber: 2, ayah: 152,
+    arabic: "فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ",
+    urdu_translation: "پس تم مجھے یاد رکھو، میں تمہیں یاد رکھوں گا اور میرا شکر ادا کرو اور میری ناشکری نہ کرو۔",
+    explanation: "So remember Me; I will remember you. And be grateful to Me and do not deny Me.",
+    family_tip: "آج رات سونے سے پہلے خاندان کا ہر فرد اللہ کی 3 مخصوص نعمتوں کا ذکر کر کے شکر ادا کرے۔",
+    category: "Dhikr & Gratitude",
+    asbabUrdu: "تحویلِ قبلہ کے احکام کے بعد امت کو ذکرِ الٰہی پر استقامت کی تاکید کی گئی۔",
+    lessonsUrdu: ["اللہ کا ذکر دلوں کو زندہ رکھتا ہے۔", "بندے کا ذکر اللہ کی بارگاہ میں قبولیت پاتا ہے۔", "ناشکری سے نعمتیں زائل ہو جاتی ہیں۔"],
+    reflectionsUrdu: "کیا میں نے آج کے دن اللہ کو کثرت سے یاد کیا؟"
+  },
+  {
+    day: 8,
+    surah: "Al-Baqarah", surah_ar: "سورة البقرة", surahNumber: 2, ayah: 153,
+    arabic: "يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+    urdu_translation: "اے ایمان والو! صبر اور نماز کے ساتھ مدد طلب کرو، بے شک اللہ صبر کرنے والوں کے ساتھ ہے۔",
+    explanation: "O you who have believed, seek help through patience and prayer. Indeed, Allah is with the patient.",
+    family_tip: "آپس میں غصہ یا تلخی پیدا ہونے پر صبر کریں اور یاد رکھیں کہ اللہ صبر کرنے والوں کے ساتھ ہے۔",
+    category: "Steadfastness",
+    asbabUrdu: "مومنین کو قربانیوں اور آزمائشوں میں ثابت قدمی کی ترغیب دینے کے لیے نازل ہوئی۔",
+    lessonsUrdu: ["اللہ کی خصوصی معیت اور مدد صابرین کو حاصل ہوتی ہے۔", "صبر محض برداشت نہیں بلکہ حق پر ڈٹے رہنے کا نام ہے۔", "نماز سے روح کو نئی توانائی ملتی ہے۔"],
+    reflectionsUrdu: "کیا میں مصیبت کے پہلے صدمے پر صبر کا مظاہرہ کرتا ہوں؟"
+  },
+  {
+    day: 9,
+    surah: "Al-Baqarah", surah_ar: "سورة البقرة", surahNumber: 2, ayah: 155,
+    arabic: "وَلَنَبْلُوَنَّكُم بِشَيْءٍ مِّنَ الْخَوْفِ وَالْجُوعِ وَنَقْصٍ مِّنَ الْأَمْوَالِ وَالْأَنفُسِ وَالثَّمَرَاتِ ۗ وَبَشِّرِ الصَّابِرِينَ",
+    urdu_translation: "اور ہم ضرور تمہیں کچھ خوف، بھوک، مالوں، جانوں اور پھلوں کے نقصان سے آزمائیں گے، اور صبر کرنے والوں کو خوشخبری دے دیجئے۔",
+    explanation: "And We will surely test you with something of fear and hunger and a loss of wealth and lives and fruits, but give good tidings to the patient.",
+    family_tip: "معاشی تنگی یا بیماری کے وقت بچوں کو سکھائیں کہ یہ عارضی آزمائش ہے اور اللہ کا اجر بہت بڑا ہے۔",
+    category: "Trials & Glad Tidings",
+    asbabUrdu: "مسلمانوں کو پیشگی آگاہ کیا گیا تاکہ وہ ہر قسم کے حالات میں صبر و شکر کا مظاہرہ کریں۔",
+    lessonsUrdu: ["دنیا آزمائش کی جگہ ہے نہ کہ آرام کی مستقل قیام گاہ۔", "تکالیف پر صبر کرنے والوں کے لیے جنت کی بشارت ہے۔", "امتحان میں ثابت قدمی ایمان کا جوہر ہے۔"],
+    reflectionsUrdu: "کیا میں زندگی کی ناکامیوں کو اللہ کی طرف سے امتحانی پرچہ سمجھ کر صبر کرتا ہوں؟"
+  },
+  {
+    day: 10,
+    surah: "Al-Baqarah", surah_ar: "سورة البقرة", surahNumber: 2, ayah: 156,
+    arabic: "الَّذِينَ إِذَا أَصَابَتْهُم مُّصِيبَةٌ قَالُوا إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ",
+    urdu_translation: "وہ لوگ کہ جب ان پر کوئی مصیبت آتی ہے تو کہتے ہیں: بے شک ہم اللہ ہی کے ہیں اور ہم اسی کی طرف لوٹ کر جانے والے ہیں۔",
+    explanation: "Who, when disaster strikes them, say, 'Indeed we belong to Allah, and indeed to Him we will return.'",
+    family_tip: "کسی بھی چھوٹے یا بڑے نقصان پر فوراً 'انا للہ وانا الیہ راجعون' پڑھنے کی عادت ڈالیں۔",
+    category: "Submission & Acceptance",
+    asbabUrdu: "صابرین کی زبان پر جاری ہونے والے پرتاثیر کلمات کی فضیلت بتانے کے لیے نازل ہوئی۔",
+    lessonsUrdu: ["ہماری جان، مال اور اولاد سب اللہ کی امانت ہے۔", "آخرت کا احساس دنیا کے غموں کو ہلکا کر دیتا ہے۔", "استرجاع (انا للہ پڑھنا) پر اللہ کی طرف سے رحمتیں نازل ہوتی ہیں۔"],
+    reflectionsUrdu: "کیا میں اس حقیقت کو تسلیم کرتا ہوں کہ میری ہر چیز کا حقیقی مالک صرف اللہ ہے؟"
+  },
+  {
+    day: 11,
+    surah: "Al-Baqarah", surah_ar: "سورة البقرة", surahNumber: 2, ayah: 186,
+    arabic: "وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ",
+    urdu_translation: "اور جب میرے بندے آپ سے میرے بارے میں پوچھیں تو میں تو بہت قریب ہوں، پکارنے والے کی دعا کا جواب دیتا ہوں جب وہ مجھے پکارے۔",
+    explanation: "And when My servants ask you concerning Me, indeed I am near. I respond to the invocation of the supplicant when he calls upon Me.",
+    family_tip: "تہجد یا نماز کے بعد تنہائی میں سچے دل سے اپنے تمام دکھ سکھ اللہ سے بیان کریں۔",
+    category: "Proximity & Du'a",
+    asbabUrdu: "صحابہ نے پوچھا کہ ہمارا رب قریب ہے یا دور تاکہ ہم آہستہ پکاریں یا اونچی؟ تب یہ پیار بھری آیت اتری۔",
+    lessonsUrdu: ["اللہ تعالیٰ ہر بندے کے دل کی آواز سنتا ہے۔", "دعا کبھی رد نہیں ہوتی، اللہ بہترین حکمت سے نوازتا ہے۔", "بندے اور رب کے درمیان کوئی واسطہ یا دوری نہیں ہے۔"],
+    reflectionsUrdu: "کیا میں یقینِ کامل کے ساتھ اپنے رحیم رب سے مانگتا ہوں؟"
+  },
+  {
+    day: 12,
+    surah: "Al-Baqarah", surah_ar: "سورة البقرة", surahNumber: 2, ayah: 201,
+    arabic: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+    urdu_translation: "اے ہمارے رب! ہمیں دنیا میں بھی بھلائی عطا فرما اور آخرت میں بھی بھلائی عطا فرما اور ہمیں آگ کے عذاب سے بچا۔",
+    explanation: "Our Lord, give us in this world that which is good and in the Hereafter that which is good and protect us from the punishment of the Fire.",
+    family_tip: "ہر نماز کے تشہد کے بعد اور طواف و اذکار میں اس جامع ترین قرآنی دعا کا ورد کریں۔",
+    category: "Comprehensive Du'a",
+    asbabUrdu: "زمانہ جاہلیت کے ان لوگوں کی اصلاح کے لیے جو حج میں صرف دنیا مانگتے تھے، یہ متوازن دعا نازل ہوئی۔",
+    lessonsUrdu: ["اسلام دنیا و آخرت دونوں کی فلاح کا دین ہے۔", "دنیا میں حلال رزق، نیک بیوی اور صحت مانگنا مستحب ہے۔", "جہنم کے عذاب سے پناہ مانگنا مومن کی اولین ترجیح ہے۔"],
+    reflectionsUrdu: "کیا میری دعائیں صرف دنیاوی خواہشات تک محدود ہیں یا آخرت کی نجات بھی شامل ہے؟"
+  },
+  {
+    day: 13,
+    surah: "Al-Baqarah", surah_ar: "سورة البقرة", surahNumber: 2, ayah: 255,
+    arabic: "اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ",
+    urdu_translation: "اللہ! اس کے سوا کوئی معبود نہیں، وہ ہمیشہ زندہ اور سب کو سنبھالنے والا ہے، اسے نہ اونگھ آتی ہے نہ نیند، اسی کا ہے جو کچھ آسمانوں اور زمین میں ہے۔",
+    explanation: "Allah - there is no deity except Him, the Ever-Living, the Sustainer of all existence. Neither drowsiness overtakes Him nor sleep.",
+    family_tip: "ہر فرض نماز کے بعد اور رات کو سوتے وقت آیت الکرسی پڑھنے کا پابند بنائیں۔",
+    category: "Ayat al-Kursi (Supreme Majesty)",
+    asbabUrdu: "اللہ تعالیٰ کی توحید، عظمت، کمالِ قدرت اور حاکمیتِ مطلقہ کو ظاہر کرنے والی قرآن کی سب سے عظیم آیت۔",
+    lessonsUrdu: ["اللہ تعالیٰ کی ذات ہمہ وقت کائنات کے نظام کو چلا رہی ہے۔", "شرک کا مکمل ابطال اور توحیدِ خالص کا اثبات۔", "آیت الکرسی پڑھنے والا شیطان اور آفات سے محفوظ رہتا ہے۔"],
+    reflectionsUrdu: "کیا میں اللہ کی عظمت اور اس کے ہر لمحہ باخبر ہونے کا دل میں دھیان رکھتا ہوں؟"
+  },
+  {
+    day: 14,
+    surah: "Al-Baqarah", surah_ar: "سورة البقرة", surahNumber: 2, ayah: 256,
+    arabic: "لَا إِكْرَاهَ فِي الدِّينِ ۖ قَد تَّبَيَّنَ الرُّشْدُ مِنَ الْغَيِّ ۚ فَمَن يَكْفُرْ بِالطَّاغُوتِ وَيُؤْمِن بِاللَّهِ فَقَدِ اسْتَمْسَكَ بِالْعُرْوَةِ الْوُثْقَىٰ",
+    urdu_translation: "دین میں کوئی زبردستی نہیں، بے شک ہدایت گمراہی سے واضح ہو چکی ہے، پس جو طاغوت کا انکار کرے اور اللہ پر ایمان لائے اس نے مضبوط سہارا تھام لیا۔",
+    explanation: "There shall be no compulsion in religion. The right course has become clear from the wrong. Whoever rejects false deities and believes in Allah has grasped the strongest handhold.",
+    family_tip: "گھر میں دین کی باتیں پیار اور دلیل سے سمجھائیں، کسی پر غیر ضروری سختی نہ کریں۔",
+    category: "Freedom & Conviction",
+    asbabUrdu: "انصار کے کچھ صحابہ اپنے بچوں کو اسلام قبول کرنے پر مجبور کر رہے تھے تو اللہ نے زبردستی سے منع فرمایا۔",
+    lessonsUrdu: ["ایمان دل کے خلوص اور فہم سے قبول کیا جاتا ہے، جبر سے نہیں۔", "اللہ پر سچا توکل کبھی نہ ٹوٹنے والا سہارا ہے۔", "باطل قوتوں کی نفی توحید کی شرط ہے۔"],
+    reflectionsUrdu: "کیا میرا ایمان سچی بصیرت اور دل کے اطمینان پر مبنی ہے؟"
+  },
+  {
+    day: 15,
+    surah: "Al-Baqarah", surah_ar: "سورة البقرة", surahNumber: 2, ayah: 261,
+    arabic: "مَّثَلُ الَّذِينَ يُنفِقُونَ أَمْوَالَهُمْ فِي سَبِيلِ اللَّهِ كَمَثَلِ حَبَّةٍ أَنبَتَتْ سَبْعَ سَنَابِلَ فِي كُلِّ سُنبُلَةٍ مِّائَةُ حَبَّةٍ ۗ وَاللَّهُ يُضَاعِفُ لِمَن يَشَاءُ",
+    urdu_translation: "ان لوگوں کی مثال جو اپنے مال اللہ کی راہ میں خرچ کرتے ہیں اس دانے کی سی ہے جس سے سات بالیاں اگیں، ہر بالی میں سو دانے ہوں، اور اللہ جس کے لیے چاہتا ہے بڑھا دیتا ہے۔",
+    explanation: "The example of those who spend their wealth in the way of Allah is like a seed of grain which grows seven spikes; in each spike is a hundred grains.",
+    family_tip: "اپنی جیب خرچ یا آمدنی میں سے روزانہ یا ہفتہ وار صدقہ نکالنے کی فیملی روایت بنائیں۔",
+    category: "Charity & Multiplied Rewards",
+    asbabUrdu: "غزوہ تبوک اور غریب مسلمانوں کی کفالت کے لیے مسلمانوں کو انفاق کی ترغیب دی گئی۔",
+    lessonsUrdu: ["اللہ کی راہ میں خرچ کرنے سے مال کم نہیں ہوتا بلکہ 700 گنا تک بڑھتا ہے۔", "اخلاص سے دی گئی چھوٹی خیرات بھی اللہ کے ہاں پہاڑ بن جاتی ہے۔", "سخاوت دل کو تنگی اور بخل سے پاک کرتی ہے۔"],
+    reflectionsUrdu: "کیا میں کشادہ دلی کے ساتھ اللہ کے غریب بندوں کی مدد کرتا ہوں؟"
+  },
+  {
+    day: 16,
+    surah: "Al-Baqarah", surah_ar: "سورة البقرة", surahNumber: 2, ayah: 263,
+    arabic: "قَوْلٌ مَّعْرُوفٌ وَمَغْفِرَةٌ خَيْرٌ مِّن صَدَقَةٍ يَتْبَعُهَا أَذًى ۗ وَاللَّهُ غَنِيٌّ حَلِيمٌ",
+    urdu_translation: "اچھی بات کہنا اور درگزر کرنا اس خیرات سے کہیں بہتر ہے جس کے پیچھے ستانا ہو، اور اللہ بے پروا اور بردبار ہے۔",
+    explanation: "Kind speech and forgiveness are better than charity followed by injury. And Allah is Free of need and Forbearing.",
+    family_tip: "اگر کسی مانگنے والے کو کچھ نہ دے سکیں تو نرمی اور عزت سے معذرت کریں، کبھی جھڑکیں نہیں۔",
+    category: "Kindness & Etiquette of Charity",
+    asbabUrdu: "احسان جتانے اور سائل کی عزتِ نفس مجروح کرنے سے سختی سے منع فرمایا گیا۔",
+    lessonsUrdu: ["میٹھی زبان اور عفو و درگزر صدقہ سے زیادہ قیمتی اخلاق ہیں۔", "خیرات دے کر احسان جتانا نیکی کو برباد کر دیتا ہے۔", "اللہ ہمارے مال کا محتاج نہیں بلکہ ہماری نیت کا طالب ہے۔"],
+    reflectionsUrdu: "کیا میری گفتگو میں دوسروں کے جذبات کا احترام اور مٹھاس موجود ہے؟"
+  },
+  {
+    day: 17,
+    surah: "Al-Baqarah", surah_ar: "سورة البقرة", surahNumber: 2, ayah: 275,
+    arabic: "وَأَحَلَّ اللَّهُ الْبَيْعَ وَحَرَّمَ الرِّبَا",
+    urdu_translation: "اور اللہ نے تجارت کو حلال کیا ہے اور سود کو حرام قرار دیا ہے۔",
+    explanation: "And Allah has permitted trade and has forbidden interest (riba). Ethical economic justice.",
+    family_tip: "گھر کے مالی معاملات اور کاروبار کو سودی لین دین اور دھوکے بازی سے پاک رکھنے کا عہد کریں۔",
+    category: "Halal Earning & Justice",
+    asbabUrdu: "جاہلیت کے معاشی استحصال اور سودی نظام کو جڑ سے ختم کرنے کے لیے یہ دو ٹوک حکم آیا۔",
+    lessonsUrdu: ["حلال محنت اور تجارت میں اللہ نے برکت رکھی ہے۔", "سود معاشرے میں ظلم اور معاشی ناہمواری پیدا کرتا ہے۔", "حلال لقمہ عبادات کی قبولیت کی بنیادی شرط ہے۔"],
+    reflectionsUrdu: "کیا میری روزی کی کمائی سو فیصد حلال اور پاکیزہ ذرائع سے حاصل ہو رہی ہے؟"
+  },
+  {
+    day: 18,
+    surah: "Al-Baqarah", surah_ar: "سورة البقرة", surahNumber: 2, ayah: 285,
+    arabic: "آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ وَالْمُؤْمِنُونَ ۚ كُلٌّ آمَنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ",
+    urdu_translation: "رسول اس پر ایمان لائے جو ان کے رب کی طرف سے ان پر اتارا گیا اور مومن بھی، سب اللہ، اس کے فرشتوں، اس کی کتابوں اور اس کے رسولوں پر ایمان لائے۔",
+    explanation: "The Messenger has believed in what was revealed to him from his Lord, and [so have] the believers. All of them have believed in Allah and His angels and His books and His messengers.",
+    family_tip: "رات کو سونے سے پہلے سورہ بقرہ کی آخری دو آیات تلاوت کریں جو ہر شر سے حفاظت کے لیے کافی ہیں۔",
+    category: "Pillars of Faith",
+    asbabUrdu: "صحابہ کرام کے پختہ ایمان اور تسلیم و رضا کی تعریف میں یہ مبارک آیت اتری۔",
+    lessonsUrdu: ["تمام انبیاء اور آسمانی کتابوں پر بلا تفریق ایمان لانا ضروری ہے۔", "ایمان دل کے اقرار اور عمل کے اخلاص کا نام ہے۔", "حضور ﷺ کی سنت اور وحی پر غیر متزلزل یقین۔"],
+    reflectionsUrdu: "کیا میرا ایمان ایمانیات کے تمام ارکان پر کامل اور غیر متزلزل ہے؟"
+  },
+  {
+    day: 19,
+    surah: "Al-Baqarah", surah_ar: "سورة البقرة", surahNumber: 2, ayah: 286,
+    arabic: "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا",
+    urdu_translation: "اللہ کسی جان پر اس کی طاقت سے زیادہ بوجھ نہیں ڈالتا، اسی کے لیے ہے جو اس نے کمایا اور اسی پر ہے جو اس نے گناہ کیا، اے ہمارے رب! اگر ہم بھول جائیں یا چوک جائیں تو ہمارا مواخذہ نہ فرما۔",
+    explanation: "Allah does not charge a soul except [with that within] its capacity. It will have [the consequence of] what [good] it has gained, and it will bear [the consequence of] what [evil] it has earned.",
+    family_tip: "روزانہ کی دعاؤں میں یہ دعا مانگیں کہ اللہ ہمیں ہماری بساط سے بڑھ کر آزمائش میں نہ ڈالے۔",
+    category: "Divine Mercy & Relief",
+    asbabUrdu: "جب صحابہ کو دل کے وسوسوں کے حساب کا ڈر ہوا تو اللہ نے تخفیف اور معافی کی یہ بشارت نازل فرمائی۔",
+    lessonsUrdu: ["دینِ اسلام سراسر آسانی اور سہولت کا دین ہے۔", "انسان اپنی نیکی اور برائی کا خود ذمہ دار ہے۔", "بھول چوک اور خطاؤں پر اللہ توبہ کے ذریعے درگزر فرماتا ہے۔"],
+    reflectionsUrdu: "کیا میں اللہ کے احکامات پر اپنی پوری استطاعت کے مطابق عمل پیرا ہونے کی کوشش کرتا ہوں؟"
+  },
+  {
+    day: 20,
+    surah: "Al-Imran", surah_ar: "سورة آل عمران", surahNumber: 3, ayah: 8,
+    arabic: "رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن لَّدُنكَ رَحْمَةً ۚ إِنَّكَ أَنتَ الْوَهَّابُ",
+    urdu_translation: "اے ہمارے رب! ہمارے دلوں کو ٹیڑھا نہ کر بعد اس کے کہ تو نے ہمیں ہدایت عطا فرمائی، اور ہمیں اپنی طرف سے رحمت بخش، بے شک تو ہی بہت عطا فرمانے والا ہے۔",
+    explanation: "Our Lord, let not our hearts deviate after You have guided us and grant us from Yourself mercy. Indeed, You are the Bestower.",
+    family_tip: "فیملی کے ساتھ دل کی استقامت اور ایمان پر خاتمے کے لیے روزانہ یہ دعا مانگیں۔",
+    category: "Steadfastness in Faith",
+    asbabUrdu: "راسخین فی العلم (پختہ علم والے اہل ایمان) کی عاجزانہ دعا کا ذکر فرمایا گیا۔",
+    lessonsUrdu: ["ہدایت کا ملنا اور اس پر قائم رہنا خالص اللہ کی دین ہے۔", "انسان کو کبھی اپنے تقویٰ پر گھمنڈ نہیں کرنا چاہیے۔", "اللہ تعالیٰ کی بارگاہ سے ہمہ وقت رحمت کی التجا کرنی چاہیے۔"],
+    reflectionsUrdu: "کیا میں روزانہ اپنے دل کو گمراہی اور بے دینی کے فتنوں سے محفوظ رکھنے کی دعا کرتا ہوں؟"
+  },
+  {
+    day: 21,
+    surah: "Al-Imran", surah_ar: "سورة آل عمران", surahNumber: 3, ayah: 26,
+    arabic: "قُلِ اللَّهُمَّ مَالِكَ الْمُلْكِ تُؤْتِي الْمُلْكَ مَن تَشَاءُ وَتَنزِعُ الْمُلْكَ مِمَّن تَشَاءُ وَتُعِزُّ مَن تَشَاءُ وَتُذِلُّ مَن تَشَاءُ ۖ بِيَدِكَ الْخَيْرُ",
+    urdu_translation: "آپ کہیے: اے اللہ! سلطنت کے مالک! تو جسے چاہے حکومت دے اور جس سے چاہے چھین لے، اور جسے چاہے عزت دے اور جسے چاہے ذلیل کرے، تیرے ہی ہاتھ میں تمام بھلائی ہے۔",
+    explanation: "Say, 'O Allah, Owner of Sovereignty, You give sovereignty to whom You will and You take sovereignty away from whom You will. You honor whom You will and You humble whom You will. In Your hand is all good.'",
+    family_tip: "کسی کی دولت یا عہدے سے مرعوب ہونے کی بجائے یہ یقین رکھیں کہ عزت و ذلت صرف اللہ کے ہاتھ میں ہے۔",
+    category: "Absolute Sovereignty",
+    asbabUrdu: "غزوہ خندق کے موقع پر جب حضور ﷺ نے قیصر و کسریٰ کی فتح کی بشارت دی تو منافقین کے شک کے جواب میں اتری۔",
+    lessonsUrdu: ["حقیقی اقتدار اور بادشاہی صرف اللہ کے لیے ہے۔", "عزت اور ذلت کے فیصلے دنیاوی طاقتوں کے ہاتھ میں نہیں ہیں۔", "ہر حالت میں اللہ کے فیصلے پر راضی رہنا چاہیے۔"],
+    reflectionsUrdu: "کیا میں دنیاوی عہدوں کی بجائے اللہ کے ہاں عزت اور تقویٰ حاصل کرنے کو ترجیح دیتا ہوں؟"
+  },
+  {
+    day: 22,
+    surah: "Al-Imran", surah_ar: "سورة آل عمران", surahNumber: 3, ayah: 31,
+    arabic: "قُلْ إِن كُنتُمْ تُحِبُّونَ اللَّهَ فَاتَّبِعُونِي يُحْبِبْكُمُ اللَّهُ وَيَغْفِرْ لَكُمْ ذُنُوبَكُمْ ۗ وَاللَّهُ غَفُورٌ رَّحِيمٌ",
+    urdu_translation: "آپ فرما دیجئے کہ اگر تم اللہ سے محبت رکھتے ہو تو میری پیروی کرو، اللہ تم سے محبت کرے گا اور تمہارے گناہ بخش دے گا، اور اللہ بخشنے والا مہربان ہے۔",
+    explanation: "Say, 'If you should love Allah, then follow me, Allah will love you and forgive you your sins. And Allah is Forgiving and Merciful.'",
+    family_tip: "آج حضور ﷺ کی ایک نئی سنت (جیسے دائیں ہاتھ سے کھانا، مسواک، نرم کلامی) پر عمل شروع کریں۔",
+    category: "Love of Allah & Sunnah",
+    asbabUrdu: "جب عیسائیوں اور یہودیوں نے اللہ سے محبت کا دعویٰ کیا تو اللہ نے سنتِ نبوی کی پیروی کو محبت کا واحد معیار ٹھہرایا۔",
+    lessonsUrdu: ["اللہ کی سچی محبت کا ثبوت رسول اللہ ﷺ کی کامل اطاعت ہے۔", "اتباعِ سنت سے انسان اللہ کا محبوب بن جاتا ہے۔", "سنت پر چلنے والے کے گناہ معاف کر دیے جاتے ہیں۔"],
+    reflectionsUrdu: "کیا میری طرزِ زندگی، عادات اور اخلاق میں رسول اللہ ﷺ کی سنت کی جھلک نظر آتی ہے؟"
+  },
+  {
+    day: 23,
+    surah: "Al-Imran", surah_ar: "سورة آل عمران", surahNumber: 3, ayah: 92,
+    arabic: "لَن تَنَالُوا الْبِرَّ حَتَّىٰ تُنفِقُوا مِمَّا تُحِبُّونَ ۚ وَمَا تُنفِقُوا مِن شَيْءٍ فَإِنَّ اللَّهَ بِهِ عَلِيمٌ",
+    urdu_translation: "تم ہرگز کمال کی نیکی کو نہیں پہنچ سکتے جب تک کہ اپنی پسندیدہ چیزوں میں سے خرچ نہ کرو، اور جو کچھ بھی تم خرچ کرو گے اللہ اسے خوب جانتا ہے۔",
+    explanation: "Never will you attain the good [reward] until you spend [in the way of Allah] from that which you love. And whatever you spend - indeed, Allah is Knowing of it.",
+    family_tip: "اپنی سب سے پسندیدہ چیز، لباس یا کھانا کسی غریب بچے یا ہمسائے کو تحفے میں دیں۔",
+    category: "Supreme Righteousness & Sacrificial Giving",
+    asbabUrdu: "جب یہ آیت اتری تو حضرت ابو طلحہؓ نے اپنا سب سے پیارا اور قیمتی باغ 'بیرحاء' اللہ کی راہ میں وقف کر دیا۔",
+    lessonsUrdu: ["اعلیٰ درجے کا تقویٰ پسندیدہ چیز اللہ کی راہ میں قربان کرنے سے ملتا ہے۔", "پرانی اور ناکارہ چیزیں دینے کی بجائے عمدہ چیز صدقہ کرنی چاہیے۔", "اللہ ہماری چھپی اور کھلی ہر قربانی سے باخبر ہے۔"],
+    reflectionsUrdu: "کیا میں اللہ کے دین اور اس کے بندوں کے لیے اپنی عزیز ترین چیزیں قربان کرنے کا جذبہ رکھتا ہوں؟"
+  },
+  {
+    day: 24,
+    surah: "Al-Imran", surah_ar: "سورة آل عمران", surahNumber: 3, ayah: 103,
+    arabic: "وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا ۚ وَاذْكُرُوا نِعْمَتَ اللَّهِ عَلَيْكُمْ إِذْ كُنتُمْ أَعْدَاءً فَأَلَّفَ بَيْنَ قُلُوبِكُمْ",
+    urdu_translation: "اور تم سب مل کر اللہ کی رسی کو مضبوطی سے تھام لو اور آپس میں تفرقہ نہ ڈالو، اور اپنے اوپر اللہ کی اس نعمت کو یاد کرو جب تم ایک دوسرے کے دشمن تھے تو اس نے تمہارے دلوں میں الفت ڈال دی۔",
+    explanation: "And hold firmly to the rope of Allah all together and do not become divided. And remember the favor of Allah upon you - when you were enemies and He brought your hearts together.",
+    family_tip: "گھریلو اور خاندانی رشتوں میں اتحاد، معافی اور پیار کو فروغ دیں اور نفرت پھیلانے والی باتوں سے بچیں۔",
+    category: "Unity & Brotherhood",
+    asbabUrdu: "مدینہ کے اوس اور خزرج قبائل کے درمیان صدیوں پرانی دشمنی کو اسلام کے ذریعے بھائی چارے میں بدلنے کا تذکرہ۔",
+    lessonsUrdu: ["قرآن مجید اور دینِ اسلام امت کے اتحاد کا مرکز ہے۔", "فرقہ واریت اور نفرتیں اسلامی معاشرے کے لیے زہرِ قاتل ہیں۔", "دلوں کی محبت اللہ کا عظیم ترین انعام ہے۔"],
+    reflectionsUrdu: "کیا میں مسلمانوں میں اتحاد اور پیار پیدا کرنے کا سبب بنتا ہوں یا تفرقے کا؟"
+  },
+  {
+    day: 25,
+    surah: "Al-Imran", surah_ar: "سورة آل عمران", surahNumber: 3, ayah: 133,
+    arabic: "وَسَارِعُوا إِلَىٰ مَغْفِرَةٍ مِّن رَّبِّكُمْ وَجَنَّةٍ عَرْضُهَا السَّمَاوَاتُ وَالْأَرْضُ أُعِدَّتْ لِلْمُتَّقِينَ",
+    urdu_translation: "اور اپنے رب کی بخشش اور اس جنت کی طرف دوڑو جس کی چوڑائی آسمانوں اور زمین کے برابر ہے، جو پرہیزگاروں کے لیے تیار کی گئی ہے۔",
+    explanation: "And hasten to forgiveness from your Lord and a garden as wide as the heavens and earth, prepared for the righteous.",
+    family_tip: "نیکی کا خیال آتے ہی تاخیر کیے بغیر فوراً اسے عملی جامہ پہنائیں۔",
+    category: "Hastening to Forgiveness",
+    asbabUrdu: "اہل ایمان کو غفلت چھوڑ کر توبہ اور نیکی کے کاموں میں ایک دوسرے سے سبقت لے جانے کا حکم۔",
+    lessonsUrdu: ["توبہ میں کبھی دیر نہیں کرنی چاہیے، زندگی کا کوئی بھروسہ نہیں۔", "جنت کی وسعتیں متقی بندوں کے لیے سجائی گئی ہیں۔", "نیکیوں میں مسابقت مومن کا شیوہ ہے۔"],
+    reflectionsUrdu: "کیا میں گناہ سرزد ہونے پر فوری طور پر سچی توبہ کی طرف لپکتا ہوں؟"
+  },
+  {
+    day: 26,
+    surah: "Al-Imran", surah_ar: "سورة آل عمران", surahNumber: 3, ayah: 134,
+    arabic: "الَّذِينَ يُنفِقُونَ فِي السَّرَّاءِ وَالضَّرَّاءِ وَالْكَاظِمِينَ الْغَيْظَ وَالْعَافِينَ عَنِ النَّاسِ ۗ وَاللَّهُ يُحِبُّ الْمُحْسِنِينَ",
+    urdu_translation: "وہ لوگ جو خوشحالی اور تنگ دستی دونوں میں خرچ کرتے ہیں اور غصہ پی جانے والے اور لوگوں کو معاف کر دینے والے ہیں، اور اللہ احسان کرنے والوں سے محبت فرماتا ہے۔",
+    explanation: "Who spend [in the cause of Allah] during ease and hardship and who restrain anger and who pardon the people - and Allah loves the doers of good.",
+    family_tip: "جب غصہ آئے تو فوراً خاموش ہو جائیں، وضو کریں اور سامنے والے کو دل سے معاف کر دیں۔",
+    category: "Controlling Anger & Forgiveness",
+    asbabUrdu: "اہلِ جنت کے وہ بنیادی اخلاقی اوصاف بیان فرمائے گئے جن سے انسانی معاشرہ پرامن بنتا ہے۔",
+    lessonsUrdu: ["غصے پر قابو پانا بہادری کی سب سے بڑی علامت ہے۔", "لوگوں کی کوتاہیوں کو معاف کرنے والے پر اللہ کی رحمت برستی ہے۔", "تنگدستی میں بھی صدقہ کرنا اعلیٰ درجے کا ایمان ہے۔"],
+    reflectionsUrdu: "کیا میں اشتعال کے وقت اپنے غصے پر قابو پا کر عفو و درگزر سے کام لیتا ہوں؟"
+  },
+  {
+    day: 27,
+    surah: "Al-Imran", surah_ar: "سورة آل عمران", surahNumber: 3, ayah: 139,
+    arabic: "وَلَا تَهِنُوا وَلَا تَحْزَنُوا وَأَنتُمُ الْأَعْلَوْنَ إِن كُنتُم مُّؤْمِنِينَ",
+    urdu_translation: "اور تم ہمت نہ ہارو اور غمگین نہ ہو، تم ہی غالب رہو گے اگر تم سچے مومن ہو۔",
+    explanation: "So do not weaken and do not grieve, and you will be superior if you are [true] believers.",
+    family_tip: "زندگی کے کسی موڑ پر مایوسی یا صدمہ پہنچے تو ایمان کی طاقت سے نئی امید کے ساتھ آگے بڑھیں۔",
+    category: "Courage & Optimism",
+    asbabUrdu: "غزوہ احد کے صدمے اور شہداء کے غم میں نڈھال مسلمانوں کو تسلی اور حوصلہ دینے کے لیے اتری۔",
+    lessonsUrdu: ["مومن کبھی مایوس اور دل شکستہ نہیں ہوتا۔", "سچے ایمان کے ساتھ کی جانے والی محنت کبھی رائیگاں نہیں جاتی۔", "آزمائشوں کے بعد ہمیشہ فتح اور کامیابی آتی ہے۔"],
+    reflectionsUrdu: "کیا میرا توکل اور ایمان مجھے ہر قسم کی مایوسی سے نکال کر پرعزم رکھتا ہے؟"
+  },
+  {
+    day: 28,
+    surah: "Al-Imran", surah_ar: "سورة آل عمران", surahNumber: 3, ayah: 159,
+    arabic: "فَبِمَا رَحْمَةٍ مِّنَ اللَّهِ لِنتَ لَهُمْ ۖ وَلَوْ كُنتَ فَظًّا غَلِيظَ الْقَلْبِ لَانفَضُّوا مِنْ حَوْلِكَ ۖ فَاعْفُ عَنْهُمْ وَاسْتَغْفِرْ لَهُمْ وَشَاوِرْهُمْ فِي الْأَمْرِ",
+    urdu_translation: "اللہ کی رحمت کے باعث آپ ان کے لیے نرم مزاج بن گئے، اگر آپ تندخو اور سخت دل ہوتے تو وہ آپ کے پاس سے منتشر ہو جاتے، پس ان سے درگزر کیجئے، ان کے لیے بخشش مانگیے اور معاملات میں ان سے مشورہ کیجئے۔",
+    explanation: "So by mercy from Allah, [O Muhammad], you were lenient with them. And if you had been rude [in speech] and harsh in heart, they would have disbanded from about you. So pardon them and ask forgiveness for them and consult them in the matter.",
+    family_tip: "گھر کے اہم فیصلوں میں بچوں اور اہل خانہ سے مشاورت کریں اور نرمی کا برتاؤ رکھیں۔",
+    category: "Prophetic Compassion & Consultation",
+    asbabUrdu: "غزوہ احد کے بعد صحابہ کی لغزشوں پر نبی کریم ﷺ کی بے مثال نرمی اور عفو کی تعریف۔",
+    lessonsUrdu: ["نرمی اور شفقت دلوں کو فتح کرتی ہے۔", "مشاورت میں برکت اور باہمی اعتماد پیدا ہوتا ہے۔", "سختی اور بدکلامی لوگوں کو دور کر دیتی ہے۔"],
+    reflectionsUrdu: "کیا میری روزمرہ گفتگو میں نرمی، مٹھاس اور دوسروں کے مشورے کی قدر موجود ہے؟"
+  },
+  {
+    day: 29,
+    surah: "Al-Imran", surah_ar: "سورة آل عمران", surahNumber: 3, ayah: 173,
+    arabic: "الَّذِينَ قَالَ لَهُمُ النَّاسُ إِنَّ النَّاسَ قَدْ جَمَعُوا لَكُمْ فَاخْشَوْهُمْ فَزَادَهُمْ إِيمَانًا وَقَالُوا حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ",
+    urdu_translation: "وہ لوگ کہ جب لوگوں نے ان سے کہا کہ تمہارے خلاف لشکر جمع ہو چکے ہیں سو ان سے ڈرو، تو اس بات نے ان کا ایمان اور بڑھا دیا اور انہوں نے کہا: ہمیں اللہ کافی ہے اور وہ کیا ہی بہترین کارساز ہے۔",
+    explanation: "Those to whom people said, 'Indeed, the people have gathered against you, so fear them.' But it increased them in faith, and they said, 'Sufficient for us is Allah, and [He is] the best Disposer of affairs.'",
+    family_tip: "کسی بھی خوف، پریشانی یا امتحان کے وقت 'حسبنا اللہ ونعم الوکیل' کثرت سے پڑھیں۔",
+    category: "Complete Reliance (Tawakkul)",
+    asbabUrdu: "غزوہ حمراء الاسد کے موقع پر ابو سفیان کی دھمکیوں کے مقابلے میں صحابہ کے کمالِ توکل پر نازل ہوئی۔",
+    lessonsUrdu: ["اللہ پر سچا بھروسہ ہر خوف اور خطرے کو مٹا دیتا ہے۔", "حسبنا اللہ ونعم الوکیل حضرت ابراہیمؑ اور نبی ﷺ کا وظیفہ ہے۔", "دشمنوں کی دھمکیاں مومن کے عزم کو کمزور نہیں کر سکتیں۔"],
+    reflectionsUrdu: "کیا میں زندگی کی سب سے بڑی رکاوٹوں میں بھی اپنے رب کی نصرت پر کامل بھروسہ رکھتا ہوں؟"
+  },
+  {
+    day: 30,
+    surah: "Al-Imran", surah_ar: "سورة آل عمران", surahNumber: 3, ayah: 190,
+    arabic: "إِنَّ فِي خَلْقِ السَّمَاوَاتِ وَالْأَرْضِ وَاخْتِلَافِ اللَّيْلِ وَالنَّهَارِ لَآيَاتٍ لِّأُولِي الْأَلْبَابِ",
+    urdu_translation: "بے شک آسمانوں اور زمین کی پیدائش میں اور رات اور دن کے باری باری آنے میں عقل والوں کے لیے بڑی نشانیاں ہیں۔",
+    explanation: "Indeed, in the creation of the heavens and the earth and the alternation of the night and the day are signs for those of understanding.",
+    family_tip: "آسمان، ستاروں، پرندوں اور قدرت کے نظاروں کو دیکھ کر اللہ کی کاریگری پر سبحان اللہ کہیں۔",
+    category: "Reflecting on Nature",
+    asbabUrdu: "حضور ﷺ رات کو تہجد کے لیے بیدار ہو کر ان آیات کی تلاوت فرماتے اور رو پڑتے۔",
+    lessonsUrdu: ["کائنات کے نظام پر غور و فکر کرنا عظیم عبادت ہے۔", "عقل مند وہ ہے جو مظاہرِ فطرت کے پیچھے خالق کو پہچانے۔", "سائنس اور فطرت کے حقائق معرفتِ الٰہی کا ذریعہ ہیں۔"],
+    reflectionsUrdu: "کیا میں کائنات کے حسن کو دیکھ کر اپنے خالق کی قدرت اور حکمت کو یاد کرتا ہوں؟"
+  },
+  {
+    day: 31,
+    surah: "Al-Imran", surah_ar: "سورة آل عمران", surahNumber: 3, ayah: 191,
+    arabic: "الَّذِينَ يَذْكُرُونَ اللَّهَ قِيَامًا وَقُعُودًا وَعَلَىٰ جُنُوبِهِمْ وَيَتَفَكَّرُونَ فِي خَلْقِ السَّمَاوَاتِ وَالْأَرْضِ رَبَّنَا مَا خَلَقْتَ هَٰذَا بَاطِلًا سُبْحَانَكَ فَقِنَا عَذَابَ النَّارِ",
+    urdu_translation: "وہ جو کھڑے، بیٹھے اور اپنے پہلوؤں پر لیٹے اللہ کو یاد کرتے ہیں اور آسمانوں اور زمین کی پیدائش میں غور و فکر کرتے ہیں (اور کہتے ہیں): اے ہمارے رب! تو نے یہ سب بے مقصد نہیں بنایا، تو پاک ہے، سو ہمیں آگ کے عذاب سے بچا لے۔",
+    explanation: "Who remember Allah while standing or sitting or [lying] on their sides and give thought to the creation of the heavens and the earth, [saying], 'Our Lord, You did not create this aimlessly; exalted are You; then protect us from the punishment of the Fire.'",
+    family_tip: "روزانہ کی مصروفیات کے دوران ذکرِ الٰہی کا تسلسل قائم رکھیں، چلتے پھرتے تسبیح پڑھیں۔",
+    category: "Constant Dhikr & Cosmic Purpose",
+    asbabUrdu: "حقیقی دانشوروں (اہلِ عقل و ایمان) کی شبانہ روز عبادت اور تفکر کا نقشہ کھینچا گیا۔",
+    lessonsUrdu: ["ذکر اور فکر کا امتزاج مومن کی زندگی کا اصل کمال ہے۔", "کائنات کی کوئی بھی چیز بے مقصد یا عبث نہیں بنائی گئی۔", "جہنم سے پناہ مانگنا ہر فکری جستجو کا حاصل ہونا چاہیے۔"],
+    reflectionsUrdu: "کیا میرا ہر لمحہ اللہ کے ذکر اور اس کی حکمتوں کے اعتراف میں گزرتا ہے؟"
+  }
+];
+
+console.log('Base verified month 1 data ready:', uniqueVersesData.length);

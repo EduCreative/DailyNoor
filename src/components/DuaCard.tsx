@@ -142,18 +142,21 @@ export const DuaCard: React.FC<DuaCardProps> = ({ dateStr, onOpenAllDuas }) => {
         {/* Header Navigation & Week Badge */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 sm:pb-4 border-b border-[#0B5D3C]/10 dark:border-white/10">
           
-          <div className="flex items-center gap-2.5 min-w-0">
-            <div className="w-10 h-10 rounded-2xl bg-[#0B5D3C]/10 dark:bg-[#C9A227]/20 text-[#0B5D3C] dark:text-[#E5C76B] flex items-center justify-center shrink-0">
-              <Heart className="w-5 h-5 fill-[#0B5D3C]/20 dark:fill-[#E5C76B]/20" />
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-[#0B5D3C] to-[#061912] border border-[#C9A227]/40 flex items-center justify-center text-[#E5C76B] shadow-md shrink-0">
+              <Heart className="w-6 h-6 fill-[#E5C76B]/20 text-[#E5C76B]" />
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#0B5D3C] dark:text-[#C9A227]">
-                  Dua of the Week
-                </span>
-                <span className="text-[10px] px-2 py-0.5 rounded-full font-bold bg-[#C9A227]/20 text-[#8F7212] dark:text-[#E5C76B]">
-                  Week {dua.week} of 52
-                </span>
+                <h2 className="text-lg sm:text-xl font-extrabold text-[#0B5D3C] dark:text-[#E8EFEA] tracking-tight flex items-center gap-2 flex-wrap">
+                  <span>Dua of the Week</span>
+                  <span className="text-xs sm:text-sm font-bold px-2.5 py-0.5 rounded-full bg-[#C9A227]/20 text-[#8F7212] dark:text-[#E5C76B] border border-[#C9A227]/30">
+                    Week {dua.week} of 52
+                  </span>
+                  <span className="font-urdu text-sm sm:text-base font-bold text-[#0B5D3C] dark:text-[#E5C76B]" dir="rtl">
+                    ہفتے کی مسنون دعا
+                  </span>
+                </h2>
                 {isMemorized && (
                   <span className="text-[10px] px-2 py-0.5 rounded-full font-bold bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 flex items-center gap-0.5 border border-emerald-500/30">
                     <Check className="w-3 h-3 stroke-[3]" />
@@ -161,9 +164,9 @@ export const DuaCard: React.FC<DuaCardProps> = ({ dateStr, onOpenAllDuas }) => {
                   </span>
                 )}
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-[#1D2B24] dark:text-[#E8EFEA] font-urdu leading-tight truncate" dir="rtl">
-                ہفتے کی مسنون دعا (1 ہفتہ - 1 دعا حفظ)
-              </h3>
+              <p className="text-xs text-[#4A5D53] dark:text-[#96A89F] mt-0.5 hidden sm:block">
+                1 Week • 1 Dua Memorization routine with audio recitations & contextual virtues.
+              </p>
             </div>
           </div>
 

@@ -38,6 +38,7 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
   const { saveQuizResult, getProgressForDate } = useDailyStore();
   const progress = getProgressForDate(dateStr);
 
+  const [fontSizeMode, setFontSizeMode] = useState<'compact' | 'standard' | 'large'>('standard');
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
@@ -141,7 +142,7 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
       <div className="bg-[#0C1813] text-[#E8EFEA] rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl border border-[#C9A227]/40 relative my-6">
         
         {/* Header */}
-        <div className="flex items-center justify-between pb-3.5 border-b border-[#C9A227]/20">
+        <div className="flex items-center justify-between pb-3.5 border-b border-[#C9A227]/20 shrink-0">
           <div className="flex items-center gap-2.5">
             <IslamicLogo size={36} variant="shield" />
             <div>
@@ -157,20 +158,73 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
             </div>
           </div>
 
-          <button
-            onClick={() => {
-              triggerHaptic('light');
-              onClose();
-            }}
-            className="p-2 rounded-xl text-[#96A89F] hover:bg-white/10 transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-1.5">
+            {/* Text Size Switcher */}
+            {!isFinished && (
+              <div className="flex items-center bg-[#142820] p-0.5 rounded-xl border border-[#C9A227]/30 text-[10px] font-semibold">
+                <button
+                  type="button"
+                  title="Compact Text (چھوٹا متن)"
+                  onClick={() => {
+                    triggerHaptic('light');
+                    setFontSizeMode('compact');
+                  }}
+                  className={`px-2 py-1 rounded-lg transition-all ${
+                    fontSizeMode === 'compact'
+                      ? 'bg-[#C9A227] text-[#0C1813] font-bold shadow-xs'
+                      : 'text-[#96A89F] hover:text-white'
+                  }`}
+                >
+                  A-
+                </button>
+                <button
+                  type="button"
+                  title="Standard Text (معیاری متن)"
+                  onClick={() => {
+                    triggerHaptic('light');
+                    setFontSizeMode('standard');
+                  }}
+                  className={`px-2 py-1 rounded-lg transition-all ${
+                    fontSizeMode === 'standard'
+                      ? 'bg-[#C9A227] text-[#0C1813] font-bold shadow-xs'
+                      : 'text-[#96A89F] hover:text-white'
+                  }`}
+                >
+                  A
+                </button>
+                <button
+                  type="button"
+                  title="Large Text (بڑا متن)"
+                  onClick={() => {
+                    triggerHaptic('light');
+                    setFontSizeMode('large');
+                  }}
+                  className={`px-2 py-1 rounded-lg transition-all ${
+                    fontSizeMode === 'large'
+                      ? 'bg-[#C9A227] text-[#0C1813] font-bold shadow-xs'
+                      : 'text-[#96A89F] hover:text-white'
+                  }`}
+                >
+                  A+
+                </button>
+              </div>
+            )}
+
+            <button
+              onClick={() => {
+                triggerHaptic('light');
+                onClose();
+              }}
+              className="p-2 rounded-xl text-[#96A89F] hover:bg-white/10 transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* --- IN-PROGRESS QUIZ SCREEN --- */}
         {!isFinished ? (
-          <div className="pt-4 space-y-4">
+          <div className="flex-1 overflow-y-auto max-h-[calc(90vh-130px)] pt-3.5 space-y-3.5 pr-1">
             
             {/* Step Progress Pills */}
             <div className="flex items-center justify-between">
@@ -179,7 +233,7 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
                 <span>Question {currentIndex + 1} of {questions.length}</span>
               </span>
 
-              <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#0B5D3C] text-[#FDF3CD] border border-[#C9A227]/40 font-semibold">
+              <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#0B5D3C] text-[#FDF3CD] border border-[#C9A227]/40 font-semibold max-w-[200px] truncate text-right">
                 {currentQ.reference}
               </span>
             </div>
@@ -193,20 +247,33 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
             </div>
 
             {/* Question Card Box */}
-            <div className="p-4 rounded-2xl bg-[#142820] border border-[#C9A227]/30 shadow-md text-right" dir="rtl">
-              <p className="font-urdu text-base sm:text-lg font-bold text-[#F5F1E8] leading-relaxed">
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-[#142820] border border-[#C9A227]/30 shadow-md text-right" dir="rtl">
+              <p className={`font-urdu font-bold text-[#F5F1E8] leading-relaxed break-words whitespace-normal ${
+                fontSizeMode === 'compact' 
+                  ? 'text-sm sm:text-base' 
+                  : fontSizeMode === 'large' 
+                  ? 'text-lg sm:text-xl' 
+                  : 'text-base sm:text-lg'
+              }`}>
                 {currentQ.questionUrdu}
               </p>
-              <p className="font-sans text-xs text-[#96A89F] mt-1.5 text-left" dir="ltr">
+              <p className={`font-sans text-[#96A89F] mt-1.5 text-left break-words whitespace-normal ${
+                fontSizeMode === 'compact' 
+                  ? 'text-[11px]' 
+                  : fontSizeMode === 'large' 
+                  ? 'text-xs sm:text-sm' 
+                  : 'text-xs'
+              }`} dir="ltr">
                 {currentQ.questionEn}
               </p>
             </div>
 
             {/* 4 Multiple Choice Options */}
-            <div className="space-y-2.5">
+            <div className="space-y-2">
               {currentQ.options.map((option, idx) => {
                 const isThisSelected = currentSelected === idx;
                 const isThisCorrect = idx === currentQ.correctIndex;
+                const isLongOption = option.length > 45;
 
                 let btnStyle = 'bg-[#10221A] text-[#E8EFEA] border-[#0B5D3C]/40 hover:border-[#C9A227]/60 hover:bg-[#142C22]';
 
@@ -220,16 +287,26 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
                   }
                 }
 
+                // Dynamic text size per option
+                let optionTextClass = 'text-xs sm:text-sm';
+                if (fontSizeMode === 'compact') {
+                  optionTextClass = isLongOption ? 'text-[11px] sm:text-xs' : 'text-xs';
+                } else if (fontSizeMode === 'large') {
+                  optionTextClass = isLongOption ? 'text-xs sm:text-sm' : 'text-sm sm:text-base';
+                } else {
+                  optionTextClass = isLongOption ? 'text-[11.5px] sm:text-xs md:text-sm' : 'text-xs sm:text-sm';
+                }
+
                 return (
                   <button
                     key={idx}
                     onClick={() => handleSelectOption(idx)}
                     disabled={isAnswered}
-                    className={`w-full p-3 rounded-xl border text-right transition-all flex items-center justify-between gap-3 text-xs sm:text-sm font-medium ${btnStyle}`}
+                    className={`w-full p-2.5 sm:p-3 rounded-xl border text-right transition-all flex items-start justify-between gap-2.5 font-medium ${btnStyle}`}
                     dir="rtl"
                   >
-                    <div className="flex items-center gap-2.5">
-                      <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${
+                    <div className="flex items-start gap-2.5 flex-1 min-w-0 text-right">
+                      <span className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[11px] sm:text-xs font-bold shrink-0 mt-0.5 ${
                         isAnswered && isThisCorrect 
                           ? 'bg-emerald-600 text-white' 
                           : isAnswered && isThisSelected 
@@ -238,15 +315,17 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
                       }`}>
                         {idx + 1}
                       </span>
-                      <span className="font-urdu leading-normal">{option}</span>
+                      <span className={`font-urdu leading-relaxed break-words whitespace-normal flex-1 text-right ${optionTextClass}`}>
+                        {option}
+                      </span>
                     </div>
 
                     {isAnswered && (
-                      <div className="shrink-0">
+                      <div className="shrink-0 mt-0.5">
                         {isThisCorrect ? (
-                          <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+                          <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" />
                         ) : isThisSelected ? (
-                          <XCircle className="w-5 h-5 text-rose-400" />
+                          <XCircle className="w-4 h-4 sm:w-5 sm:h-5 text-rose-400" />
                         ) : null}
                       </div>
                     )}
@@ -257,21 +336,23 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
 
             {/* Explanation Box (Reveals upon answering) */}
             {showExplanation && (
-              <div className="p-3.5 rounded-xl bg-black/40 border border-[#C9A227]/30 text-right animate-in fade-in duration-200" dir="rtl">
+              <div className="p-3 sm:p-3.5 rounded-xl bg-black/40 border border-[#C9A227]/30 text-right animate-in fade-in duration-200" dir="rtl">
                 <div className="flex items-center gap-1.5 text-xs font-bold mb-1">
                   {isCorrect ? (
                     <span className="text-emerald-400 flex items-center gap-1">
-                      <CheckCircle2 className="w-4 h-4" />
+                      <CheckCircle2 className="w-4 h-4 shrink-0" />
                       <span>صحیح جواب! ما شاء اللہ</span>
                     </span>
                   ) : (
                     <span className="text-rose-400 flex items-center gap-1">
-                      <XCircle className="w-4 h-4" />
+                      <XCircle className="w-4 h-4 shrink-0" />
                       <span>درست جواب جان لیجیے:</span>
                     </span>
                   )}
                 </div>
-                <p className="font-urdu text-xs sm:text-sm text-[#E2EBE5] leading-relaxed">
+                <p className={`font-urdu text-[#E2EBE5] leading-relaxed break-words whitespace-normal ${
+                  fontSizeMode === 'compact' ? 'text-xs' : 'text-xs sm:text-sm'
+                }`}>
                   {currentQ.explanationUrdu}
                 </p>
               </div>
@@ -279,10 +360,10 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
 
             {/* Next / Finish Button */}
             {isAnswered && (
-              <div className="pt-2 flex justify-end">
+              <div className="pt-2 flex justify-end pb-1">
                 <button
                   onClick={handleNext}
-                  className="px-5 py-2.5 rounded-xl bg-[#C9A227] hover:bg-[#B38E1E] text-[#0C1813] font-bold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-md shadow-[#C9A227]/20"
+                  className="px-5 py-2.5 rounded-xl bg-[#C9A227] hover:bg-[#B38E1E] text-[#0C1813] font-bold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-md shadow-[#C9A227]/20 hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <span>{currentIndex < questions.length - 1 ? 'Next Question' : 'View Results'}</span>
                   <ArrowRight className="w-4 h-4" />

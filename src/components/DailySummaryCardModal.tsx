@@ -603,13 +603,13 @@ export const DailySummaryCardModal: React.FC<DailySummaryCardModalProps> = ({
                     <div className="space-y-2 text-right" dir="rtl">
                       {quizQuestions.map((q, idx) => (
                         <div key={q.id} className="p-2 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 text-xs">
-                          <p className="font-bold font-urdu mb-1 flex items-center gap-1 text-[11px] sm:text-xs">
-                            <span className="text-[#C9A227] font-sans">Q{idx + 1}.</span>
-                            <span>{q.questionUrdu}</span>
+                          <p className="font-bold font-urdu mb-1 flex items-start gap-1 text-[11px] sm:text-xs leading-relaxed break-words whitespace-normal">
+                            <span className="text-[#C9A227] font-sans shrink-0 mt-0.5">Q{idx + 1}.</span>
+                            <span className="flex-1 break-words">{q.questionUrdu}</span>
                           </p>
-                          <div className="p-1.5 rounded-lg bg-emerald-500/10 dark:bg-emerald-400/10 border border-emerald-500/20 text-[#0B5D3C] dark:text-[#8EE4AF] font-urdu font-semibold flex items-center gap-1 text-[11px] sm:text-xs">
-                            <CheckCircle2 className="w-3 h-3 shrink-0 text-emerald-600 dark:text-emerald-400" />
-                            <span>جواب: {q.options[q.correctIndex]}</span>
+                          <div className="p-1.5 rounded-lg bg-emerald-500/10 dark:bg-emerald-400/10 border border-emerald-500/20 text-[#0B5D3C] dark:text-[#8EE4AF] font-urdu font-semibold flex items-start gap-1.5 text-[11px] sm:text-xs leading-relaxed break-words whitespace-normal">
+                            <CheckCircle2 className="w-3.5 h-3.5 shrink-0 text-emerald-600 dark:text-emerald-400 mt-0.5" />
+                            <span className="flex-1 break-words">جواب: {q.options[q.correctIndex]}</span>
                           </div>
                         </div>
                       ))}

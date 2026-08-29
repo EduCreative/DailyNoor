@@ -199,15 +199,21 @@ ${verse.urdu_translation}
   return (
     <div id={`daily-tafseer-card-${verse.day}`} className="mt-4 flex flex-col gap-3">
       {/* Top Header Label */}
-      <div className="flex justify-between items-center px-2">
-        <h3 className="text-[#0B5D3C] dark:text-[#C9A227] font-bold text-base sm:text-lg uppercase tracking-wider flex items-center gap-2">
-          <BookOpen className="w-5 h-5 text-[#0B5D3C] dark:text-[#C9A227]" />
-          <span>Daily Tafseer</span>
-          <span className="text-xs px-2 py-0.5 rounded-full bg-[#0B5D3C]/10 dark:bg-[#C9A227]/20 text-[#0B5D3C] dark:text-[#E5C76B] font-semibold lowercase tracking-normal font-urdu" dir="rtl">
-            تفسیرِ قرآن
-          </span>
-        </h3>
-        <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#C9A227]/15 text-[#0B5D3C] dark:text-[#E5C76B] border border-[#C9A227]/30">
+      <div className="flex flex-wrap items-center justify-between gap-2.5 px-2 pb-0.5">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#0B5D3C] to-[#061912] border border-[#C9A227]/40 flex items-center justify-center text-[#E5C76B] shadow-md shrink-0">
+            <BookOpen className="w-5 h-5 text-[#E5C76B]" />
+          </div>
+          <div className="flex items-center gap-2 flex-wrap">
+            <h2 className="text-[#0B5D3C] dark:text-[#E8EFEA] font-extrabold text-lg sm:text-xl tracking-tight flex items-center gap-2">
+              <span>Daily Tafseer</span>
+              <span className="font-urdu text-sm sm:text-base font-bold text-[#0B5D3C] dark:text-[#E5C76B]" dir="rtl">
+                تفسیرِ قرآن
+              </span>
+            </h2>
+          </div>
+        </div>
+        <span className="text-xs sm:text-sm font-bold px-3 py-1 rounded-xl bg-white dark:bg-[#142820] text-[#0B5D3C] dark:text-[#E5C76B] border border-[#0B5D3C]/15 dark:border-[#C9A227]/30 shadow-sm">
           Surah {localTafseer.surahNumber || 1}:{verse.ayah}
         </span>
       </div>
