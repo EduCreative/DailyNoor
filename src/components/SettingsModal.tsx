@@ -29,7 +29,12 @@ import {
   Mic,
   Music,
   Globe,
-  MessageCircle
+  MessageCircle,
+  Download,
+  FileJson,
+  FileSpreadsheet,
+  FileText,
+  Database
 } from 'lucide-react';
 import { QARI_VOICE_OPTIONS, RECITER_VOICE_OPTIONS } from '../utils/audioUtils';
 import { requestNotificationPermission, sendDailyReminderNotification } from '../utils/notification';
@@ -37,6 +42,7 @@ import { triggerHaptic } from '../utils/haptics';
 import { APP_VERSION } from './AboutModal';
 import { formatTime12h, getEstimatedHijriDate, getRegionalCalculationDescription } from '../utils/dateUtils';
 import { getSavedLocation, getUserLocationName } from '../utils/prayerTimes';
+import { download365JsonDataset, download365CsvDataset, download365MarkdownGuide } from '../utils/exportDataset';
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -49,11 +55,38 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, o
   const [testSent, setTestSent] = useState(false);
   const [confirmReset, setConfirmReset] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
+  const [downloadingFormat, setDownloadingFormat] = useState<'json' | 'csv' | 'md' | null>(null);
+  const [downloadSuccess, setDownloadSuccess] = useState<string | null>(null);
 
   if (!isOpen) return null;
 
   const appUrl = typeof window !== 'undefined' ? window.location.origin : 'https://daily-noor.app';
   const shareText = `🌙 Daily Noor (نورِ روزانہ) — 1 Quranic Verse & 1 Hadith Daily\nSpiritual daily routine with Urdu translations, audio recitation, prayer times & streak tracking.\n\nTry it online: ${appUrl}`;
+
+  const handleDownloadDataset = (format: 'json' | 'csv' | 'md') => {
+    triggerHaptic('success');
+    setDownloadingFormat(format);
+    
+    try {
+      if (format === 'json') {
+        download365JsonDataset();
+        setDownloadSuccess('365-Day Complete JSON Dataset Downloaded!');
+      } else if (format === 'csv') {
+        download365CsvDataset();
+        setDownloadSuccess('365-Day CSV / Excel Spreadsheet Downloaded!');
+      } else if (format === 'md') {
+        download365MarkdownGuide();
+        setDownloadSuccess('365-Day Markdown Curriculum Guide Downloaded!');
+      }
+    } catch (err) {
+      console.error('Download error:', err);
+    } finally {
+      setDownloadingFormat(null);
+      setTimeout(() => {
+        setDownloadSuccess(null);
+      }, 4000);
+    }
+  };
 
   const handleToggleReminder = async () => {
     triggerHaptic('medium');
@@ -853,7 +886,103 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, o
             </div>
           </div>
 
-          {/* Section 6: App Actions (Share, About & Suggestions) */}
+          {/* Section 6: Download & Export 365-Day Dataset */}
+          <div className="p-4 rounded-2xl bg-[#0B5D3C]/5 dark:bg-[#C9A227]/10 border border-[#0B5D3C]/15 dark:border-[#C9A227]/25 space-y-3">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <Database className="w-4 h-4 text-[#0B5D3C] dark:text-[#C9A227]" />
+                <div>
+                  <span className="text-sm font-bold text-[#1D2B24] dark:text-[#E8EFEA]">
+                    Download Complete 365-Day Dataset
+                  </span>
+                  <p className="text-xs text-[#4A5D53] dark:text-[#96A89F] font-urdu" dir="rtl">
+                    مکمل 365 دن کا نصاب ڈاؤن لوڈ کریں (آیات، احادیث، تفسیر اور اذکار)
+                  </p>
+                </div>
+              </div>
+              <span className="text-[10px] px-2 py-0.5 rounded-full font-bold bg-[#0B5D3C]/15 dark:bg-[#C9A227]/20 text-[#0B5D3C] dark:text-[#E5C76B]">
+                365 Days
+              </span>
+            </div>
+
+            <p className="text-xs text-[#4A5D53] dark:text-[#A1B2A8] leading-relaxed">
+              Export the complete offline Islamic curriculum containing 365 distinct Quranic verses with Arabic & Urdu, authentic Hadiths, detailed Tafseer, and daily Dhikr.
+            </p>
+
+            {/* Dataset Statistics Pill Grid */}
+            <div className="grid grid-cols-4 gap-1.5 text-center text-[11px] py-1 bg-white/70 dark:bg-[#142820]/70 rounded-xl border border-[#0B5D3C]/10 dark:border-white/5">
+              <div className="p-1">
+                <span className="block font-bold text-[#0B5D3C] dark:text-[#E5C76B]">365</span>
+                <span className="text-[10px] text-[#4A5D53] dark:text-[#96A89F]">آیات (Verses)</span>
+              </div>
+              <div className="p-1 border-l border-[#0B5D3C]/10 dark:border-white/5">
+                <span className="block font-bold text-[#0B5D3C] dark:text-[#E5C76B]">365</span>
+                <span className="text-[10px] text-[#4A5D53] dark:text-[#96A89F]">احادیث (Hadith)</span>
+              </div>
+              <div className="p-1 border-l border-[#0B5D3C]/10 dark:border-white/5">
+                <span className="block font-bold text-[#0B5D3C] dark:text-[#E5C76B]">365</span>
+                <span className="text-[10px] text-[#4A5D53] dark:text-[#96A89F]">تفسیر (Tafseer)</span>
+              </div>
+              <div className="p-1 border-l border-[#0B5D3C]/10 dark:border-white/5">
+                <span className="block font-bold text-[#0B5D3C] dark:text-[#E5C76B]">365</span>
+                <span className="text-[10px] text-[#4A5D53] dark:text-[#96A89F]">اذکار (Dhikr)</span>
+              </div>
+            </div>
+
+            {downloadSuccess && (
+              <div className="p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-800 dark:text-emerald-300 text-xs font-semibold flex items-center gap-2 animate-in fade-in">
+                <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                <span>{downloadSuccess}</span>
+              </div>
+            )}
+
+            {/* Export Buttons */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <button
+                id="settings-export-json-btn"
+                type="button"
+                disabled={!!downloadingFormat}
+                onClick={() => handleDownloadDataset('json')}
+                className="p-2.5 rounded-xl bg-white dark:bg-[#142820] hover:bg-[#0B5D3C]/10 dark:hover:bg-[#C9A227]/15 text-[#0B5D3C] dark:text-[#E5C76B] border border-[#0B5D3C]/20 dark:border-[#C9A227]/30 font-semibold text-xs flex flex-col items-center justify-center gap-1 transition-all shadow-xs disabled:opacity-50"
+              >
+                <div className="flex items-center gap-1.5">
+                  <FileJson className="w-4 h-4 text-[#0B5D3C] dark:text-[#C9A227]" />
+                  <span className="font-bold">JSON Data</span>
+                </div>
+                <span className="text-[10px] text-[#4A5D53] dark:text-[#96A89F]">مکمل .json فائل</span>
+              </button>
+
+              <button
+                id="settings-export-csv-btn"
+                type="button"
+                disabled={!!downloadingFormat}
+                onClick={() => handleDownloadDataset('csv')}
+                className="p-2.5 rounded-xl bg-white dark:bg-[#142820] hover:bg-[#0B5D3C]/10 dark:hover:bg-[#C9A227]/15 text-[#0B5D3C] dark:text-[#E5C76B] border border-[#0B5D3C]/20 dark:border-[#C9A227]/30 font-semibold text-xs flex flex-col items-center justify-center gap-1 transition-all shadow-xs disabled:opacity-50"
+              >
+                <div className="flex items-center gap-1.5">
+                  <FileSpreadsheet className="w-4 h-4 text-[#0B5D3C] dark:text-[#C9A227]" />
+                  <span className="font-bold">Excel / CSV</span>
+                </div>
+                <span className="text-[10px] text-[#4A5D53] dark:text-[#96A89F]">ایکسل شیٹ .csv</span>
+              </button>
+
+              <button
+                id="settings-export-md-btn"
+                type="button"
+                disabled={!!downloadingFormat}
+                onClick={() => handleDownloadDataset('md')}
+                className="p-2.5 rounded-xl bg-white dark:bg-[#142820] hover:bg-[#0B5D3C]/10 dark:hover:bg-[#C9A227]/15 text-[#0B5D3C] dark:text-[#E5C76B] border border-[#0B5D3C]/20 dark:border-[#C9A227]/30 font-semibold text-xs flex flex-col items-center justify-center gap-1 transition-all shadow-xs disabled:opacity-50"
+              >
+                <div className="flex items-center gap-1.5">
+                  <FileText className="w-4 h-4 text-[#0B5D3C] dark:text-[#C9A227]" />
+                  <span className="font-bold">Booklet Guide</span>
+                </div>
+                <span className="text-[10px] text-[#4A5D53] dark:text-[#96A89F]">مکمل نصاب گائیڈ .md</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Section 7: App Actions (Share, About & Suggestions) */}
           <div className="space-y-2 pt-1">
             <a
               id="settings-whatsapp-suggestion-btn"
