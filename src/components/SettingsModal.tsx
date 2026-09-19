@@ -222,12 +222,12 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, o
                   App Theme Palette
                 </span>
                 <p className="text-xs text-[#4A5D53] dark:text-[#96A89F] font-urdu" dir="rtl">
-                  شاهی زمرد • آبنوسی رات • مروارید موتی
+                  شاهی زمرد • آبنوسی رات • مروارید موتی • صبحِ روشن
                 </p>
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-2 sm:gap-2.5 pt-1">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 pt-1">
               {[
                 {
                   id: 'emerald',
@@ -252,6 +252,14 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, o
                   headerBg: '#1C3D2F',
                   cardBg: '#FFFFFF',
                   appBg: '#FAF8F5'
+                },
+                {
+                  id: 'daylight',
+                  name: 'Bright Daylight',
+                  nameUrdu: 'صبحِ روشن',
+                  headerBg: '#FFFFFF',
+                  cardBg: '#FFFFFF',
+                  appBg: '#F8FAFC'
                 }
               ].map((theme) => {
                 const isActive = (settings.appTheme || (settings.darkMode ? 'midnight' : 'emerald')) === theme.id;

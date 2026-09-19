@@ -1,7 +1,7 @@
 import { Verse, Hadith, Dua, HijriDateInfo, QuizQuestion } from '../types';
 import { getQuizForDay } from '../data/quizData';
 
-export type CardTheme = 'emerald' | 'midnight' | 'pearl';
+export type CardTheme = 'emerald' | 'midnight' | 'pearl' | 'daylight';
 export type CardFormat = 'portrait' | 'story' | 'square';
 
 export interface SummaryCardData {
@@ -170,11 +170,13 @@ function drawLogoMotif(
   ctx.translate(cx, cy);
 
   const isMidnight = theme === 'midnight';
-  const badgeBg = isMidnight ? '#061D14' : '#0B5D3C';
-  const moonColor = isMidnight ? '#E5C76B' : '#F5E3A9';
+  const isDaylight = theme === 'daylight';
+  const badgeBg = isMidnight ? '#061D14' : isDaylight ? '#FFFFFF' : '#0B5D3C';
+  const badgeBorder = isDaylight ? '#064E3B' : '#C9A227';
+  const moonColor = isMidnight ? '#E5C76B' : isDaylight ? '#B45309' : '#F5E3A9';
 
   // Background Badge
-  drawRoundedRect(ctx, -size / 2, -size / 2, size, size, size * 0.28, badgeBg, '#C9A227', 2);
+  drawRoundedRect(ctx, -size / 2, -size / 2, size, size, size * 0.28, badgeBg, badgeBorder, 2);
 
   // Crescent Moon
   ctx.fillStyle = moonColor;
@@ -263,23 +265,48 @@ function getThemeColors(theme: CardTheme): ThemeColors {
       canvasBg: () => '#F5F1E8',
       outerBorder: '#0B5D3C',
       headerBg: '#EBE3D3',
-      headerText: '#0B5D3C',
-      headerDateText: '#4A5D53',
+      headerText: '#084D31',
+      headerDateText: '#2D3E35',
       cardBg: '#FFFFFF',
       cardBorder: 'rgba(11, 93, 60, 0.25)',
-      goldHeading: '#8F7212',
-      arabicText: '#0B5D3C',
-      urduText: '#1D2B24',
+      goldHeading: '#7A5B0B',
+      arabicText: '#084D31',
+      urduText: '#111E18',
       subBoxBg: '#FAF7F0',
       subBoxBorder: 'rgba(11, 93, 60, 0.2)',
-      subBoxUrduText: '#2B3C34',
+      subBoxUrduText: '#112019',
       pillBg: '#0B5D3C',
       pillText: '#FFFFFF',
       quizBoxBg: '#FFFFFF',
       quizBoxBorder: 'rgba(11, 93, 60, 0.3)',
       quizAnswerBg: 'rgba(11, 93, 60, 0.08)',
-      quizAnswerText: '#0B5D3C',
+      quizAnswerText: '#084D31',
       watermarkAlpha: 0.04
+    };
+  } else if (theme === 'daylight') {
+    // Daylight: Crisp Bright White & Slate Light aesthetic with deep dark font
+    return {
+      name: 'daylight',
+      canvasBg: () => '#F8FAFC',
+      outerBorder: '#064E3B',
+      headerBg: '#FFFFFF',
+      headerText: '#0A0F0D',
+      headerDateText: '#475569',
+      cardBg: '#FFFFFF',
+      cardBorder: 'rgba(15, 23, 42, 0.18)',
+      goldHeading: '#B45309',
+      arabicText: '#0A0F0D',
+      urduText: '#0A0F0D',
+      subBoxBg: '#F1F5F9',
+      subBoxBorder: 'rgba(15, 23, 42, 0.12)',
+      subBoxUrduText: '#0A0F0D',
+      pillBg: '#064E3B',
+      pillText: '#FFFFFF',
+      quizBoxBg: '#FFFFFF',
+      quizBoxBorder: 'rgba(15, 23, 42, 0.18)',
+      quizAnswerBg: 'rgba(6, 78, 59, 0.08)',
+      quizAnswerText: '#064E3B',
+      watermarkAlpha: 0.03
     };
   } else {
     // Emerald (Default): Royal Deep Emerald gradient with Cream Parchment inner cards
@@ -299,18 +326,18 @@ function getThemeColors(theme: CardTheme): ThemeColors {
       headerDateText: 'rgba(255, 255, 255, 0.85)',
       cardBg: '#FAF7F0',
       cardBorder: '#C9A227',
-      goldHeading: '#8F7212',
-      arabicText: '#0B5D3C',
-      urduText: '#1A2C23',
+      goldHeading: '#7A5B0B',
+      arabicText: '#084D31',
+      urduText: '#111E18',
       subBoxBg: '#F3ECE0',
       subBoxBorder: 'rgba(201, 162, 39, 0.4)',
-      subBoxUrduText: '#1D2D25',
+      subBoxUrduText: '#112019',
       pillBg: '#0B5D3C',
       pillText: '#F5F1E8',
       quizBoxBg: '#FAF7F0',
       quizBoxBorder: '#C9A227',
       quizAnswerBg: 'rgba(11, 93, 60, 0.1)',
-      quizAnswerText: '#0B5D3C',
+      quizAnswerText: '#084D31',
       watermarkAlpha: 0.08
     };
   }

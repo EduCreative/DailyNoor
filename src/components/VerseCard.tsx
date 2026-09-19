@@ -227,7 +227,7 @@ ${verse.explanation}
           <div className="h-px w-24 bg-[#C9A227]/40 mx-auto"></div>
 
           <p 
-            className={`font-urdu text-slate-600 dark:text-slate-200 leading-relaxed ${urduFontClass}`}
+            className={`font-urdu text-[#12221A] dark:text-[#E8EFEA] font-medium leading-relaxed ${urduFontClass}`}
           >
             {verse.urdu_translation}
           </p>
@@ -236,14 +236,14 @@ ${verse.explanation}
         {/* Tafseer / Explanation Section */}
         <div className="mt-6 p-4 sm:p-5 bg-[#F5F1E8]/70 dark:bg-[#0C1813]/60 rounded-2xl border border-dashed border-[#0B5D3C]/20 dark:border-white/10">
           <div className="flex items-center justify-between mb-1.5">
-            <p className="text-xs uppercase tracking-wider text-[#0B5D3C] dark:text-[#C9A227] font-bold">
+            <p className="text-xs uppercase tracking-wider text-[#084D31] dark:text-[#E5C76B] font-bold">
               Tafseer / Explanation
             </p>
-            <span className="text-[11px] font-urdu text-[#0B5D3C]/70 dark:text-[#E5C76B]/70" dir="rtl">
+            <span className="text-[11px] font-urdu text-[#084D31] dark:text-[#E5C76B] font-bold" dir="rtl">
               وضاحت و نصیحت
             </span>
           </div>
-          <p className="font-urdu text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed text-right" dir="rtl">
+          <p className="font-urdu text-sm sm:text-base text-[#1A2E24] dark:text-[#E2ECE6] font-medium leading-relaxed text-right" dir="rtl">
             {verse.explanation}
           </p>
         </div>
@@ -251,14 +251,14 @@ ${verse.explanation}
         {/* Family Discussion Tip (When Family Mode is ON) */}
         {settings.familyMode && verse.family_tip && (
           <div className="mt-4 p-4 sm:p-5 bg-emerald-50/70 dark:bg-emerald-950/25 rounded-2xl border border-emerald-200/80 dark:border-emerald-800/40">
-            <div className="flex items-center justify-between text-xs font-bold text-[#0B5D3C] dark:text-[#E5C76B] mb-1.5">
+            <div className="flex items-center justify-between text-xs font-bold text-[#084D31] dark:text-[#E5C76B] mb-1.5">
               <div className="flex items-center gap-1.5">
-                <Users className="w-3.5 h-3.5 text-[#0B5D3C] dark:text-[#E5C76B]" />
+                <Users className="w-3.5 h-3.5 text-[#084D31] dark:text-[#E5C76B]" />
                 <span className="uppercase tracking-wider">Family Discussion Tip</span>
               </div>
               <span className="font-urdu" dir="rtl">خاندانی مکالمہ</span>
             </div>
-            <p className="font-urdu text-sm sm:text-base text-slate-700 dark:text-slate-200 leading-relaxed text-right" dir="rtl">
+            <p className="font-urdu text-sm sm:text-base text-[#15251D] dark:text-[#E8EFEA] font-medium leading-relaxed text-right" dir="rtl">
               {verse.family_tip}
             </p>
           </div>
@@ -291,7 +291,7 @@ ${verse.explanation}
                 onChange={handleSeek}
                 className="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full appearance-none cursor-pointer accent-[#C9A227]"
               />
-              <div className="flex justify-between text-[10px] text-slate-400 font-mono mt-1">
+              <div className="flex justify-between text-[10px] text-[#33463C] dark:text-slate-400 font-mono font-medium mt-1">
                 <span>{formatTime(currentTime)}</span>
                 <span>{formatTime(duration)}</span>
               </div>

@@ -220,14 +220,14 @@ export const PrayerTimesCard: React.FC = () => {
               <button
                 id="prayer-change-location-btn"
                 onClick={() => setIsLocationSelectorOpen(!isLocationSelectorOpen)}
-                className="flex items-center gap-1 text-[11px] text-[#4A5D53] dark:text-[#96A89F] hover:text-[#0B5D3C] dark:hover:text-[#E5C76B] font-medium transition-colors mt-0.5 group"
+                className="flex items-center gap-1 text-[11px] text-[#2D3E35] dark:text-[#C5D5CC] hover:text-[#0B5D3C] dark:hover:text-[#E5C76B] font-medium transition-colors mt-0.5 group"
                 title="Change location"
               >
                 <MapPin className="w-3 h-3 text-[#C9A227] group-hover:scale-110 transition-transform" />
-                <span className="truncate max-w-[170px] sm:max-w-xs font-semibold text-[#1D2B24] dark:text-[#E8EFEA]">
+                <span className="truncate max-w-[170px] sm:max-w-xs font-semibold text-[#111E18] dark:text-[#E8EFEA]">
                   {prayerData?.locationName || 'Loading location...'}
                 </span>
-                <span className="text-[10px] text-[#0B5D3C] dark:text-[#C9A227] underline ml-0.5 font-normal">
+                <span className="text-[10px] text-[#084D31] dark:text-[#E5C76B] underline ml-0.5 font-bold">
                   (Change)
                 </span>
               </button>
@@ -256,7 +256,7 @@ export const PrayerTimesCard: React.FC = () => {
             <button
               id="prayer-time-format-toggle"
               onClick={() => setUse24h(!use24h)}
-              className="px-2 py-1 rounded-lg text-[10px] font-bold bg-[#0B5D3C]/5 dark:bg-white/5 hover:bg-[#0B5D3C]/10 dark:hover:bg-white/10 text-[#4A5D53] dark:text-[#96A89F] transition-colors border border-black/5 dark:border-white/5"
+              className="px-2 py-1 rounded-lg text-[10px] font-bold bg-[#0B5D3C]/5 dark:bg-white/5 hover:bg-[#0B5D3C]/10 dark:hover:bg-white/10 text-[#2D3E35] dark:text-[#C5D5CC] transition-colors border border-black/5 dark:border-white/5"
               title="Toggle 12-Hour / 24-Hour format"
             >
               {use24h ? '24H' : '12H'}
@@ -266,7 +266,7 @@ export const PrayerTimesCard: React.FC = () => {
             <button
               id="prayer-card-collapse-btn"
               onClick={() => setIsExpanded(!isExpanded)}
-              className="p-1 rounded-lg text-[#4A5D53] dark:text-[#96A89F] hover:bg-[#0B5D3C]/5 dark:hover:bg-white/5 transition-colors"
+              className="p-1 rounded-lg text-[#2D3E35] dark:text-[#C5D5CC] hover:bg-[#0B5D3C]/5 dark:hover:bg-white/5 transition-colors"
               title={isExpanded ? "Collapse timings" : "Expand timings"}
             >
               {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
@@ -389,19 +389,19 @@ export const PrayerTimesCard: React.FC = () => {
                         </span>
                       )}
 
-                      <div className="flex items-center gap-1 text-[11px] font-bold text-[#1D2B24] dark:text-[#E8EFEA]">
+                      <div className="flex items-center gap-1 text-[11px] font-bold text-[#111E18] dark:text-[#E8EFEA]">
                         {getPrayerIcon(key)}
                         <span>{en}</span>
                       </div>
 
-                      <span className="font-urdu text-[11px] text-[#4A5D53] dark:text-[#96A89F] leading-tight my-0.5">
+                      <span className="font-urdu text-[11px] text-[#2D3E35] dark:text-[#C5D5CC] font-bold leading-tight my-0.5">
                         {ur}
                       </span>
 
                       <span className={`font-mono text-xs sm:text-sm font-bold tracking-tight mt-0.5 ${
                         isNext 
-                          ? 'text-[#0B5D3C] dark:text-[#E5C76B]' 
-                          : 'text-[#1D2B24] dark:text-[#E8EFEA]'
+                          ? 'text-[#084D31] dark:text-[#E5C76B]' 
+                          : 'text-[#111E18] dark:text-[#E8EFEA]'
                       }`}>
                         {displayTime}
                       </span>

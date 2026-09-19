@@ -24,32 +24,32 @@
   --app-bg: #F5F1E8;
   --app-card: rgba(255, 255, 255, var(--app-card-opacity, 1));
   --app-card-solid: #FFFFFF;
-  --app-card-border: rgba(11, 93, 60, 0.15);
-  --app-text: #1D2B24;
-  --app-subtext: #4A5D53;
-  --app-primary: #0B5D3C;
-  --app-primary-dark: #073D27;
-  --app-primary-light: #127950;
-  --app-gold: #C9A227;
+  --app-card-border: rgba(11, 93, 60, 0.18);
+  --app-text: #111E18;
+  --app-subtext: #2D3E35;
+  --app-primary: #084D31;
+  --app-primary-dark: #053320;
+  --app-primary-light: #0E6843;
+  --app-gold: #966E0A;
   --app-header-bg: #0B5D3C;
-  --app-header-text: #F5F1E8;
-  --app-box-bg: rgba(245, 241, 232, 0.75);
+  --app-header-text: #FFFFFF;
+  --app-box-bg: rgba(245, 241, 232, 0.85);
 }
 
 .theme-pearl {
   --app-bg: #FAF8F5;
   --app-card: rgba(255, 255, 255, var(--app-card-opacity, 1));
   --app-card-solid: #FFFFFF;
-  --app-card-border: rgba(28, 61, 47, 0.15);
-  --app-text: #1F3027;
-  --app-subtext: #485E53;
-  --app-primary: #1C3D2F;
-  --app-primary-dark: #122B20;
-  --app-primary-light: #2A5442;
-  --app-gold: #B88E1B;
-  --app-header-bg: #1C3D2F;
-  --app-header-text: #FAF8F5;
-  --app-box-bg: rgba(245, 241, 235, 0.85);
+  --app-card-border: rgba(28, 61, 47, 0.18);
+  --app-text: #112019;
+  --app-subtext: #2B3E35;
+  --app-primary: #143327;
+  --app-primary-dark: #0D2018;
+  --app-primary-light: #1F4535;
+  --app-gold: #8C650A;
+  --app-header-bg: #143327;
+  --app-header-text: #FFFFFF;
+  --app-box-bg: rgba(245, 241, 235, 0.90);
 }
 
 .dark, .theme-midnight {
@@ -68,10 +68,176 @@
   --app-box-bg: rgba(12, 24, 19, 0.6);
 }
 
+.theme-daylight {
+  --app-bg: #F8FAFC;
+  --app-card: rgba(255, 255, 255, var(--app-card-opacity, 1));
+  --app-card-solid: #FFFFFF;
+  --app-card-border: rgba(15, 23, 42, 0.12);
+  --app-text: #0A0F0D;
+  --app-subtext: #374151;
+  --app-primary: #064E3B;
+  --app-primary-dark: #022C22;
+  --app-primary-light: #059669;
+  --app-gold: #B45309;
+  --app-header-bg: #FFFFFF;
+  --app-header-text: #0A0F0D;
+  --app-box-bg: rgba(241, 245, 249, 0.95);
+}
+
 .app-card-surface {
   background-color: var(--app-card) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+}
+
+/* =========================================================================
+   Theme Support for Boxes, Inner Cards, and Text Contrast
+   ========================================================================= */
+
+/* Daylight Theme (High contrast on bright crisp canvas) */
+.theme-daylight .font-arabic {
+  color: #0A0F0D !important;
+}
+
+.theme-daylight .font-urdu {
+  color: #0A0F0D !important;
+}
+
+.theme-daylight .app-card-surface {
+  background-color: #FFFFFF !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* Map Emerald-specific background boxes to Daylight palette */
+.theme-daylight [class*="bg-[#F5F1E8]"],
+.theme-daylight [class*="bg-[#FAF7F2]"] {
+  background-color: #F1F5F9 !important;
+}
+
+/* Map modal dark backgrounds to crisp white in Daylight */
+.theme-daylight [class*="bg-[#0C1813]"] {
+  background-color: #FFFFFF !important;
+}
+
+.theme-daylight [class*="bg-[#142820]"] {
+  background-color: #F8FAFC !important;
+}
+
+.theme-daylight [class*="bg-[#10221A]"] {
+  background-color: #F1F5F9 !important;
+}
+
+/* Ensure text on inner boxes and cards is clearly visible and readable in Daylight */
+.theme-daylight [class*="text-[#E8EFEA]"],
+.theme-daylight [class*="text-[#E2ECE6]"],
+.theme-daylight [class*="text-[#CFDDD5]"],
+.theme-daylight [class*="text-[#D1DDD6]"] {
+  color: #0A0F0D !important;
+}
+
+.theme-daylight [class*="text-[#96A89F]"],
+.theme-daylight [class*="text-[#A1B2A8]"],
+.theme-daylight [class*="text-[#C5D5CC]"] {
+  color: #4B5563 !important;
+}
+
+.theme-daylight [class*="text-[#E5C76B]"] {
+  color: #92400E !important;
+}
+
+.theme-daylight [class*="text-[#F5F1E8]"] {
+  color: #0A0F0D !important;
+}
+
+/* Adjust borders in Daylight */
+.theme-daylight [class*="border-white/10"],
+.theme-daylight [class*="border-white/5"] {
+  border-color: rgba(15, 23, 42, 0.10) !important;
+}
+
+.theme-daylight [class*="border-[#C9A227]/30"],
+.theme-daylight [class*="border-[#C9A227]/40"] {
+  border-color: rgba(180, 83, 9, 0.35) !important;
+}
+
+/* Pearl Theme (Warm elegant alabaster canvas) */
+.theme-pearl .app-card-surface {
+  background-color: #FFFFFF !important;
+  border-color: rgba(28, 61, 47, 0.16) !important;
+}
+
+.theme-pearl [class*="bg-[#F5F1E8]"] {
+  background-color: #F5F1EA !important;
+}
+
+.theme-pearl [class*="bg-[#FAF7F2]"] {
+  background-color: #F5F1EA !important;
+}
+
+.theme-pearl [class*="bg-[#0C1813]"] {
+  background-color: #FFFFFF !important;
+}
+
+.theme-pearl [class*="bg-[#142820]"] {
+  background-color: #FAF8F5 !important;
+}
+
+.theme-pearl [class*="bg-[#10221A]"] {
+  background-color: #F3EFE7 !important;
+}
+
+.theme-pearl [class*="text-[#E8EFEA]"],
+.theme-pearl [class*="text-[#E2ECE6]"],
+.theme-pearl [class*="text-[#CFDDD5]"],
+.theme-pearl [class*="text-[#D1DDD6]"] {
+  color: #112019 !important;
+}
+
+.theme-pearl [class*="text-[#96A89F]"],
+.theme-pearl [class*="text-[#A1B2A8]"],
+.theme-pearl [class*="text-[#C5D5CC]"] {
+  color: #374A40 !important;
+}
+
+.theme-pearl [class*="text-[#E5C76B]"] {
+  color: #8C650A !important;
+}
+
+.theme-pearl [class*="text-[#F5F1E8]"] {
+  color: #112019 !important;
+}
+
+.theme-pearl [class*="border-white/10"],
+.theme-pearl [class*="border-white/5"] {
+  border-color: rgba(28, 61, 47, 0.12) !important;
+}
+
+/* Midnight Theme (Deep obsidian canvas) */
+.theme-midnight .app-card-surface,
+.dark .app-card-surface {
+  background-color: var(--app-card) !important;
+  border-color: rgba(201, 162, 39, 0.25) !important;
+}
+
+.theme-midnight [class*="bg-[#F5F1E8]"],
+.dark [class*="bg-[#F5F1E8]"] {
+  background-color: #0C1813 !important;
+}
+
+.theme-midnight [class*="bg-[#FAF7F2]"],
+.dark [class*="bg-[#FAF7F2]"] {
+  background-color: #0C1813 !important;
+}
+
+/* Emerald Theme (Classic Royal Emerald) */
+.theme-emerald .app-card-surface {
+  background-color: #FFFFFF !important;
+  border-color: rgba(11, 93, 60, 0.15) !important;
+}
+
+.theme-emerald [class*="bg-[#F5F1E8]"] {
+  background-color: #F5F1E8 !important;
 }
 
 /* Arabic and Urdu Typography Classes */

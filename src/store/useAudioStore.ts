@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from './createStore';
 
 export type AudioTrackType = 'verse_arabic' | 'verse_urdu' | 'hadith_urdu' | 'dua_urdu' | 'dhikr_urdu';
 

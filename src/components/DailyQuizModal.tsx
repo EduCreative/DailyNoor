@@ -35,8 +35,11 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
   hadith,
   dateStr
 }) => {
-  const { saveQuizResult, getProgressForDate } = useDailyStore();
+  const { saveQuizResult, getProgressForDate, settings } = useDailyStore();
   const progress = getProgressForDate(dateStr);
+  const isDaylight = settings.appTheme === 'daylight';
+  const isPearl = settings.appTheme === 'pearl';
+  const isLight = isDaylight || isPearl;
 
   const [fontSizeMode, setFontSizeMode] = useState<'compact' | 'standard' | 'large'>('standard');
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
@@ -139,18 +142,30 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-60 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
-      <div className="bg-[#0C1813] text-[#E8EFEA] rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl border border-[#C9A227]/40 relative my-6">
+      <div className={`rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl border relative my-6 transition-colors ${
+        isDaylight
+          ? 'bg-white text-[#0A0F0D] border-slate-200'
+          : isPearl
+          ? 'bg-[#FAF8F5] text-[#112019] border-[#1C3D2F]/20'
+          : 'bg-[#0C1813] text-[#E8EFEA] border-[#C9A227]/40'
+      }`}>
         
         {/* Header */}
-        <div className="flex items-center justify-between pb-3.5 border-b border-[#C9A227]/20 shrink-0">
+        <div className={`flex items-center justify-between pb-3.5 border-b shrink-0 ${
+          isLight ? 'border-slate-200' : 'border-[#C9A227]/20'
+        }`}>
           <div className="flex items-center gap-2.5">
             <IslamicLogo size={36} variant="shield" />
             <div>
-              <h3 className="text-base font-bold text-[#E8EFEA] flex items-center gap-1.5">
+              <h3 className={`text-base font-bold flex items-center gap-1.5 ${
+                isLight ? 'text-[#0B5D3C]' : 'text-[#E8EFEA]'
+              }`}>
                 <span>Daily Quiz</span>
-                <span className="text-xs font-urdu text-[#E5C76B]">روزانہ اسلامی کوئز</span>
+                <span className={`text-xs font-urdu ${isLight ? 'text-[#B45309]' : 'text-[#E5C76B]'}`}>روزانہ اسلامی کوئز</span>
               </h3>
-              <p className="text-[11px] text-[#96A89F] flex items-center gap-1.5">
+              <p className={`text-[11px] flex items-center gap-1.5 ${
+                isLight ? 'text-slate-500' : 'text-[#96A89F]'
+              }`}>
                 <span className="font-urdu" dir="rtl">{hijri.formatted}</span>
                 <span>•</span>
                 <span>{dateFormatted.english}</span>
@@ -161,7 +176,11 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
           <div className="flex items-center gap-1.5">
             {/* Text Size Switcher */}
             {!isFinished && (
-              <div className="flex items-center bg-[#142820] p-0.5 rounded-xl border border-[#C9A227]/30 text-[10px] font-semibold">
+              <div className={`flex items-center p-0.5 rounded-xl border text-[10px] font-semibold ${
+                isLight
+                  ? 'bg-slate-100 border-slate-200 text-slate-700'
+                  : 'bg-[#142820] border-[#C9A227]/30 text-[#96A89F]'
+              }`}>
                 <button
                   type="button"
                   title="Compact Text (چھوٹا متن)"
@@ -172,7 +191,7 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
                   className={`px-2 py-1 rounded-lg transition-all ${
                     fontSizeMode === 'compact'
                       ? 'bg-[#C9A227] text-[#0C1813] font-bold shadow-xs'
-                      : 'text-[#96A89F] hover:text-white'
+                      : isLight ? 'text-slate-600 hover:text-slate-900' : 'text-[#96A89F] hover:text-white'
                   }`}
                 >
                   A-
@@ -187,7 +206,7 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
                   className={`px-2 py-1 rounded-lg transition-all ${
                     fontSizeMode === 'standard'
                       ? 'bg-[#C9A227] text-[#0C1813] font-bold shadow-xs'
-                      : 'text-[#96A89F] hover:text-white'
+                      : isLight ? 'text-slate-600 hover:text-slate-900' : 'text-[#96A89F] hover:text-white'
                   }`}
                 >
                   A
@@ -202,7 +221,7 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
                   className={`px-2 py-1 rounded-lg transition-all ${
                     fontSizeMode === 'large'
                       ? 'bg-[#C9A227] text-[#0C1813] font-bold shadow-xs'
-                      : 'text-[#96A89F] hover:text-white'
+                      : isLight ? 'text-slate-600 hover:text-slate-900' : 'text-[#96A89F] hover:text-white'
                   }`}
                 >
                   A+
@@ -215,7 +234,9 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
                 triggerHaptic('light');
                 onClose();
               }}
-              className="p-2 rounded-xl text-[#96A89F] hover:bg-white/10 transition-colors"
+              className={`p-2 rounded-xl transition-colors ${
+                isLight ? 'text-slate-500 hover:bg-slate-100' : 'text-[#96A89F] hover:bg-white/10'
+              }`}
             >
               <X className="w-5 h-5" />
             </button>
@@ -228,18 +249,26 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
             
             {/* Step Progress Pills */}
             <div className="flex items-center justify-between gap-2 flex-wrap">
-              <span className="text-xs font-bold text-[#E5C76B] flex items-center gap-1 shrink-0">
+              <span className={`text-xs font-bold flex items-center gap-1 shrink-0 ${
+                isLight ? 'text-[#0B5D3C]' : 'text-[#E5C76B]'
+              }`}>
                 <HelpCircle className="w-3.5 h-3.5" />
                 <span>Question {currentIndex + 1} of {questions.length}</span>
               </span>
 
-              <span className="text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full bg-[#0B5D3C] text-[#FDF3CD] border border-[#C9A227]/40 font-semibold text-right max-w-full break-words">
+              <span className={`text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full border font-semibold text-right max-w-full break-words ${
+                isLight
+                  ? 'bg-[#0B5D3C]/10 text-[#0B5D3C] border-[#0B5D3C]/20'
+                  : 'bg-[#0B5D3C] text-[#FDF3CD] border-[#C9A227]/40'
+              }`}>
                 {currentQ.reference}
               </span>
             </div>
 
             {/* Progress Bar */}
-            <div className="w-full bg-[#142820] h-1.5 rounded-full overflow-hidden border border-white/5">
+            <div className={`w-full h-1.5 rounded-full overflow-hidden border ${
+              isLight ? 'bg-slate-200 border-slate-300/40' : 'bg-[#142820] border-white/5'
+            }`}>
               <div 
                 className="bg-gradient-to-r from-[#0B5D3C] to-[#C9A227] h-full transition-all duration-300"
                 style={{ width: `${((currentIndex + (isAnswered ? 1 : 0)) / questions.length) * 100}%` }}
@@ -247,8 +276,12 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
             </div>
 
             {/* Question Card Box */}
-            <div className="p-3.5 sm:p-4 rounded-2xl bg-[#142820] border border-[#C9A227]/30 shadow-md text-right" dir="rtl">
-              <p className={`font-urdu font-bold text-[#F5F1E8] leading-relaxed break-words whitespace-normal ${
+            <div className={`p-3.5 sm:p-4 rounded-2xl border shadow-md text-right ${
+              isLight ? 'bg-slate-50 border-slate-200' : 'bg-[#142820] border-[#C9A227]/30'
+            }`} dir="rtl">
+              <p className={`font-urdu font-bold leading-relaxed break-words whitespace-normal ${
+                isLight ? 'text-[#0A0F0D]' : 'text-[#F5F1E8]'
+              } ${
                 fontSizeMode === 'compact' 
                   ? 'text-sm sm:text-base' 
                   : fontSizeMode === 'large' 
@@ -257,7 +290,9 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
               }`}>
                 {currentQ.questionUrdu}
               </p>
-              <p className={`font-sans text-[#96A89F] mt-1.5 text-left break-words whitespace-normal leading-relaxed ${
+              <p className={`font-sans mt-1.5 text-left break-words whitespace-normal leading-relaxed ${
+                isLight ? 'text-slate-600' : 'text-[#96A89F]'
+              } ${
                 fontSizeMode === 'compact' 
                   ? 'text-[11px]' 
                   : fontSizeMode === 'large' 
@@ -275,15 +310,23 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
                 const isThisCorrect = idx === currentQ.correctIndex;
                 const isLongOption = option.length > 45;
 
-                let btnStyle = 'bg-[#10221A] text-[#E8EFEA] border-[#0B5D3C]/40 hover:border-[#C9A227]/60 hover:bg-[#142C22]';
+                let btnStyle = isLight
+                  ? 'bg-white text-slate-800 border-slate-200 hover:border-[#0B5D3C] hover:bg-slate-50 shadow-xs'
+                  : 'bg-[#10221A] text-[#E8EFEA] border-[#0B5D3C]/40 hover:border-[#C9A227]/60 hover:bg-[#142C22]';
 
                 if (isAnswered) {
                   if (isThisCorrect) {
-                    btnStyle = 'bg-emerald-950/90 text-emerald-200 border-emerald-500 shadow-md shadow-emerald-900/30';
+                    btnStyle = isLight
+                      ? 'bg-emerald-50 text-emerald-900 border-emerald-500 shadow-md'
+                      : 'bg-emerald-950/90 text-emerald-200 border-emerald-500 shadow-md shadow-emerald-900/30';
                   } else if (isThisSelected && !isThisCorrect) {
-                    btnStyle = 'bg-rose-950/90 text-rose-200 border-rose-500';
+                    btnStyle = isLight
+                      ? 'bg-rose-50 text-rose-900 border-rose-500'
+                      : 'bg-rose-950/90 text-rose-200 border-rose-500';
                   } else {
-                    btnStyle = 'bg-[#10221A]/50 text-[#96A89F]/50 border-white/5';
+                    btnStyle = isLight
+                      ? 'bg-slate-100/60 text-slate-400 border-slate-200'
+                      : 'bg-[#10221A]/50 text-[#96A89F]/50 border-white/5';
                   }
                 }
 
@@ -311,6 +354,8 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
                           ? 'bg-emerald-600 text-white' 
                           : isAnswered && isThisSelected 
                           ? 'bg-rose-600 text-white' 
+                          : isLight
+                          ? 'bg-slate-200 text-slate-700'
                           : 'bg-[#183428] text-[#E5C76B]'
                       }`}>
                         {idx + 1}
@@ -323,9 +368,9 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
                     {isAnswered && (
                       <div className="shrink-0 mt-0.5">
                         {isThisCorrect ? (
-                          <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" />
+                          <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500" />
                         ) : isThisSelected ? (
-                          <XCircle className="w-4 h-4 sm:w-5 sm:h-5 text-rose-400" />
+                          <XCircle className="w-4 h-4 sm:w-5 sm:h-5 text-rose-500" />
                         ) : null}
                       </div>
                     )}
@@ -336,21 +381,27 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
 
             {/* Explanation Box (Reveals upon answering) */}
             {showExplanation && (
-              <div className="p-3 sm:p-3.5 rounded-xl bg-black/40 border border-[#C9A227]/30 text-right animate-in fade-in duration-200" dir="rtl">
+              <div className={`p-3 sm:p-3.5 rounded-xl border text-right animate-in fade-in duration-200 ${
+                isLight
+                  ? 'bg-amber-50 border-amber-200 text-slate-800'
+                  : 'bg-black/40 border-[#C9A227]/30'
+              }`} dir="rtl">
                 <div className="flex items-center gap-1.5 text-xs font-bold mb-1">
                   {isCorrect ? (
-                    <span className="text-emerald-400 flex items-center gap-1">
+                    <span className="text-emerald-500 flex items-center gap-1">
                       <CheckCircle2 className="w-4 h-4 shrink-0" />
                       <span>صحیح جواب! ما شاء اللہ</span>
                     </span>
                   ) : (
-                    <span className="text-rose-400 flex items-center gap-1">
+                    <span className="text-rose-500 flex items-center gap-1">
                       <XCircle className="w-4 h-4 shrink-0" />
                       <span>درست جواب جان لیجیے:</span>
                     </span>
                   )}
                 </div>
-                <p className={`font-urdu text-[#E2EBE5] leading-relaxed break-words whitespace-normal ${
+                <p className={`font-urdu leading-relaxed break-words whitespace-normal ${
+                  isLight ? 'text-slate-800' : 'text-[#E2EBE5]'
+                } ${
                   fontSizeMode === 'compact' ? 'text-xs' : 'text-xs sm:text-sm'
                 }`}>
                   {currentQ.explanationUrdu}
@@ -378,31 +429,39 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
             
             {/* Trophy / Score Avatar */}
             <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-b from-[#C9A227] to-[#0B5D3C] p-1 shadow-2xl flex items-center justify-center">
-              <div className="w-full h-full rounded-full bg-[#0C1813] flex flex-col items-center justify-center">
-                <Award className="w-8 h-8 text-[#E5C76B]" />
+              <div className={`w-full h-full rounded-full flex flex-col items-center justify-center ${
+                isLight ? 'bg-white' : 'bg-[#0C1813]'
+              }`}>
+                <Award className={`w-8 h-8 ${isLight ? 'text-[#B45309]' : 'text-[#E5C76B]'}`} />
               </div>
             </div>
 
             {/* Score & Praise */}
             <div>
-              <span className="text-3xl font-black text-[#E5C76B]">
+              <span className={`text-3xl font-black ${isLight ? 'text-[#B45309]' : 'text-[#E5C76B]'}`}>
                 {calculateScore()} / {questions.length}
               </span>
-              <p className="font-urdu text-lg font-bold text-[#F5F1E8] mt-1">
+              <p className={`font-urdu text-lg font-bold mt-1 ${isLight ? 'text-[#0A0F0D]' : 'text-[#F5F1E8]'}`}>
                 {calculateScore() === questions.length 
                   ? 'سبحان اللہ! ما شاء اللہ! شاندار کارکردگی' 
                   : calculateScore() >= 2 
                   ? 'ما شاء اللہ! بہت عمدہ کوشش' 
                   : 'بہترین کوشش! علم میں برکت ہو'}
               </p>
-              <p className="text-xs text-[#96A89F] mt-0.5">
+              <p className={`text-xs mt-0.5 ${isLight ? 'text-slate-600' : 'text-[#96A89F]'}`}>
                 You scored {Math.round((calculateScore() / questions.length) * 100)}% on today's spiritual reflection quiz.
               </p>
             </div>
 
             {/* Reflection Badge */}
-            <div className="p-3.5 rounded-2xl bg-[#142820] border border-[#C9A227]/30 text-xs text-[#CFDDD5] space-y-1">
-              <p className="font-semibold text-[#E5C76B] flex items-center justify-center gap-1">
+            <div className={`p-3.5 rounded-2xl border text-xs space-y-1 ${
+              isLight
+                ? 'bg-slate-50 border-slate-200 text-slate-700'
+                : 'bg-[#142820] border-[#C9A227]/30 text-[#CFDDD5]'
+            }`}>
+              <p className={`font-semibold flex items-center justify-center gap-1 ${
+                isLight ? 'text-[#0B5D3C]' : 'text-[#E5C76B]'
+              }`}>
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Daily Knowledge & Reflection Saved</span>
               </p>
@@ -432,15 +491,23 @@ export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
 
               <button
                 onClick={handleRestart}
-                className="px-4 py-2.5 rounded-xl bg-[#142820] hover:bg-[#1A342A] text-[#E8EFEA] border border-[#C9A227]/30 font-semibold text-xs transition-colors flex items-center gap-1.5"
+                className={`px-4 py-2.5 rounded-xl border font-semibold text-xs transition-colors flex items-center gap-1.5 ${
+                  isLight
+                    ? 'bg-white hover:bg-slate-100 text-slate-800 border-slate-300'
+                    : 'bg-[#142820] hover:bg-[#1A342A] text-[#E8EFEA] border-[#C9A227]/30'
+                }`}
               >
-                <RotateCcw className="w-4 h-4 text-[#E5C76B]" />
+                <RotateCcw className={`w-4 h-4 ${isLight ? 'text-[#B45309]' : 'text-[#E5C76B]'}`} />
                 <span>Retake</span>
               </button>
 
               <button
                 onClick={onClose}
-                className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs transition-colors"
+                className={`px-5 py-2.5 rounded-xl font-semibold text-xs transition-colors ${
+                  isLight
+                    ? 'bg-slate-200 hover:bg-slate-300 text-slate-800'
+                    : 'bg-white/10 hover:bg-white/20 text-white'
+                }`}
               >
                 Close
               </button>

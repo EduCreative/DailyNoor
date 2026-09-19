@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from './createStore';
 import { AppSettings, BookmarkItem, DayProgress } from '../types';
 import { calculateStreak, getTodayDateString } from '../utils/dateUtils';
 import confetti from 'canvas-confetti';
@@ -203,7 +203,7 @@ export const useDailyStore = create<DailyStoreState>((set, get) => {
       if (typeof document !== 'undefined') {
         const root = document.documentElement;
         root.setAttribute('data-theme', updated.appTheme);
-        root.classList.remove('theme-emerald', 'theme-midnight', 'theme-pearl');
+        root.classList.remove('theme-emerald', 'theme-midnight', 'theme-pearl', 'theme-daylight');
         root.classList.add(`theme-${updated.appTheme}`);
 
         const cardOpacityVal = (updated.cardOpacity ?? 100) / 100;

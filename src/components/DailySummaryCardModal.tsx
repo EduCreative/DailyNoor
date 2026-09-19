@@ -37,7 +37,7 @@ interface DailySummaryCardModalProps {
 }
 
 type AspectRatio = 'story' | 'portrait' | 'square';
-type ThemeStyle = 'emerald' | 'midnight' | 'pearl';
+type ThemeStyle = 'emerald' | 'midnight' | 'pearl' | 'daylight';
 
 export const DailySummaryCardModal: React.FC<DailySummaryCardModalProps> = ({
   isOpen,
@@ -230,38 +230,41 @@ export const DailySummaryCardModal: React.FC<DailySummaryCardModalProps> = ({
   const isEmerald = themeStyle === 'emerald';
   const isMidnight = themeStyle === 'midnight';
   const isPearl = themeStyle === 'pearl';
+  const isDaylight = themeStyle === 'daylight';
 
   const containerStyle: React.CSSProperties = {
     background: isMidnight 
       ? 'linear-gradient(180deg, #05140D 0%, #092319 50%, #030C08 100%)' 
       : isPearl 
       ? 'linear-gradient(180deg, #FAF7F2 0%, #F4ECE0 100%)' 
+      : isDaylight
+      ? '#F8FAFC'
       : 'linear-gradient(180deg, #06442B 0%, #0B5D3C 50%, #032316 100%)',
-    color: isPearl ? '#1D2B24' : isEmerald ? '#F5F1E8' : '#F0F5F2',
-    borderColor: isPearl ? 'rgba(11,93,60,0.3)' : '#C9A227',
+    color: isDaylight ? '#0A0F0D' : isPearl ? '#1D2B24' : isEmerald ? '#F5F1E8' : '#F0F5F2',
+    borderColor: isDaylight ? '#064E3B' : isPearl ? 'rgba(11,93,60,0.3)' : '#C9A227',
     borderWidth: '2px',
     borderStyle: 'solid'
   };
 
   const headerStyle: React.CSSProperties = {
-    backgroundColor: isMidnight ? 'rgba(5,19,13,0.9)' : isPearl ? 'rgba(11,93,60,0.08)' : 'rgba(3,27,18,0.75)',
-    borderBottom: isPearl ? '1px solid rgba(11,93,60,0.15)' : '1px solid rgba(201,162,39,0.3)'
+    backgroundColor: isMidnight ? 'rgba(5,19,13,0.9)' : isPearl ? 'rgba(11,93,60,0.08)' : isDaylight ? '#FFFFFF' : 'rgba(3,27,18,0.75)',
+    borderBottom: isDaylight ? '1px solid #E2E8F0' : isPearl ? '1px solid rgba(11,93,60,0.15)' : '1px solid rgba(201,162,39,0.3)'
   };
 
   const boxStyle: React.CSSProperties = {
-    backgroundColor: isMidnight ? 'rgba(8, 28, 20, 0.95)' : isPearl ? '#FFFFFF' : '#FAF7F0',
-    color: isMidnight ? '#F0F5F2' : '#1D2B24',
-    border: isMidnight ? '1.5px solid rgba(201,162,39,0.35)' : isPearl ? '1.5px solid rgba(11,93,60,0.2)' : '1.5px solid #C9A227',
-    boxShadow: '0 8px 24px rgba(0,0,0,0.18)'
+    backgroundColor: isMidnight ? 'rgba(8, 28, 20, 0.95)' : isDaylight ? '#FFFFFF' : isPearl ? '#FFFFFF' : '#FAF7F0',
+    color: isMidnight ? '#F0F5F2' : '#0A0F0D',
+    border: isMidnight ? '1.5px solid rgba(201,162,39,0.35)' : isDaylight ? '1.5px solid #CBD5E1' : isPearl ? '1.5px solid rgba(11,93,60,0.2)' : '1.5px solid #C9A227',
+    boxShadow: '0 8px 24px rgba(0,0,0,0.12)'
   };
 
   const arabicStyle: React.CSSProperties = {
-    color: isMidnight ? '#FFFFFF' : '#0B5D3C',
+    color: isMidnight ? '#FFFFFF' : isDaylight ? '#0A0F0D' : '#0B5D3C',
     fontFamily: '"Amiri", "Scheherazade New", "Noto Sans Arabic", serif'
   };
 
   const urduStyle: React.CSSProperties = {
-    color: isMidnight ? '#F0F5F2' : '#1A2C23',
+    color: isMidnight ? '#F0F5F2' : isDaylight ? '#0A0F0D' : '#1A2C23',
     fontFamily: '"Noto Nastaliq Urdu", "Noto Sans Arabic", "Amiri", serif'
   };
 
@@ -405,6 +408,19 @@ export const DailySummaryCardModal: React.FC<DailySummaryCardModalProps> = ({
                 }`}
               >
                 Pearl
+              </button>
+              <button
+                onClick={() => {
+                  triggerHaptic('light');
+                  setThemeStyle('daylight');
+                }}
+                className={`px-2 py-1 rounded-lg font-medium transition-colors text-[11px] sm:text-xs ${
+                  themeStyle === 'daylight'
+                    ? 'bg-white text-gray-900 font-bold shadow-xs border border-gray-300'
+                    : 'hover:bg-black/5 dark:hover:bg-white/5 text-[#4A5D53] dark:text-[#96A89F]'
+                }`}
+              >
+                Daylight
               </button>
             </div>
 

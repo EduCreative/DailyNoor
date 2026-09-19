@@ -181,28 +181,28 @@ ${hadith.lesson}
           <div className="h-px w-24 bg-[#C9A227]/40 mx-auto"></div>
 
           <p 
-            className={`font-urdu text-slate-600 dark:text-slate-200 leading-relaxed ${urduFontClass}`}
+            className={`font-urdu text-[#12221A] dark:text-[#E8EFEA] font-medium leading-relaxed ${urduFontClass}`}
           >
             {hadith.urdu_translation}
           </p>
         </div>
 
         {/* Character & Moral Lesson Block */}
-        <div className="mt-6 p-5 bg-[#C9A227]/10 dark:bg-[#C9A227]/15 rounded-2xl border border-[#C9A227]/20 dark:border-[#C9A227]/30">
+        <div className="mt-6 p-5 bg-[#C9A227]/10 dark:bg-[#C9A227]/15 rounded-2xl border border-[#C9A227]/25 dark:border-[#C9A227]/30">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
               <span className="text-[#C9A227] text-base">💡</span>
-              <p className="text-xs uppercase font-bold text-[#8F7212] dark:text-[#E5C76B] tracking-wider">
+              <p className="text-xs uppercase font-extrabold text-[#7A5B0B] dark:text-[#E5C76B] tracking-wider">
                 Character Lesson
               </p>
             </div>
             {hadith.category && (
-              <span className="text-xs font-urdu text-[#8F7212] dark:text-[#E5C76B]" dir="rtl">
+              <span className="text-xs font-urdu font-bold text-[#7A5B0B] dark:text-[#E5C76B]" dir="rtl">
                 موضوع: {hadith.category}
               </span>
             )}
           </div>
-          <p className="font-urdu text-sm sm:text-base text-slate-700 dark:text-slate-200 font-medium leading-relaxed italic text-right" dir="rtl">
+          <p className="font-urdu text-sm sm:text-base text-[#15251D] dark:text-[#E8EFEA] font-semibold leading-relaxed italic text-right" dir="rtl">
             {hadith.lesson}
           </p>
         </div>
@@ -210,14 +210,14 @@ ${hadith.lesson}
         {/* Family Discussion Tip (When Family Mode is ON) */}
         {settings.familyMode && hadith.family_tip && (
           <div className="mt-4 p-4 sm:p-5 bg-emerald-50/70 dark:bg-emerald-950/25 rounded-2xl border border-emerald-200/80 dark:border-emerald-800/40">
-            <div className="flex items-center justify-between text-xs font-bold text-[#0B5D3C] dark:text-[#E5C76B] mb-1.5">
+            <div className="flex items-center justify-between text-xs font-bold text-[#084D31] dark:text-[#E5C76B] mb-1.5">
               <div className="flex items-center gap-1.5">
-                <Users className="w-3.5 h-3.5 text-[#0B5D3C] dark:text-[#E5C76B]" />
+                <Users className="w-3.5 h-3.5 text-[#084D31] dark:text-[#E5C76B]" />
                 <span className="uppercase tracking-wider">Family Discussion Tip</span>
               </div>
               <span className="font-urdu" dir="rtl">خاندانی مکالمہ</span>
             </div>
-            <p className="font-urdu text-sm sm:text-base text-slate-700 dark:text-slate-200 leading-relaxed text-right" dir="rtl">
+            <p className="font-urdu text-sm sm:text-base text-[#15251D] dark:text-[#E8EFEA] font-medium leading-relaxed text-right" dir="rtl">
               {hadith.family_tip}
             </p>
           </div>

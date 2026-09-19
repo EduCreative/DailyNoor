@@ -91,7 +91,7 @@ export default function App() {
     const activeTheme = settings.appTheme || (settings.darkMode ? 'midnight' : 'emerald');
     const root = document.documentElement;
     root.setAttribute('data-theme', activeTheme);
-    root.classList.remove('theme-emerald', 'theme-midnight', 'theme-pearl');
+    root.classList.remove('theme-emerald', 'theme-midnight', 'theme-pearl', 'theme-daylight');
     root.classList.add(`theme-${activeTheme}`);
 
     const cardOpacityVal = (settings.cardOpacity ?? 100) / 100;
@@ -149,6 +149,7 @@ export default function App() {
   const getAppBgClass = () => {
     if (settings.appTheme === 'midnight') return 'bg-[#0C1813] text-[#E8EFEA]';
     if (settings.appTheme === 'pearl') return 'bg-[#FAF8F5] text-[#1A2621]';
+    if (settings.appTheme === 'daylight') return 'bg-[#F8FAFC] text-[#0A0F0D]';
     return 'bg-[#F5F1E8] text-[#1D2B24]';
   };
 
@@ -160,7 +161,7 @@ export default function App() {
     <div className={`relative min-h-screen w-full flex flex-col ${getAppBgClass()} transition-colors duration-200`}>
       
       {/* Semi-transparent Islamic Art Background Pattern */}
-      <IslamicBackgroundPattern opacity={settings.appTheme === 'midnight' ? 0.60 : 0.40} />
+      <IslamicBackgroundPattern opacity={settings.appTheme === 'midnight' ? 0.60 : settings.appTheme === 'daylight' ? 0.22 : 0.40} />
 
       {/* Sticky Header */}
       <Header

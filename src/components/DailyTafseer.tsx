@@ -229,7 +229,7 @@ ${verse.urdu_translation}
             className={`flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 whitespace-nowrap font-urdu ${
               activeTab === 'urdu'
                 ? 'bg-[#0B5D3C] text-white shadow-md shadow-[#0B5D3C]/20'
-                : 'text-slate-600 dark:text-slate-300 hover:bg-[#0B5D3C]/5'
+                : 'text-[#2D3E35] dark:text-slate-200 hover:bg-[#0B5D3C]/10'
             }`}
           >
             <BookMarked className="w-3.5 h-3.5" />
@@ -242,7 +242,7 @@ ${verse.urdu_translation}
             className={`flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 whitespace-nowrap ${
               activeTab === 'english'
                 ? 'bg-[#0B5D3C] text-white shadow-md shadow-[#0B5D3C]/20'
-                : 'text-slate-600 dark:text-slate-300 hover:bg-[#0B5D3C]/5'
+                : 'text-[#2D3E35] dark:text-slate-200 hover:bg-[#0B5D3C]/10'
             }`}
           >
             <Globe className="w-3.5 h-3.5" />
@@ -255,7 +255,7 @@ ${verse.urdu_translation}
             className={`flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 whitespace-nowrap font-urdu ${
               activeTab === 'context'
                 ? 'bg-[#0B5D3C] text-white shadow-md shadow-[#0B5D3C]/20'
-                : 'text-slate-600 dark:text-slate-300 hover:bg-[#0B5D3C]/5'
+                : 'text-[#2D3E35] dark:text-slate-200 hover:bg-[#0B5D3C]/10'
             }`}
           >
             <History className="w-3.5 h-3.5" />
@@ -268,7 +268,7 @@ ${verse.urdu_translation}
             className={`flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 whitespace-nowrap font-urdu ${
               activeTab === 'lessons'
                 ? 'bg-[#0B5D3C] text-white shadow-md shadow-[#0B5D3C]/20'
-                : 'text-slate-600 dark:text-slate-300 hover:bg-[#0B5D3C]/5'
+                : 'text-[#2D3E35] dark:text-slate-200 hover:bg-[#0B5D3C]/10'
             }`}
           >
             <Lightbulb className="w-3.5 h-3.5 text-[#C9A227]" />
@@ -280,7 +280,7 @@ ${verse.urdu_translation}
         {loadingDynamic && activeTab === 'urdu' ? (
           <div className="py-12 flex flex-col items-center justify-center text-center gap-2">
             <Loader2 className="w-7 h-7 text-[#0B5D3C] dark:text-[#C9A227] animate-spin" />
-            <p className="text-xs font-urdu text-slate-500 dark:text-slate-400">
+            <p className="text-xs font-urdu text-[#2D3E35] dark:text-slate-400 font-medium">
               آن لائن تفسیر اپ لوڈ ہو رہی ہے...
             </p>
           </div>
@@ -288,7 +288,7 @@ ${verse.urdu_translation}
           <>
             {/* Error Notification if Online Fetch Failed */}
             {dynamicError && activeTab === 'urdu' && (
-              <div className="mb-3 p-3 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300 text-xs font-urdu text-right" dir="rtl">
+              <div className="mb-3 p-3 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-300 text-xs font-urdu text-right font-medium" dir="rtl">
                 {dynamicError}
               </div>
             )}
@@ -299,7 +299,7 @@ ${verse.urdu_translation}
               {activeTab === 'urdu' && (
                 <div className="flex flex-col gap-3" dir="rtl">
                   <div 
-                    className={`font-urdu text-slate-700 dark:text-slate-200 leading-[2.1] whitespace-pre-line text-right ${activeTextClass} ${
+                    className={`font-urdu text-[#112019] dark:text-[#E8EFEA] font-medium leading-[2.1] whitespace-pre-line text-right ${activeTextClass} ${
                       !isExpanded && (selectedEdition !== 'embedded' ? dynamicText : localTafseer.tafseerUrdu).length > 350
                         ? 'line-clamp-6'
                         : ''
@@ -310,7 +310,7 @@ ${verse.urdu_translation}
                       : localTafseer.tafseerUrdu}
                   </div>
 
-                  <div className="mt-1 flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500 font-urdu">
+                  <div className="mt-1 flex items-center justify-between text-[11px] text-[#33463C] dark:text-slate-400 font-urdu font-medium">
                     <span>
                       ماخذ: {selectedEdition !== 'embedded' ? dynamicSource : localTafseer.sourceNameUrdu}
                     </span>
@@ -340,10 +340,10 @@ ${verse.urdu_translation}
               {/* TAB 2: English Explanation */}
               {activeTab === 'english' && (
                 <div className="flex flex-col gap-3" dir="ltr">
-                  <div className={`font-sans text-slate-700 dark:text-slate-200 leading-relaxed whitespace-pre-line ${activeTextClass}`}>
+                  <div className={`font-sans text-[#12221A] dark:text-[#E8EFEA] font-medium leading-relaxed whitespace-pre-line ${activeTextClass}`}>
                     {localTafseer.tafseerEn}
                   </div>
-                  <div className="mt-1 text-[11px] text-slate-400 dark:text-slate-500">
+                  <div className="mt-1 text-[11px] text-[#33463C] dark:text-slate-400 font-medium">
                     Source: {localTafseer.sourceNameEn}
                   </div>
                 </div>
@@ -353,15 +353,15 @@ ${verse.urdu_translation}
               {activeTab === 'context' && (
                 <div className="flex flex-col gap-3" dir="rtl">
                   <div className="p-4 rounded-2xl bg-[#F5F1E8]/80 dark:bg-[#0C1813]/80 border border-[#0B5D3C]/10 dark:border-white/10">
-                    <p className="text-xs uppercase tracking-wider text-[#0B5D3C] dark:text-[#C9A227] font-bold mb-2 flex items-center gap-1.5">
+                    <p className="text-xs uppercase tracking-wider text-[#084D31] dark:text-[#E5C76B] font-bold mb-2 flex items-center gap-1.5">
                       <History className="w-4 h-4" />
                       <span>شانِ نزول و تاریخی پس منظر</span>
                     </p>
-                    <p className={`font-urdu text-slate-700 dark:text-slate-200 leading-relaxed text-right ${activeTextClass}`}>
+                    <p className={`font-urdu text-[#112019] dark:text-[#E8EFEA] font-medium leading-relaxed text-right ${activeTextClass}`}>
                       {localTafseer.asbabAlNuzulUrdu}
                     </p>
                   </div>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 font-sans text-left" dir="ltr">
+                  <p className="text-[11px] text-[#33463C] dark:text-slate-400 font-sans font-medium text-left" dir="ltr">
                     Context: {localTafseer.asbabAlNuzulEn}
                   </p>
                 </div>
@@ -379,7 +379,7 @@ ${verse.urdu_translation}
                         <span className="w-6 h-6 rounded-full bg-[#0B5D3C] text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
                           {idx + 1}
                         </span>
-                        <p className="font-urdu text-sm sm:text-base text-slate-700 dark:text-slate-200 leading-relaxed text-right flex-1">
+                        <p className="font-urdu text-sm sm:text-base text-[#112019] dark:text-[#E8EFEA] font-medium leading-relaxed text-right flex-1">
                           {lesson}
                         </p>
                       </div>
@@ -388,11 +388,11 @@ ${verse.urdu_translation}
 
                   {localTafseer.reflectionsUrdu && (
                     <div className="p-4 rounded-2xl bg-[#C9A227]/10 border border-[#C9A227]/30">
-                      <p className="text-xs font-bold text-[#0B5D3C] dark:text-[#E5C76B] mb-1 flex items-center gap-1">
+                      <p className="text-xs font-bold text-[#084D31] dark:text-[#E5C76B] mb-1 flex items-center gap-1">
                         <Sparkles className="w-3.5 h-3.5" />
                         <span>آج کا نکتہ و سچی عمل کی نیت:</span>
                       </p>
-                      <p className="font-urdu text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed text-right">
+                      <p className="font-urdu text-xs sm:text-sm text-[#112019] dark:text-[#E8EFEA] font-medium leading-relaxed text-right">
                         {localTafseer.reflectionsUrdu}
                       </p>
                     </div>

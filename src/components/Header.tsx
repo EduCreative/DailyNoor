@@ -70,13 +70,15 @@ export const Header: React.FC<HeaderProps> = ({
   );
 
   const currentTheme = settings.appTheme || (settings.darkMode ? 'midnight' : 'emerald');
+  const isDaylight = currentTheme === 'daylight';
 
   const cycleTheme = () => {
     triggerHaptic('medium');
-    let nextTheme: 'emerald' | 'midnight' | 'pearl' = 'emerald';
+    let nextTheme: 'emerald' | 'midnight' | 'pearl' | 'daylight' = 'emerald';
     if (currentTheme === 'emerald') nextTheme = 'midnight';
     else if (currentTheme === 'midnight') nextTheme = 'pearl';
-    else if (currentTheme === 'pearl') nextTheme = 'emerald';
+    else if (currentTheme === 'pearl') nextTheme = 'daylight';
+    else if (currentTheme === 'daylight') nextTheme = 'emerald';
 
     updateSettings({ appTheme: nextTheme });
   };
@@ -91,9 +93,16 @@ export const Header: React.FC<HeaderProps> = ({
     }
     if (currentTheme === 'pearl') {
       return {
-        title: "Theme: Pearl Alabaster (Click to switch to Royal Emerald)",
+        title: "Theme: Pearl Alabaster (Click to switch to Bright Daylight)",
         icon: <Sun className="w-4 h-4 sm:w-5 sm:h-5 text-[#F5F1E8]" />,
         label: "Pearl"
+      };
+    }
+    if (currentTheme === 'daylight') {
+      return {
+        title: "Theme: Bright Daylight (Click to switch to Royal Emerald)",
+        icon: <Sun className="w-4 h-4 sm:w-5 sm:h-5 text-[#B45309]" />,
+        label: "Daylight"
       };
     }
     return {
@@ -113,6 +122,7 @@ export const Header: React.FC<HeaderProps> = ({
   const getHeaderBgClass = () => {
     if (currentTheme === 'midnight') return 'bg-[#05140D]/95 border-b border-[#C9A227]/30 text-[#E8EFEA] shadow-md';
     if (currentTheme === 'pearl') return 'bg-[#1C3D2F]/95 border-b border-[#C9A227]/40 text-[#F5F1E8] shadow-md';
+    if (currentTheme === 'daylight') return 'bg-white/95 border-b border-gray-200 text-[#0A0F0D] shadow-xs';
     return 'bg-[#0B5D3C]/95 border-b border-[#C9A227]/20 text-[#F5F1E8] shadow-md';
   };
 
@@ -136,14 +146,18 @@ export const Header: React.FC<HeaderProps> = ({
                 <IslamicLogo size={34} variant="shield" className="w-8 h-8 sm:w-10 sm:h-10" />
               </div>
               <div className="min-w-0">
-                <h1 className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-[#F5F1E8] flex items-center gap-1.5 min-w-0">
+                <h1 className={`text-lg sm:text-xl md:text-2xl font-bold tracking-tight flex items-center gap-1.5 min-w-0 ${isDaylight ? 'text-[#0A0F0D]' : 'text-[#F5F1E8]'}`}>
                   <span className="truncate">Daily Noor</span>
-                  <span className="text-[10px] sm:text-[11px] font-mono font-medium px-1.5 py-0.5 rounded-md bg-white/15 text-[#E5C76B] border border-[#E5C76B]/30 tracking-tight shrink-0 shadow-xs">
+                  <span className={`text-[10px] sm:text-[11px] font-mono font-medium px-1.5 py-0.5 rounded-md tracking-tight shrink-0 shadow-xs ${
+                    isDaylight 
+                      ? 'bg-[#064E3B]/10 text-[#064E3B] border border-[#064E3B]/30' 
+                      : 'bg-white/15 text-[#E5C76B] border border-[#E5C76B]/30'
+                  }`}>
                     {APP_VERSION}
                   </span>
                 </h1>
-                <p className="text-[11px] text-[#F5F1E8]/80 font-medium leading-none hidden sm:block mt-0.5">
-                  1 Verse & 1 Hadith Daily • <span className="font-urdu text-xs text-[#E5C76B]">نورِ روزانہ</span>
+                <p className={`text-[11px] font-medium leading-none hidden sm:block mt-0.5 ${isDaylight ? 'text-gray-600' : 'text-[#F5F1E8]/80'}`}>
+                  1 Verse & 1 Hadith Daily • <span className={`font-urdu text-xs ${isDaylight ? 'text-[#064E3B] font-bold' : 'text-[#E5C76B]'}`}>نورِ روزانہ</span>
                 </p>
               </div>
             </button>
@@ -159,11 +173,15 @@ export const Header: React.FC<HeaderProps> = ({
                 triggerHaptic('light');
                 onOpenCalendar();
               }}
-              className="flex items-center bg-[#084a30] px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-[#C9A227]/30 text-xs sm:text-sm font-semibold hover:bg-[#063b26] transition-colors shrink-0"
+              className={`flex items-center px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-full border text-xs sm:text-sm font-semibold transition-colors shrink-0 ${
+                isDaylight 
+                  ? 'bg-amber-50 hover:bg-amber-100 text-gray-900 border-amber-300' 
+                  : 'bg-[#084a30] hover:bg-[#063b26] text-white border-[#C9A227]/30'
+              }`}
               title={`Streak: ${streakInfo.currentStreak} days completed`}
             >
               <span className="text-[#C9A227] mr-1">🔥</span>
-              <span className="font-semibold text-white">{streakInfo.currentStreak}</span>
+              <span className={`font-semibold ${isDaylight ? 'text-gray-900' : 'text-white'}`}>{streakInfo.currentStreak}</span>
               <span className="hidden md:inline text-xs opacity-80 ml-1">Day Streak</span>
             </button>
 
@@ -174,6 +192,8 @@ export const Header: React.FC<HeaderProps> = ({
               className={`hidden md:flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold border transition-all shrink-0 ${
                 settings.familyMode
                   ? 'bg-[#C9A227] text-[#0B5D3C] border-[#C9A227] shadow-xs'
+                  : isDaylight
+                  ? 'bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200'
                   : 'bg-white/10 text-white/90 border-white/20 hover:bg-white/20'
               }`}
               title={settings.familyMode ? "Family Discussion Mode ON" : "Family Discussion Mode OFF"}
@@ -190,21 +210,29 @@ export const Header: React.FC<HeaderProps> = ({
                   triggerHaptic('medium');
                   onOpenSummaryCard();
                 }}
-                className="p-1.5 sm:p-2 hover:bg-white/10 rounded-full text-[#C9A227] transition-colors inline-flex shrink-0 border border-[#C9A227]/30 bg-black/10 hover:border-[#C9A227]/60"
+                className={`p-1.5 sm:p-2 rounded-full transition-colors inline-flex shrink-0 border ${
+                  isDaylight
+                    ? 'hover:bg-gray-100 text-[#064E3B] border-gray-200 bg-gray-50 hover:border-gray-300'
+                    : 'hover:bg-white/10 text-[#C9A227] border-[#C9A227]/30 bg-black/10 hover:border-[#C9A227]/60'
+                }`}
                 title="Generate & Share Daily Summary Card"
               >
-                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#C9A227]" />
+                <Sparkles className={`w-4 h-4 sm:w-5 sm:h-5 ${isDaylight ? 'text-[#B45309]' : 'text-[#C9A227]'}`} />
               </button>
             )}
 
             {/* Controls Group */}
             <div className="flex items-center gap-0.5 sm:gap-1 shrink-0">
               
-              {/* Theme Toggle Button (Emerald -> Midnight -> Pearl) */}
+              {/* Theme Toggle Button (Emerald -> Midnight -> Pearl -> Daylight) */}
               <button
                 id="header-theme-toggle"
                 onClick={cycleTheme}
-                className="p-1.5 sm:p-2 hover:bg-white/10 rounded-full text-white/90 transition-all flex items-center gap-1 border border-white/10 bg-black/10 hover:border-white/30"
+                className={`p-1.5 sm:p-2 rounded-full transition-all flex items-center gap-1 border ${
+                  isDaylight
+                    ? 'hover:bg-gray-100 text-gray-800 border-gray-200 bg-gray-50 hover:border-gray-300'
+                    : 'hover:bg-white/10 text-white/90 border-white/10 bg-black/10 hover:border-white/30'
+                }`}
                 title={themeDetails.title}
               >
                 {themeDetails.icon}
@@ -220,7 +248,9 @@ export const Header: React.FC<HeaderProps> = ({
                   triggerHaptic('light');
                   onOpenBookmarks();
                 }}
-                className="p-1.5 sm:p-2 hover:bg-white/10 rounded-full text-white/90 transition-colors relative"
+                className={`p-1.5 sm:p-2 rounded-full transition-colors relative ${
+                  isDaylight ? 'hover:bg-gray-100 text-gray-700' : 'hover:bg-white/10 text-white/90'
+                }`}
                 title="Saved Verses & Hadiths"
               >
                 <Bookmark className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -236,7 +266,9 @@ export const Header: React.FC<HeaderProps> = ({
                   triggerHaptic('light');
                   onOpenCalendar();
                 }}
-                className="p-1.5 sm:p-2 hover:bg-white/10 rounded-full text-white/90 transition-colors"
+                className={`p-1.5 sm:p-2 rounded-full transition-colors ${
+                  isDaylight ? 'hover:bg-gray-100 text-gray-700' : 'hover:bg-white/10 text-white/90'
+                }`}
                 title="30-Day Routine Calendar"
               >
                 <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -250,7 +282,9 @@ export const Header: React.FC<HeaderProps> = ({
                     triggerHaptic('medium');
                     onOpenQuiz();
                   }}
-                  className="p-1.5 sm:p-2 hover:bg-white/10 rounded-full text-[#E5C76B] transition-colors hidden sm:inline-flex"
+                  className={`p-1.5 sm:p-2 rounded-full transition-colors hidden sm:inline-flex ${
+                    isDaylight ? 'hover:bg-gray-100 text-[#B45309]' : 'hover:bg-white/10 text-[#E5C76B]'
+                  }`}
                   title="Daily Islamic Reflection Quiz"
                 >
                   <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -264,7 +298,9 @@ export const Header: React.FC<HeaderProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => triggerHaptic('medium')}
-                className="p-1.5 sm:p-2 hover:bg-white/10 rounded-full text-[#25D366] transition-colors hidden xs:inline-flex"
+                className={`p-1.5 sm:p-2 rounded-full transition-colors hidden xs:inline-flex ${
+                  isDaylight ? 'hover:bg-gray-100 text-[#25D366]' : 'hover:bg-white/10 text-[#25D366]'
+                }`}
                 title="Send Suggestion or Feedback on WhatsApp (+92 333 1306603)"
               >
                 <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 fill-[#25D366]/20" />
@@ -278,7 +314,9 @@ export const Header: React.FC<HeaderProps> = ({
                     triggerHaptic('light');
                     onOpenAbout();
                   }}
-                  className="p-1.5 sm:p-2 hover:bg-white/10 rounded-full text-white/90 transition-colors hidden md:inline-flex"
+                  className={`p-1.5 sm:p-2 rounded-full transition-colors hidden md:inline-flex ${
+                    isDaylight ? 'hover:bg-gray-100 text-gray-700' : 'hover:bg-white/10 text-white/90'
+                  }`}
                   title="About Daily Noor & Version"
                 >
                   <Info className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -292,7 +330,9 @@ export const Header: React.FC<HeaderProps> = ({
                   triggerHaptic('light');
                   onOpenSettings();
                 }}
-                className="p-1.5 sm:p-2 hover:bg-white/10 rounded-full text-white/90 transition-colors"
+                className={`p-1.5 sm:p-2 rounded-full transition-colors ${
+                  isDaylight ? 'hover:bg-gray-100 text-gray-700' : 'hover:bg-white/10 text-white/90'
+                }`}
                 title="Preferences & Settings"
               >
                 <SettingsIcon className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -303,9 +343,11 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Sub-strip with Hijri & Gregorian date + User Location Name */}
-        <div className="mt-2 pt-1.5 sm:pt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-[#F5F1E8]/80 font-medium">
+        <div className={`mt-2 pt-1.5 sm:pt-2 border-t flex flex-wrap items-center justify-between gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-medium ${
+          isDaylight ? 'border-gray-200 text-gray-600' : 'border-white/10 text-[#F5F1E8]/80'
+        }`}>
           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap min-w-0">
-            <span className="text-[#C9A227] font-semibold font-urdu shrink-0" dir="rtl">
+            <span className={`${isDaylight ? 'text-[#B45309]' : 'text-[#C9A227]'} font-semibold font-urdu shrink-0`} dir="rtl">
               {hijriInfo.formatted}
             </span>
             <span className="opacity-40 shrink-0">•</span>
@@ -318,7 +360,11 @@ export const Header: React.FC<HeaderProps> = ({
                 triggerHaptic('light');
                 onOpenSettings();
               }}
-              className="flex items-center gap-1 text-[11px] font-semibold text-[#E5C76B] hover:text-white transition-colors cursor-pointer bg-white/10 px-2 py-0.5 rounded-full border border-white/15 max-w-[120px] xs:max-w-[160px] sm:max-w-[220px]"
+              className={`flex items-center gap-1 text-[11px] font-semibold transition-colors cursor-pointer px-2 py-0.5 rounded-full border max-w-[120px] xs:max-w-[160px] sm:max-w-[220px] ${
+                isDaylight 
+                  ? 'text-gray-700 hover:text-black bg-gray-100 border-gray-200' 
+                  : 'text-[#E5C76B] hover:text-white bg-white/10 border-white/15'
+              }`}
               title="Click to view or change location"
             >
               <MapPin className="w-3 h-3 text-[#C9A227] shrink-0" />

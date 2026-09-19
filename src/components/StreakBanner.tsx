@@ -73,7 +73,7 @@ export const StreakBanner: React.FC<StreakBannerProps> = ({ onOpenSummaryCard, o
             <button
               id="streak-prev-day-btn"
               onClick={handlePrevDay}
-              className="flex items-center gap-1 text-xs font-medium text-[#4A5D53] dark:text-[#96A89F] hover:text-[#0B5D3C] dark:hover:text-[#E8EFEA] px-2 py-1 rounded-lg hover:bg-[#0B5D3C]/5 dark:hover:bg-white/5 transition-colors"
+              className="flex items-center gap-1 text-xs font-semibold text-[#2D3E35] dark:text-[#C5D5CC] hover:text-[#0B5D3C] dark:hover:text-[#E8EFEA] px-2 py-1 rounded-lg hover:bg-[#0B5D3C]/5 dark:hover:bg-white/5 transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
               <span className="hidden sm:inline">Previous Day</span>
@@ -94,7 +94,7 @@ export const StreakBanner: React.FC<StreakBannerProps> = ({ onOpenSummaryCard, o
                     triggerHaptic('medium');
                     onOpenSummaryCard();
                   }}
-                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C9A227]/20 hover:bg-[#C9A227]/30 text-[#8F7212] dark:text-[#E5C76B] text-xs font-bold border border-[#C9A227]/40 transition-colors shadow-xs"
+                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C9A227]/20 hover:bg-[#C9A227]/30 text-[#7A5B0B] dark:text-[#E5C76B] text-xs font-bold border border-[#C9A227]/40 transition-colors shadow-xs"
                   title="Generate combined image card for WhatsApp & Social Media"
                 >
                   <ImageIcon className="w-3.5 h-3.5" />
@@ -106,7 +106,7 @@ export const StreakBanner: React.FC<StreakBannerProps> = ({ onOpenSummaryCard, o
             <button
               id="streak-next-day-btn"
               onClick={handleNextDay}
-              className="flex items-center gap-1 text-xs font-medium text-[#4A5D53] dark:text-[#96A89F] hover:text-[#0B5D3C] dark:hover:text-[#E8EFEA] px-2 py-1 rounded-lg hover:bg-[#0B5D3C]/5 dark:hover:bg-white/5 transition-colors"
+              className="flex items-center gap-1 text-xs font-semibold text-[#2D3E35] dark:text-[#C5D5CC] hover:text-[#0B5D3C] dark:hover:text-[#E8EFEA] px-2 py-1 rounded-lg hover:bg-[#0B5D3C]/5 dark:hover:bg-white/5 transition-colors"
             >
               <span className="hidden sm:inline">Next Day</span>
               <ChevronRight className="w-4 h-4" />
@@ -118,9 +118,9 @@ export const StreakBanner: React.FC<StreakBannerProps> = ({ onOpenSummaryCard, o
             
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-sm sm:text-base font-bold text-[#1D2B24] dark:text-[#E8EFEA]">
+                <h2 className="text-sm sm:text-base font-bold text-[#111E18] dark:text-[#E8EFEA]">
                   {progress.completed ? (
-                    <span className="text-[#0B5D3C] dark:text-[#E5C76B] flex items-center gap-1.5">
+                    <span className="text-[#084D31] dark:text-[#E5C76B] flex items-center gap-1.5">
                       <Sparkles className="w-4 h-4" /> الحمد لله! Daily Noor Completed
                     </span>
                   ) : completedCount === 1 ? (
@@ -130,7 +130,7 @@ export const StreakBanner: React.FC<StreakBannerProps> = ({ onOpenSummaryCard, o
                   )}
                 </h2>
               </div>
-              <p className="text-xs text-[#4A5D53] dark:text-[#96A89F] mt-0.5 font-urdu text-right sm:text-left" dir="rtl">
+              <p className="text-xs text-[#2D3E35] dark:text-[#C5D5CC] font-medium mt-0.5 font-urdu text-right sm:text-left" dir="rtl">
                 {progress.completed
                   ? 'ماشاء اللہ! آج کی آیت اور حدیث مکمل ہو چکی ہیں۔'
                   : 'روزانہ ایک آیت اور ایک حدیث سے اپنی اور گھر والوں کی زندگی سنواریے۔'}
@@ -142,10 +142,10 @@ export const StreakBanner: React.FC<StreakBannerProps> = ({ onOpenSummaryCard, o
               
               {/* Step 1: Verse */}
               <div 
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-medium transition-all ${
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-semibold transition-all ${
                   progress.verseRead
                     ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-700/50 text-emerald-800 dark:text-emerald-300'
-                    : 'bg-[#F5F1E8] dark:bg-[#0C1813]/60 border-[#0B5D3C]/15 dark:border-white/10 text-[#4A5D53] dark:text-[#96A89F]'
+                    : 'bg-[#F5F1E8] dark:bg-[#0C1813]/60 border-[#0B5D3C]/15 dark:border-white/10 text-[#2D3E35] dark:text-[#C5D5CC]'
                 }`}
               >
                 <BookOpen className="w-3.5 h-3.5" />
@@ -159,10 +159,10 @@ export const StreakBanner: React.FC<StreakBannerProps> = ({ onOpenSummaryCard, o
 
               {/* Step 2: Hadith */}
               <div 
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-medium transition-all ${
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-semibold transition-all ${
                   progress.hadithRead
                     ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-700/50 text-emerald-800 dark:text-emerald-300'
-                    : 'bg-[#F5F1E8] dark:bg-[#0C1813]/60 border-[#0B5D3C]/15 dark:border-white/10 text-[#4A5D53] dark:text-[#96A89F]'
+                    : 'bg-[#F5F1E8] dark:bg-[#0C1813]/60 border-[#0B5D3C]/15 dark:border-white/10 text-[#2D3E35] dark:text-[#C5D5CC]'
                 }`}
               >
                 <HeartHandshake className="w-3.5 h-3.5" />
