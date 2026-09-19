@@ -25,8 +25,8 @@ interface AboutModalProps {
   onOpenShareApp?: () => void;
 }
 
-export const APP_VERSION = 'v2.8.1';
-export const APP_RELEASE_DATE = 'August 2026';
+export const APP_VERSION = 'v2.9.0';
+export const APP_RELEASE_DATE = 'September 2026';
 
 export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
   const [copiedLink, setCopiedLink] = useState(false);
